@@ -618,7 +618,7 @@ function showPersonDetails(pid, silent) {
   const children = kidsOf(pid).map((x) => x.id).filter((id) => PEOPLE[id]);
   const cousinButton = '<button type="button" class="drawer-cousin-action" data-open-cousins="' + esc(pid) + '">Show cousins of ' + esc(nameOf(p)) + '</button>';
   panel.innerHTML =
-    '<div class="detail-top"><div><div class="panel-kicker">FAMILY PROFILE</div><h3 class="detail-name">' + esc(nameOf(p)) + heritageFlagsMarkup(pid) + '</h3><p>' + esc(roleOf(p)) + (p.d ? ' · ' + esc(p.d) : '') + '</p></div><span class="evidence-tag ' + evidence[1] + '">' + esc(evidence[0]) + '</span></div>' +
+    '<div class="detail-top"><div><div class="panel-kicker">FAMILY PROFILE</div><h3 id="profileTitle" class="detail-name">' + esc(nameOf(p)) + heritageFlagsMarkup(pid) + '</h3><p>' + esc(roleOf(p)) + (p.d ? ' · ' + esc(p.d) : '') + '</p></div><span class="evidence-tag ' + evidence[1] + '">' + esc(evidence[0]) + '</span></div>' +
     (p.n ? '<p class="detail-note">' + esc(p.n) + '</p>' : '<p class="detail-note">No additional historical note has been added for this person yet.</p>') +
     historicalSectionsMarkup(pid) +
     heritagePanelMarkup(pid) +
@@ -638,9 +638,16 @@ function showPersonDetails(pid, silent) {
   if (!silent) {
     const drawer = $("#profileDrawer");
     const backdrop = $("#drawerBackdrop");
-    if (drawer) drawer.hidden = false;
+    if (drawer) {
+      drawer.hidden = false;
+      drawer.setAttribute("role", "dialog");
+      drawer.setAttribute("aria-modal", "true");
+      drawer.setAttribute("aria-labelledby", "profileTitle");
+      drawer.setAttribute("aria-label", "Profile for " + nameOf(p));
+    }
     if (backdrop) backdrop.hidden = false;
     if ($("#cousinExplorer") && !$("#cousinExplorer").hidden) renderCousinExplorer();
+    requestAnimationFrame(() => $("#closeProfile")?.focus({ preventScroll: true }));
   }
 }
 
@@ -737,9 +744,19 @@ function refreshCard(card) {
   card.replaceWith(fresh);
 }
 
+let lastProfileTrigger = null;
+function closeProfileDrawer(restoreFocus = true) {
+  const drawer = $("#profileDrawer");
+  const backdrop = $("#drawerBackdrop");
+  if (drawer) drawer.hidden = true;
+  if (backdrop) backdrop.hidden = true;
+  if (restoreFocus && lastProfileTrigger && lastProfileTrigger.isConnected) {
+    lastProfileTrigger.focus({ preventScroll: true });
+  }
+}
 treeMap.addEventListener("click", (e) => {
   const card = e.target.closest(".card[data-pid]");
-  if (card) showPersonDetails(card.dataset.pid);
+  if (card) { lastProfileTrigger = card; showPersonDetails(card.dataset.pid); }
 });
 
 $("#personDetails").addEventListener("click", (e) => {
@@ -760,14 +777,8 @@ $("#personDetails").addEventListener("click", (e) => {
 $("#cousinToggle").addEventListener("click", () => setCousinMode($("#cousinExplorer").hidden));
 $("#cousinPersonSelect").addEventListener("change", renderCousinExplorer);
 $("#closeCousins").addEventListener("click", () => setCousinMode(false));
-$("#closeProfile").addEventListener("click", () => {
-  $("#profileDrawer").hidden = true;
-  $("#drawerBackdrop").hidden = true;
-});
-$("#drawerBackdrop").addEventListener("click", () => {
-  $("#profileDrawer").hidden = true;
-  $("#drawerBackdrop").hidden = true;
-});
+$("#closeProfile").addEventListener("click", () => closeProfileDrawer());
+$("#drawerBackdrop").addEventListener("click", () => closeProfileDrawer());
 treeMap.addEventListener("focusout", (e) => {
   const f = e.target;
   if (!f.isContentEditable || !f.dataset || !f.dataset.f) return;
@@ -862,9 +873,11 @@ function setCousinMode(on) {
     const select = $("#cousinPersonSelect");
     if (select && PEOPLE[activePersonId]) select.value = activePersonId;
     renderCousinExplorer();
+    requestAnimationFrame(() => select?.focus({ preventScroll: true }));
   } else {
     treeMap.classList.remove("cousin-mode");
     $$(".card.cousin-hit, .card.cousin-anchor").forEach((card) => card.classList.remove("cousin-hit", "cousin-anchor"));
+    requestAnimationFrame(() => toggle.focus({ preventScroll: true }));
   }
 }
 
@@ -1087,7 +1100,14 @@ const NAV = {
   },
   adrian() { focusPeople(["eduardo", "purita-argueza", "jeffrey", "adrian", "sister"]); },
 };
-document.querySelectorAll("[data-nav]").forEach((b) => b.addEventListener("click", () => NAV[b.dataset.nav]()));
+document.querySelectorAll("[data-nav]").forEach((b) => b.addEventListener("click", () => {
+  NAV[b.dataset.nav]();
+  document.querySelectorAll("[data-nav]").forEach((nav) => {
+    const active = nav === b;
+    nav.classList.toggle("is-active", active);
+    if (active) nav.setAttribute("aria-current", "location"); else nav.removeAttribute("aria-current");
+  });
+}));
 $("#zin").addEventListener("click", () => zoomStep(1.25));
 $("#zout").addEventListener("click", () => zoomStep(0.8));
 $("#fit").addEventListener("click", () => {
@@ -1110,6 +1130,7 @@ q.addEventListener("input", () => {
   qres.textContent = "";
   if (t.length < 2) {
     qres.hidden = true;
+    q.setAttribute("aria-expanded", "false");
     return;
   }
   const hits = Object.values(PEOPLE).filter((p) => !p.same && norm(nameOf(p) + " " + roleOf(p)).includes(t)).slice(0, 8);
@@ -1118,6 +1139,7 @@ q.addEventListener("input", () => {
     b.type = "button";
     b.addEventListener("click", () => {
       qres.hidden = true;
+      q.setAttribute("aria-expanded", "false");
       q.value = "";
       focusPeople([p.id]);
     });
@@ -1125,18 +1147,31 @@ q.addEventListener("input", () => {
   });
   if (!hits.length) qres.appendChild(el("button", "", "No one found<small>Try part of a name</small>"));
   qres.hidden = false;
+  q.setAttribute("aria-expanded", "true");
+  qres.querySelectorAll("button").forEach((item) => item.setAttribute("role", "option"));
 });
 q.addEventListener("keydown", (e) => {
+  const items = Array.from(qres.querySelectorAll("button:not(:disabled)"));
   if (e.key === "Escape") {
     qres.hidden = true;
+    q.setAttribute("aria-expanded", "false");
     q.blur();
+  } else if (e.key === "ArrowDown" && items.length) {
+    e.preventDefault(); items[0].focus();
   } else if (e.key === "Enter") {
-    const first = qres.querySelector("button");
+    const first = qres.querySelector("button:not(:disabled)");
     if (first) first.click();
   }
 });
+qres.addEventListener("keydown", (e) => {
+  const items = Array.from(qres.querySelectorAll("button:not(:disabled)"));
+  const index = items.indexOf(document.activeElement);
+  if (e.key === "ArrowDown" && items.length) { e.preventDefault(); items[Math.min(index + 1, items.length - 1)].focus(); }
+  else if (e.key === "ArrowUp" && items.length) { e.preventDefault(); if (index <= 0) q.focus(); else items[index - 1].focus(); }
+  else if (e.key === "Escape") { qres.hidden = true; q.setAttribute("aria-expanded", "false"); q.focus(); }
+});
 document.addEventListener("click", (e) => {
-  if (!e.target.closest(".search-wrap")) qres.hidden = true;
+  if (!e.target.closest(".search-wrap")) { qres.hidden = true; q.setAttribute("aria-expanded", "false"); }
 });
 
 /* ---------- index of connected families ---------- */
@@ -2255,6 +2290,123 @@ function renderArchiveSections() {
   initArchiveForms(); initExpansionFeatures(); renderArchiveFiles();
 }
 
+/* ---------- V16 premium interaction layer ---------- */
+function initPremiumInteractions() {
+  if (document.documentElement.dataset.premiumUXReady === "true") return;
+  document.documentElement.dataset.premiumUXReady = "true";
+
+  const progressTrack = document.createElement("div");
+  progressTrack.className = "reading-progress-track";
+  progressTrack.setAttribute("aria-hidden", "true");
+  progressTrack.innerHTML = '<span class="reading-progress-bar" id="readingProgressBar"></span>';
+  document.body.appendChild(progressTrack);
+
+  const backTop = document.createElement("button");
+  backTop.type = "button";
+  backTop.className = "back-to-top";
+  backTop.id = "backToTop";
+  backTop.setAttribute("aria-label", "Back to top");
+  backTop.title = "Back to top";
+  backTop.textContent = "↑";
+  document.body.appendChild(backTop);
+  backTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+  const progressBar = $("#readingProgressBar");
+  let scrollFrame = 0;
+  const updateScrollChrome = () => {
+    scrollFrame = 0;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const ratio = Math.min(1, Math.max(0, window.scrollY / max));
+    if (progressBar) progressBar.style.width = (ratio * 100).toFixed(2) + "%";
+    backTop.classList.toggle("is-visible", window.scrollY > 500);
+  };
+  window.addEventListener("scroll", () => {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollChrome);
+  }, { passive: true });
+  updateScrollChrome();
+
+  // Mark the current archive subsection while reading; the sticky index stays in sync.
+  const archiveLinks = Array.from(document.querySelectorAll('.archive-index a[href^="#"]'));
+  const sectionMap = new Map();
+  archiveLinks.forEach((link) => {
+    const target = document.getElementById(decodeURIComponent(link.getAttribute("href").slice(1)));
+    if (target) sectionMap.set(target, link);
+  });
+  if ("IntersectionObserver" in window && sectionMap.size) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (!visible.length) return;
+      const activeLink = sectionMap.get(visible[0].target);
+      archiveLinks.forEach((link) => {
+        const active = link === activeLink;
+        link.classList.toggle("is-active", active);
+        if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
+      });
+    }, { rootMargin: "-18% 0px -68% 0px", threshold: [0, .15, .35, .6] });
+    sectionMap.forEach((_link, target) => observer.observe(target));
+  }
+
+  // Dialog focus handling for profile and sign-in overlays.
+  const loginPanel = $("#cloudLoginPanel");
+  const loginButton = $("#cloudLoginBtn");
+  if (loginPanel && "MutationObserver" in window) {
+    const loginObserver = new MutationObserver(() => {
+      if (!loginPanel.hidden) {
+        setTimeout(() => $("#cloudEmail")?.focus({ preventScroll: true }), 30);
+      } else if (loginButton) {
+        loginButton.focus({ preventScroll: true });
+      }
+    });
+    loginObserver.observe(loginPanel, { attributes: true, attributeFilter: ["hidden"] });
+  }
+
+  const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  function keepFocusInside(container, event) {
+    if (event.key !== "Tab" || !container || container.hidden) return;
+    const items = Array.from(container.querySelectorAll(focusableSelector)).filter((node) => node.offsetWidth || node.offsetHeight || node === document.activeElement);
+    if (!items.length) { event.preventDefault(); container.focus?.(); return; }
+    const first = items[0], last = items[items.length - 1];
+    if (event.shiftKey && (document.activeElement === first || !container.contains(document.activeElement))) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !container.contains(document.activeElement))) {
+      event.preventDefault(); first.focus();
+    }
+  }
+  document.addEventListener("keydown", (event) => {
+    const loginOpen = loginPanel && !loginPanel.hidden;
+    const drawer = $("#profileDrawer");
+    const drawerOpen = drawer && !drawer.hidden;
+    if (event.key === "Escape") {
+      if (loginOpen) { $("#cloudLoginClose")?.click(); event.preventDefault(); return; }
+      if (drawerOpen) { closeProfileDrawer(); event.preventDefault(); return; }
+      if ($("#cousinExplorer") && !$("#cousinExplorer").hidden) { setCousinMode(false); event.preventDefault(); return; }
+      if ($("#qres") && !$("#qres").hidden) { $("#qres").hidden = true; $("#q")?.setAttribute("aria-expanded", "false"); }
+      if ($(".family-map-shell.map-expanded")) $("#familyMapExpand")?.click();
+    }
+    if (loginOpen) { keepFocusInside($(".cloud-login-card", loginPanel), event); return; }
+    if (drawerOpen) { keepFocusInside(drawer, event); return; }
+    const target = event.target;
+    const typing = target && (target.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName));
+    if (!typing && ((event.key.toLowerCase() === "k" && (event.ctrlKey || event.metaKey)) || event.key === "/")) {
+      event.preventDefault(); $("#q")?.focus({ preventScroll: true });
+    }
+  });
+
+  // Keep pressed/selected states and labels understandable to assistive technology.
+  document.querySelectorAll("[aria-pressed]").forEach((control) => {
+    const sync = () => control.classList.toggle("is-pressed", control.getAttribute("aria-pressed") === "true");
+    sync();
+    new MutationObserver(sync).observe(control, { attributes: true, attributeFilter: ["aria-pressed"] });
+  });
+  document.querySelectorAll("a[href^=\"#\"]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const id = decodeURIComponent(link.getAttribute("href").slice(1));
+      const destination = document.getElementById(id);
+      if (destination && !destination.hasAttribute("tabindex")) destination.setAttribute("tabindex", "-1");
+    });
+  });
+}
+
 /* ---------- cloud-aware startup ---------- */
 async function bootFamilyArchive() {
   loadStore();
@@ -2340,6 +2492,8 @@ window.addEventListener("family-cloud-sync-request", async () => {
     window.alert("The cloud sync failed: " + (error.message || "Unknown error"));
   }
 });
+
+initPremiumInteractions();
 
 bootFamilyArchive().catch((error) => {
   console.error("Family archive startup failed", error);
