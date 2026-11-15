@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#070707" />
+  <meta name="description" content="An interactive family tree of the Lacsamana and Ortega families of La Union." />
+  <title>Lacsamana × Ortega — Family Tree</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="database.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to family tree</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Family tree home">
+      <span class="brand-mark">L<span>×</span>O</span>
+      <span class="brand-copy"><strong>Lacsamana × Ortega</strong><small>LA UNION · FAMILY TREE</small></span>
+    </a>
+    <div class="header-tools">
+      <nav class="quick-nav" aria-label="Tree navigation">
+        <button type="button" data-nav="roots">Ancestors</button>
+        <button type="button" data-nav="ortega">Francisca’s line</button>
+        <button type="button" data-nav="leon">Leon’s line</button>
+        <button type="button" data-nav="research">Other records</button>
+        <button type="button" data-nav="geography">Family map</button>
+        <button type="button" data-nav="nameHistory">Name history</button>
+        <button type="button" data-nav="archive">Family archive</button>
+        <button type="button" data-nav="families">Sources</button>
+      </nav>
+      <div class="search-wrap">
+        <label class="sr-only" for="q">Search family members</label>
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="q" type="search" placeholder="Find a person…" autocomplete="off" />
+        <div id="qres" class="search-results" hidden></div>
+      </div>
+      <div class="cloud-toolbar" aria-label="Cloud database controls">
+        <span id="cloudStatus" class="cloud-status" role="status">Cloud: checking setup…</span>
+        <button type="button" class="cloud-button" id="cloudLoginBtn">Admin sign in</button>
+        <button type="button" class="cloud-button" id="cloudLogoutBtn" hidden>Sign out</button>
+        <button type="button" class="cloud-button cloud-sync" id="cloudSyncBtn" hidden>Sync browser</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="cloud-public-note" id="cloudPublicNote">Public family archive · Visitor access is read-only. Authorized editing requires administrator sign-in.</div>
+  <main id="top" class="page-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A CONNECTED FAMILY RECORD</div>
+        <h1>One family.<br /><span>Every generation.</span></h1>
+        <p>Follow the Lacsamana and Ortega family tree from Martin Lacsamana and Narcisa Lopez through Don Leon and Doña Francisca, and onward through their descendants.</p>
+      </div>
+      <div class="hero-stats" aria-label="Family tree statistics">
+        <div class="stat-card"><strong id="statPeople">—</strong><span>People recorded</span></div>
+        <div class="stat-card"><strong id="statBranches">14</strong><span>Francisca’s children</span></div>
+        <div class="stat-card"><strong id="statResearch">3</strong><span>Unlinked records</span></div>
+      </div>
+    </section>
+
+    <section class="tree-controls" aria-label="Family tree controls">
+      <div class="tree-control-left">
+        <span class="live-dot"></span><span class="control-heading">FAMILY TREE</span>
+        <button type="button" class="cousin-toggle" id="cousinToggle" aria-pressed="false">Cousins: Off</button>
+      </div>
+      <div class="tree-control-right">
+        <button type="button" class="control-btn" id="zout" aria-label="Zoom out">−</button>
+        <span id="zoomText" class="zoom-display">100%</span>
+        <button type="button" class="control-btn" id="zin" aria-label="Zoom in">+</button>
+        <button type="button" class="control-btn fit" id="fit">Fit tree</button>
+      </div>
+    </section>
+
+    <section id="cousinExplorer" class="cousin-explorer" aria-label="Cousin finder" hidden>
+      <div class="cousin-topline">
+        <div><span class="eyebrow">RELATIONSHIP FINDER</span><h2>Show cousins by name</h2></div>
+        <button type="button" id="closeCousins" class="close-plain" aria-label="Close cousin finder">×</button>
+      </div>
+      <label for="cousinPersonSelect">Cousins of</label>
+      <select id="cousinPersonSelect"></select>
+      <div id="cousinResults" class="cousin-results" aria-live="polite"></div>
+      <p class="cousin-footnote">Each named relative is labeled with the exact cousin degree relative to the selected person. Unnamed count placeholders remain on family profiles but are not displayed as named cousin results. Relationships that depend on unverified parent links are marked provisional.</p>
+    </section>
+
+    <div class="tree-caption-row">
+      <div><span class="eyebrow">ANCESTRY MAP</span><h2>Explore the family</h2></div>
+      <span id="stat" class="canvas-count">Loading family records…</span>
+    </div>
+    <p class="usage-hint"><span class="hint-desktop">Drag to move · Scroll to zoom · Click a circle to open a profile</span><span class="hint-mobile">Drag to move · Pinch to zoom · Tap a circle for details</span></p>
+
+    <section class="tree-frame" aria-label="Interactive family tree">
+      <div class="viewport" id="viewport" tabindex="0" aria-label="Interactive family tree. Drag to move, scroll or pinch to zoom.">
+        <div class="tree-map" id="treeMap">
+          <svg class="tree-lines" id="treeLines" aria-hidden="true"></svg>
+          <div class="stage" id="stage"></div>
+        </div>
+        <div class="viewport-zoom">
+          <button type="button" id="vzin" aria-label="Zoom in">+</button>
+          <button type="button" id="vzout" aria-label="Zoom out">−</button>
+          <button type="button" id="vfit" class="fit" aria-label="Fit the whole tree">Fit</button>
+        </div>
+        <div class="canvas-help">DRAG TO EXPLORE <span>·</span> TAP A PROFILE</div>
+      </div>
+    </section>
+
+    <section class="content-section source-section" id="name-history">
+      <div class="section-heading">
+        <div><div class="eyebrow">NAME & CULTURAL HISTORY</div><h2>The Lacsamana name beyond the family tree</h2></div>
+      </div>
+      <div class="source-grid">
+        <article class="source-card">
+          <h3>Possible linguistic heritage</h3>
+          <p><strong>Lakshmana → laksamana → Lacsamana</strong> is a useful way to understand the name's wider cultural history, but the exact route by which this particular family adopted the surname has not yet been established.</p>
+          <ul>
+            <li><a href="https://www.familysearch.org/en/surname?surname=lacsamana" target="_blank" rel="noopener">FamilySearch · Lacsamana surname origin</a> — citing the <em>Dictionary of American Family Names</em>, it describes Lacsamana as a Filipino surname from a Hispanicized form of Lakshmana, Rama's younger brother in the Indian epic <em>Ramayana</em>.</li>
+            <li><a href="https://www.wisdomlib.org/history/essay/indian-influences-in-the-philippines/ocr/1474045/38" target="_blank" rel="noopener">Juan R. Francisco · “Indian Influences in the Philippines,” chapter 1, p. 38</a> — discusses Malay <em>laksamana</em>, meaning admiral, as deriving from the name Lakshmana, Rama's half-brother.</li>
+            <li><a href="https://prpm.dbp.gov.my/Cari1?d=202792&keyword=laksamana" target="_blank" rel="noopener">Dewan Bahasa dan Pustaka · Kamus Dewan entry for “laksamana”</a> — defines the Malay term as a historic high naval title and a rank in the navy.</li>
+          </ul>
+          <p class="detail-note">This is linguistic and cultural context, not proof that the Lacsamana family descends from the epic character, has a particular South Asian ancestry, or included naval commanders. The surname's specific path into the Bangar–La Union family still needs historical evidence.</p>
+        </article>
+        <article class="source-card">
+          <h3>Nicole Lacsamana in <em>Until Then</em></h3>
+          <p><em>Until Then</em> is a narrative adventure game developed by Philippine studio Polychroma Games and released on June 25, 2024.</p>
+          <p>A community-maintained <a href="https://until-then-game.fandom.com/wiki/Nicole_Lacsamana" target="_blank" rel="noopener">Until Then Wiki page for Nicole Lacsamana</a> lists the character's full name as Nicole G. Lacsamana and identifies Valerie Lacsamana and Mr. Lacsamana as her fictional parents. The page is marked as a stub, so treat those character details as community-wiki information rather than official documentation.</p>
+          <p><a href="https://store.steampowered.com/app/1574820/Until_Then/" target="_blank" rel="noopener">Until Then · Official Steam listing</a> — identifies Polychroma Games as developer and June 25, 2024 as the release date.</p>
+          <p class="detail-note">Nicole is included here as a fictional cultural reference because she shares the Lacsamana surname. She is not part of this historical family tree, and no relationship to Don Leon, Doña Francisca, or their descendants is established.</p>
+        </article>
+      </div>
+      <article class="source-card heritage-origin-note" id="spanish-philippine-heritage">
+        <h3>Spanish–Philippine family heritage through Evaristo Guadalupe y Villaverde</h3>
+        <p>The supplied FamilySearch family-tree screenshots identify Evaristo Guadalupe y Villaverde, OSA, and Ramona Lopez Lacsamana as the parents of Don Leon Lacsamana and Doña Francisca Lopez Lacsamana-Ortega. An Augustinian historical register lists Evaristo as born in Ocaña, Toledo, Spain, in 1830 and records his service in the Philippines and death in San Juan, La Union, in 1887.</p>
+        <p>The United States Department of State's 1873 collection transcribes the Spanish Constitution of 23 May 1845, which stated that persons born within Spain's dominions were Spaniards and that children of a Spanish father or mother could be Spanish subjects even when born outside those dominions. The same page also reproduces the 1852 decree on aliens. These texts provide historical legal context for Evaristo's Spanish-born origin; they do not determine the present-day citizenship of his descendants.</p>
+        <p><strong>How the flags are used:</strong> 🇪🇸 beside Evaristo indicates his Spanish birthplace/origin. 🇵🇭 🇪🇸 beside people in the Leon and Francisca descendant lines indicates Philippine family roots and a Spanish-born ancestor through Evaristo. The flags describe family heritage, not two current nationalities and not an assertion that every descendant is exactly half Spanish.</p>
+        <p><strong>Pedigree explanation:</strong> Leon and Francisca are one parent-child generation below Evaristo, so one-half of their pedigree comes through him. Each further generation halves the expected contribution from this single ancestor: 25%, 12.5%, 6.25%, and so on. These are pedigree calculations from one ancestor, not DNA-test results; other ancestral branches may add further Spanish ancestry.</p>
+        <p><strong>Evidence limitation:</strong> The parentage link currently comes from the supplied FamilySearch tree screenshots and is marked as needing corroboration against original civil or church records. Ramona's full ancestral background is not established in the current archive.</p>
+        <p><a href="https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf" target="_blank" rel="noopener">Augustinian archival register ↗</a> · <a href="https://history.state.gov/historicaldocuments/frus1873p1v2/d217" target="_blank" rel="noopener">U.S. Department of State · Spanish Constitution of 1845 and 1852 decree transcription ↗</a></p>
+      </article>
+      <div class="archive-subsection" id="surname-variations">
+        <div class="archive-subhead"><div><div class="eyebrow">SURNAME REGISTER</div><h3>Names and forms found in the current records</h3></div></div>
+        <p class="archive-note">These are names appearing in the current family tree, including direct relatives, spouses, in-laws, and separate research records. Their appearance here does not mean every surname is part of the direct Lacsamana bloodline.</p>
+        <div id="surnameRegistry" class="surname-registry"></div>
+        <div class="name-form-notes">
+          <div><strong>Recorded spelling / name variants</strong><p><em>Joaquino / Juaquino</em> appears as a spelling variation in the supplied Ortega family notes. <em>Emilia / Emiliana Garcia</em> and <em>Cayetana / Catalina Munar</em> are unresolved given-name variants, not established separate people.</p></div>
+          <div><strong>Lacsamana / Laksamana</strong><p><em>Laksamana</em> is included as a related Malay linguistic form. The existing sources do not establish it as a spelling used by this particular La Union branch.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section family-archive" id="family-archive">
+      <div class="section-heading"><div><div class="eyebrow">FAMILY HISTORY COLLECTION</div><h2>Beyond the family tree</h2></div><span class="section-index">08</span></div>
+      <p class="archive-note archive-intro">A working archive for the family's chronology, places, records, biographies, memories, and unresolved research. Items retain their evidence status; blank spaces are research leads, not invitations to guess.</p>
+      <nav class="archive-index" aria-label="Family archive sections">
+        <a href="#name-history">Surname origins</a>
+        <a href="#family-timeline">Timeline</a>
+        <a href="#geographic-map">Geography</a>
+        <a href="#historical-documents">Documents & photos</a>
+        <a href="#unidentified-relatives">Unidentified relatives</a>
+        <a href="#family-achievements">Achievements & biographies</a>
+        <a href="#family-stories">Stories & oral history</a>
+        <a href="#ancestral-places">Ancestral places & properties</a>
+        <a href="#historical-world-explorer">Historical world explorer</a>
+        <a href="#ancestral-homes-gallery">Ancestral homes gallery</a>
+        <a href="#portrait-gallery">Portraits by generation</a>
+        <a href="#institutions-affiliations">Institutions & affiliations</a>
+        <a href="#ancestor-life-stories">Ancestor life stories</a>
+        <a href="#family-legacy-book">Family legacy book</a>
+      </nav>
+
+      <section class="archive-subsection" id="family-timeline">
+        <div class="archive-subhead"><div><div class="eyebrow">CHRONOLOGY</div><h3>Historical family timeline</h3></div></div>
+        <p class="archive-note">The timeline includes dated information already present in the supplied family research and source notes. Indexed ages remain estimates, and uncertain dates are labeled.</p>
+        <div id="timelineList" class="archive-timeline"></div>
+      </section>
+
+      <section class="archive-subsection" id="geographic-map">
+        <div class="archive-subhead"><div><div class="eyebrow">PLACES IN THE RECORD</div><h3>Geographic reference map</h3></div></div>
+        <p class="archive-note">This map is a geographic index, not proof that every branch migrated between these places. The locations below are tied to births, deaths, residences, family memories, or separate civil-record groups as described.</p>
+        <div class="family-map-shell">
+          <div class="family-map-toolbar">
+            <div class="family-map-views" aria-label="Map views">
+              <button type="button" class="map-view-btn active" data-map-view="launion">La Union</button>
+              <button type="button" class="map-view-btn" data-map-view="philippines">Philippines</button>
+              <button type="button" class="map-view-btn" data-map-view="spain">Spain</button>
+              <button type="button" class="map-view-btn" data-map-view="all">All locations</button>
+            </div>
+            <label class="family-map-search"><span class="sr-only">Find a person or place on the map</span><input id="familyMapSearch" type="search" placeholder="Find a person or place…" autocomplete="off"></label>
+            <div class="family-map-actions" aria-label="Map display controls">
+              <button type="button" id="familyMapReset" class="map-action-btn" title="Return to the selected region">Reset view</button>
+              <button type="button" id="familyMapTheme" class="map-action-btn" aria-pressed="true" title="Toggle the darkened Voyager appearance">Dark tone: On</button>
+              <button type="button" id="familyMapExpand" class="map-action-btn" aria-pressed="false" title="Expand the map">Expand map</button>
+            </div>
+          </div>
+          <div class="family-map-filters" aria-label="Filter map events">
+            <label><input type="checkbox" class="map-event-filter" value="birth" checked><i class="map-filter-dot birth"></i>Birth</label>
+            <label><input type="checkbox" class="map-event-filter" value="death" checked><i class="map-filter-dot death"></i>Death</label>
+            <label><input type="checkbox" class="map-event-filter" value="residence" checked><i class="map-filter-dot residence"></i>Residence</label>
+            <label><input type="checkbox" class="map-event-filter" value="marriage" checked><i class="map-filter-dot marriage"></i>Marriage</label>
+            <label><input type="checkbox" class="map-event-filter" value="work" checked><i class="map-filter-dot work"></i>Public service</label>
+            <label><input type="checkbox" class="map-event-filter" value="origin" checked><i class="map-filter-dot origin"></i>Family roots</label>
+            <label><input type="checkbox" class="map-event-filter" value="memory" checked><i class="map-filter-dot memory"></i>Family memories</label>
+            <label class="map-connections-toggle"><input type="checkbox" id="familyMapConnections" checked><i class="map-filter-dot connections"></i>Family connections</label>
+          </div>
+          <div class="family-map-heading"><div><span class="eyebrow">CARTO VOYAGER · FAMILY LOCATION INDEX</span><strong id="familyMapHeading">La Union · family locations</strong></div><div class="family-map-meta"><span id="familyMapSummary">Loading family locations…</span><span id="familyMapTileStatus" role="status" aria-live="polite">Connecting to CARTO…</span></div></div>
+          <div id="familyMigrationMap" class="family-migration-map" role="application" aria-label="Interactive map showing documented birthplaces, deaths, residences, marriages, and family locations"></div>
+          <div class="family-map-attribution-note">CARTO Voyager raster tiles · © OpenStreetMap contributors · © CARTO. Dark tone is a visual filter over the supplied Voyager tiles. Pins use town or city reference coordinates, never private home addresses.</div>
+          <div class="family-map-legend">
+            <span><i class="map-filter-dot birth"></i>Birthplace</span><span><i class="map-filter-dot death"></i>Deathplace</span><span><i class="map-filter-dot residence"></i>Residence</span><span><i class="map-filter-dot marriage"></i>Marriage record</span><span><i class="map-filter-dot work"></i>Public service</span><span><i class="map-filter-dot memory"></i>Family memory / approximate</span>
+            <span class="map-line-key"><i></i>Documented endpoints or family-reported connection (not a verified travel route)</span>
+          </div>
+          <div class="family-map-results-head"><div><span class="eyebrow">PEOPLE AT EACH PLACE</span><h4>Family location register</h4></div><span id="familyMapResultCount">0 locations</span></div>
+          <div id="geographyPlaces" class="family-map-register" aria-live="polite"></div>
+          <p class="family-map-caution"><strong>Research caution:</strong> A pin means a record or family account associates the named person with that place and event. It does not establish ownership, a precise residence, or a complete migration route. Some descendants have no documented birthplace, residence, or deathplace in the current source collection, so they are not assigned invented map locations.</p>
+        </div>
+      </section>
+
+      <section class="archive-subsection" id="historical-documents">
+        <div class="archive-subhead"><div><div class="eyebrow">SOURCE COLLECTION</div><h3>Historical documents and photographs</h3></div></div>
+        <p class="archive-note">Supplied screenshots are preserved as research exhibits. External records open at their original source. Add your own photographs, scans, document links, or record references below.</p>
+        <div class="document-gallery">
+          <figure class="archive-photo"><a href="assets/familysearch-ramona-parents-tree.png" target="_blank" rel="noopener"><img src="assets/familysearch-ramona-parents-tree.png" alt="FamilySearch family tree screenshot showing Martin Lacsamana and Narcisa Lopez connected to Ramona Lopez Lacsamana, then Francisca and Joaquin"></a><figcaption><strong>FamilySearch family-tree screenshot</strong><span>Shows Martin Lacsamana and Narcisa Lopez as Ramona's parents, and Ramona with Evaristo above Francisca and Joaquin in the displayed tree. User-supplied screenshot; not an original civil or church record.</span></figcaption></figure>
+          <figure class="archive-photo"><a href="assets/familysearch-evaristo-profile.png" target="_blank" rel="noopener"><img src="assets/familysearch-evaristo-profile.png" alt="FamilySearch profile screenshot for Evaristo Guadalupe y Villaverde"></a><figcaption><strong>Evaristo Guadalupe y Villaverde · G138-FPT</strong><span>Screenshot displays birth on 26 October 1830 in Ocaña, Toledo, Spain, and death on 17 January 1887 in San Juan, La Union. The profile showed Sources (0) and Medium quality score.</span></figcaption></figure>
+        </div>
+        <div class="archive-photo-collection">
+          <div class="archive-photo-collection-head"><div><span class="eyebrow">IMAGES INCLUDED IN YOUR V12 ARCHIVE</span><h4>Family-supplied image collection</h4></div><span>Original files preserved in assets/</span></div>
+          <p class="archive-note">These image files were included in the RAR you supplied. The filenames describe the associated people or event, but the archive does not independently establish that every image is an original historical photograph or verify every person's identity. Treat them as family-submitted research images until their provenance is confirmed.</p>
+          <div class="document-gallery supplied-image-grid">
+            <figure class="archive-photo"><a href="assets/Don Leon Lacsamana.png" target="_blank" rel="noopener"><img src="assets/previews/don-leon.webp" loading="lazy" decoding="async" alt="Image file supplied under the name Don Leon Lacsamana"></a><figcaption><strong>Don Leon Lacsamana · supplied image</strong><span>Filename supplied with V12 archive. Date, photographer, and identity/provenance need confirmation.</span></figcaption></figure>
+            <figure class="archive-photo"><a href="assets/dona francisca lacsamana.png" target="_blank" rel="noopener"><img src="assets/previews/dona-francisca.webp" loading="lazy" decoding="async" alt="Image file supplied under the name Doña Francisca Lacsamana"></a><figcaption><strong>Doña Francisca Lacsamana · supplied image</strong><span>Filename supplied with V12 archive. Date, photographer, and identity/provenance need confirmation.</span></figcaption></figure>
+            <figure class="archive-photo"><a href="assets/don joaquin ortega.png" target="_blank" rel="noopener"><img src="assets/previews/don-joaquin.webp" loading="lazy" decoding="async" alt="Image file supplied under the name Don Joaquin Ortega"></a><figcaption><strong>Don Joaquin Ortega · supplied image</strong><span>Filename supplied with V12 archive. Date, photographer, and identity/provenance need confirmation.</span></figcaption></figure>
+            <figure class="archive-photo"><a href="assets/Eduardo Lacsamana.png" target="_blank" rel="noopener"><img src="assets/previews/eduardo-lacsamana.webp" loading="lazy" decoding="async" alt="Image file supplied under the name Eduardo Lacsamana"></a><figcaption><strong>Eduardo Lacsamana · supplied image</strong><span>Filename supplied with V12 archive. Date, photographer, and identity/provenance need confirmation.</span></figcaption></figure>
+            <figure class="archive-photo"><a href="assets/Eduardo Lacsamana Family.png" target="_blank" rel="noopener"><img src="assets/previews/eduardo-family.webp" loading="lazy" decoding="async" alt="Family image supplied under the name Eduardo Lacsamana Family"></a><figcaption><strong>Eduardo Lacsamana family · supplied image</strong><span>Family image included in V12 archive. Identify each person and approximate date before attaching individual identities.</span></figcaption></figure>
+            <figure class="archive-photo"><a href="assets/Don Leon Lacsamana Clan 13th Reunion.png" target="_blank" rel="noopener"><img src="assets/previews/leon-reunion.webp" loading="lazy" decoding="async" alt="Group image supplied under the name Don Leon Lacsamana Clan 13th Reunion"></a><figcaption><strong>Don Leon Lacsamana Clan · 13th Reunion</strong><span>Group image included in V12 archive. Confirm the reunion date, venue, and names of people shown before adding them to profiles.</span></figcaption></figure>
+          </div>
+        </div>
+        <div class="archive-source-links" id="archiveKnownSources"></div>
+        <form id="archiveDocumentForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add a document or photograph</strong><span>Saved in this browser</span></div>
+          <div class="archive-form-grid">
+            <label>Title<input id="archiveDocTitle" required maxlength="120" placeholder="e.g. Alfredo and Juanita marriage record"></label>
+            <label>Record type<select id="archiveDocType"><option>Photograph</option><option>Birth / baptism</option><option>Marriage</option><option>Death / burial</option><option>Newspaper</option><option>Family letter / memoir</option><option>Property / land record</option><option>Other document</option></select></label>
+            <label class="wide">Source URL (optional)<input id="archiveDocUrl" type="url" placeholder="https://…"></label>
+            <label class="wide">Choose a local file (optional)<input id="archiveDocFile" type="file" accept="image/*,.pdf,.txt,.doc,.docx"></label>
+            <label class="wide">Description / people shown<textarea id="archiveDocNote" rows="2" maxlength="600" placeholder="Describe what this record appears to show and who it concerns."></textarea></label>
+          </div>
+          <button class="archive-action" type="submit">Save to archive</button><p class="archive-form-status" id="archiveDocStatus" aria-live="polite"></p>
+        </form>
+        <div id="customDocumentList" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection" id="unidentified-relatives">
+        <div class="archive-subhead"><div><div class="eyebrow">RESEARCH GAPS</div><h3>Unidentified relatives tracker</h3></div><span id="unknownCount" class="archive-counter">—</span></div>
+        <p class="archive-note">This tracker is generated from people already marked as unnamed, unidentified, or needing a name in the current tree. Select a person to locate their profile. Do not replace a placeholder until evidence identifies the person.</p>
+        <div id="unidentifiedList" class="unidentified-list"></div>
+      </section>
+
+      <section class="archive-subsection" id="family-achievements">
+        <div class="archive-subhead"><div><div class="eyebrow">PEOPLE & CONTRIBUTIONS</div><h3>Family achievements and biographies</h3></div></div>
+        <p class="archive-note">This index highlights biographies already represented in the current project notes. It is not a complete or ranked list of family members.</p>
+        <div id="biographyList" class="biography-list"></div>
+        <form id="achievementForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add an achievement or biography note</strong><span>Keep a source with each claim</span></div>
+          <div class="archive-form-grid">
+            <label>Person's name<input id="achievementPerson" required maxlength="120" placeholder="Full name"></label>
+            <label>Achievement / role<input id="achievementTitle" required maxlength="140" placeholder="e.g. Teacher, public servant, community work"></label>
+            <label class="wide">Biography note<textarea id="achievementNote" rows="3" required maxlength="1200" placeholder="What happened, when, and where?"></textarea></label>
+            <label class="wide">Source URL or reference<input id="achievementSource" type="text" maxlength="500" placeholder="URL, book title, archive reference, or family interview"></label>
+          </div>
+          <button class="archive-action" type="submit">Add biography note</button>
+        </form>
+        <div id="customAchievementList" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection" id="family-stories">
+        <div class="archive-subhead"><div><div class="eyebrow">ORAL HISTORY</div><h3>Family stories and memories</h3></div></div>
+        <div class="story-feature"><span class="evidence-tag family">Family memoir · supplied in research notes</span><h4>Don Leon's visits to Daya</h4><p>Family memoirs describe Don Leon living in Carlatan, San Fernando, and regularly walking to visit his sister Doña Francisca and his children in Daya. The current archive does not attach a dated diary or independent record to this account.</p></div>
+        <form id="storyForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Record a family story or interview</strong><span>Label memories separately from official records</span></div>
+          <div class="archive-form-grid">
+            <label>Story title<input id="storyTitle" required maxlength="140" placeholder="A story about…"></label>
+            <label>Person / family branch<input id="storyPerson" maxlength="140" placeholder="Who is this story about?"></label>
+            <label>Speaker / source<input id="storySpeaker" maxlength="140" placeholder="Who shared this memory?"></label>
+            <label>Date recorded or approximate period<input id="storyDate" maxlength="80" placeholder="e.g. Interviewed in 2026"></label>
+            <label class="wide">Story / transcript<textarea id="storyBody" rows="4" required maxlength="5000" placeholder="Write the story in the speaker's own words when possible."></textarea></label>
+            <label class="wide">Consent / source note<input id="storyConsent" maxlength="500" placeholder="e.g. Shared by a family member with permission to preserve it"></label>
+          </div>
+          <button class="archive-action" type="submit">Preserve story</button>
+        </form>
+        <div id="storyList" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection" id="ancestral-places">
+        <div class="archive-subhead"><div><div class="eyebrow">HOMES & LAND RECORDS</div><h3>Ancestral locations and properties</h3></div></div>
+        <p class="archive-note">The location register below records places already mentioned in the genealogy. A residence, birthplace, or event location is not automatically evidence of land ownership. No title deed, cadastral map, or verified property boundary is attached to the current source pack.</p>
+        <div id="ancestralPlaceList" class="ancestral-place-list"></div>
+        <form id="propertyForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add an ancestral place or property lead</strong><span>Do not enter a private current address</span></div>
+          <div class="archive-form-grid">
+            <label>Place / property name<input id="propertyName" required maxlength="160" placeholder="e.g. Family home in Carlatan"></label>
+            <label>Associated person or family<input id="propertyPeople" maxlength="180" placeholder="Names or branch"></label>
+            <label>Type<select id="propertyType"><option>Residence mentioned in family history</option><option>Birthplace / deathplace</option><option>Land or property record lead</option><option>Church / cemetery</option><option>Other ancestral location</option></select></label>
+            <label>Period / date (if known)<input id="propertyPeriod" maxlength="100" placeholder="Approximate years"></label>
+            <label class="wide">Evidence / description<textarea id="propertyNote" rows="3" maxlength="1000" placeholder="Describe the record, deed, map, family account, or research lead."></textarea></label>
+            <label class="wide">Source URL or archival reference<input id="propertySource" maxlength="500" placeholder="Link, title, registry, folio, or archive reference"></label>
+          </div>
+          <button class="archive-action" type="submit">Add place / property lead</button>
+        </form>
+        <div id="customPropertyList" class="archive-entry-list"></div>
+      </section>
+      <section class="archive-subsection expansion-section" id="historical-world-explorer">
+        <div class="archive-subhead"><div><div class="eyebrow">HISTORICAL CONTEXT</div><h3>Historical world explorer</h3></div><span class="archive-counter">Context, not personal participation</span></div>
+        <p class="archive-note">Choose an ancestor to see historical events in Spain and the Philippines that overlap their known or estimated lifetime. These events provide context only; they do not imply that the person witnessed or participated in them.</p>
+        <div class="archive-form-grid compact-feature-controls">
+          <label>Explore the lifetime of<select id="worldPersonSelect"></select></label>
+          <label>Show context from<select id="worldRegionSelect"><option value="all">Spain and the Philippines</option><option value="philippines">Philippines</option><option value="spain">Spain</option></select></label>
+        </div>
+        <div id="worldLifeSummary" class="feature-summary" aria-live="polite"></div>
+        <div id="worldContextList" class="archive-timeline" aria-live="polite"></div>
+        <p class="archive-note">Historical context is drawn from the linked sources below each event. A selected ancestor with unknown dates will not be assigned an invented lifespan.</p>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="ancestral-homes-gallery">
+        <div class="archive-subhead"><div><div class="eyebrow">HOMES & PLACES</div><h3>Ancestral homes gallery</h3></div><span class="archive-counter">Evidence-led locations</span></div>
+        <p class="archive-note">This gallery distinguishes a documented residence from a birthplace, family-root location, or place visited. The current evidence does not establish the exact historic house or property boundary for every place listed.</p>
+        <div id="ancestralHomeGallery" class="heritage-gallery-list"></div>
+        <form id="ancestralHomeForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add an ancestral home, residence, or place image</strong><span>Do not add private current addresses</span></div>
+          <div class="archive-form-grid">
+            <label>Place / home name<input id="homeTitle" required maxlength="160" placeholder="e.g. Reported Lacsamana residence in Carlatan"></label>
+            <label>Location<input id="homePlace" required maxlength="180" placeholder="Town, province, country"></label>
+            <label>Associated family member<select id="homePersonSelect"></select></label>
+            <label>Evidence category<select id="homeCategory"><option>Documented residence</option><option>Family-reported residence</option><option>Birthplace</option><option>Family roots</option><option>Place visited</option><option>Property record lead</option><option>Unverified location</option></select></label>
+            <label>Period / date<input id="homePeriod" maxlength="100" placeholder="Approximate years, if known"></label>
+            <label>Source URL or reference<input id="homeSource" maxlength="500" placeholder="Archive, deed, book, interview, URL"></label>
+            <label class="wide">Description and evidence<textarea id="homeNote" rows="3" maxlength="1200" placeholder="What exactly links the person to this place? Distinguish residence from birthplace or visit."></textarea></label>
+            <label class="wide">Photograph / scan (optional)<input id="homePhotoFile" type="file" accept="image/*"></label>
+          </div>
+          <button class="archive-action" type="submit">Save ancestral place</button><p id="homeFormStatus" class="archive-form-status" aria-live="polite"></p>
+        </form>
+        <div id="customHomeEntries" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="portrait-gallery">
+        <div class="archive-subhead"><div><div class="eyebrow">PEOPLE IN PHOTOGRAPHS</div><h3>Portraits by generation</h3></div><span class="archive-counter">Verified images only</span></div>
+        <p class="archive-note">Only photographs actually supplied by the family or linked to a reliable public source appear here. Profile icons and illustrative images are not treated as historical portraits.</p>
+        <div id="portraitGallery" class="portrait-generation-list" aria-live="polite"></div>
+        <form id="portraitForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add a family portrait</strong><span>Confirm the identity and photo permission</span></div>
+          <div class="archive-form-grid">
+            <label>Person<select id="portraitPersonSelect" required></select></label>
+            <label>Generation<select id="portraitGeneration"><option value="unassigned">Generation not established</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
+            <label>Photo date / period<input id="portraitDate" maxlength="100" placeholder="e.g. c. 1950s"></label>
+            <label>Source / photographer<input id="portraitSource" maxlength="400" placeholder="Family album, photographer, URL"></label>
+            <label class="wide">Caption and identification evidence<textarea id="portraitCaption" rows="2" maxlength="800" placeholder="Who is shown, how the identity is known, and whether others are pictured."></textarea></label>
+            <label class="wide">Portrait image<input id="portraitFile" type="file" accept="image/*" required></label>
+          </div>
+          <button class="archive-action" type="submit">Add portrait</button><p id="portraitFormStatus" class="archive-form-status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="institutions-affiliations">
+        <div class="archive-subhead"><div><div class="eyebrow">ORGANIZATIONS & PUBLIC LIFE</div><h3>Institutions and affiliations</h3></div><span class="archive-counter">Recorded connections</span></div>
+        <p class="archive-note">This register includes a religious order, public office, church, or organization only where the current family notes identify a person-level connection. An unnamed parish or unverified school is not invented.</p>
+        <div id="institutionDirectory" class="institution-directory"></div>
+        <form id="institutionForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add an institution or affiliation</strong><span>Attach evidence for the connection</span></div>
+          <div class="archive-form-grid">
+            <label>Institution / organization<input id="institutionName" required maxlength="180" placeholder="Full official name"></label>
+            <label>Person<select id="institutionPersonSelect" required></select></label>
+            <label>Affiliation type<select id="institutionType"><option>Religious order</option><option>Church / parish</option><option>School / university</option><option>Government office</option><option>Professional organization</option><option>Civic organization</option><option>Military service</option><option>Business / employer</option><option>Other</option></select></label>
+            <label>Period<input id="institutionPeriod" maxlength="100" placeholder="Dates or approximate period"></label>
+            <label class="wide">Nature of connection<textarea id="institutionNote" rows="2" maxlength="1000" placeholder="Member, ordained, baptized, employed, held office, attended…"></textarea></label>
+            <label class="wide">Source / URL<input id="institutionSource" maxlength="500" placeholder="Original record, publication, URL"></label>
+          </div>
+          <button class="archive-action" type="submit">Add affiliation</button><p id="institutionStatus" class="archive-form-status" aria-live="polite"></p>
+        </form>
+        <div id="customInstitutionEntries" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="ancestor-life-stories">
+        <div class="archive-subhead"><div><div class="eyebrow">BIOGRAPHICAL CHRONOLOGY</div><h3>Ancestor life stories</h3></div><span class="archive-counter">Built from recorded facts</span></div>
+        <p class="archive-note">Select any person to assemble a cautious life chronology from the current profile, relationships, timeline events, and place records. The expanded historical profiles for Don Leon Lacsamana, Doña Francisca Lacsamana-Ortega, and Don Joaquin Ortega include source-linked biographical sections. Unknown dates remain unknown; this is not a claim that every year of a person's life is documented.</p>
+        <label class="feature-select-label">Choose a family member<select id="lifePersonSelect"></select></label>
+        <div id="lifeStoryView" class="life-story-view" aria-live="polite"></div>
+        <form id="lifeStoryForm" class="archive-form cloud-admin-only">
+          <div class="archive-form-heading"><strong>Add a sourced biographical episode</strong><span>Keep family recollections distinct from records</span></div>
+          <div class="archive-form-grid">
+            <label>Person<select id="lifeNotePersonSelect" required></select></label>
+            <label>Episode / chapter title<input id="lifeNoteTitle" required maxlength="160" placeholder="e.g. Work and family life in Carlatan"></label>
+            <label>Period / date<input id="lifeNoteDate" maxlength="100" placeholder="Exact or approximate date"></label>
+            <label>Evidence type<select id="lifeNoteEvidence"><option>Historical record</option><option>Published source</option><option>Family document</option><option>Oral history</option><option>Research lead</option></select></label>
+            <label class="wide">Story / biographical detail<textarea id="lifeNoteBody" rows="3" required maxlength="2000" placeholder="Describe what is known and what remains uncertain."></textarea></label>
+            <label class="wide">Source / URL<input id="lifeNoteSource" maxlength="500" placeholder="Document, interview, archive reference, URL"></label>
+          </div>
+          <button class="archive-action" type="submit">Save biographical episode</button><p id="lifeNoteStatus" class="archive-form-status" aria-live="polite"></p>
+        </form>
+        <div id="customLifeNotes" class="archive-entry-list"></div>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="family-legacy-book">
+        <div class="archive-subhead"><div><div class="eyebrow">PRINT & PRESERVATION</div><h3>Family legacy book generator</h3></div><span class="archive-counter">Printable family edition</span></div>
+        <p class="archive-note">Generate a standalone HTML book from the data currently in this browser. Download it, open it, then use your browser's Print command to save it as PDF or print a copy. Only recorded information is included; unresolved dates and relationships remain labeled.</p>
+        <div class="legacy-book-options">
+          <label><input type="checkbox" id="bookIncludePeople" checked> People and relationships</label>
+          <label><input type="checkbox" id="bookIncludeTimeline" checked> Historical family timeline</label>
+          <label><input type="checkbox" id="bookIncludeWorld" checked> Historical world context</label>
+          <label><input type="checkbox" id="bookIncludeMap" checked> Geographic map index and recorded places</label>
+          <label><input type="checkbox" id="bookIncludeStories" checked> Stories and biographies</label>
+          <label><input type="checkbox" id="bookIncludePlaces" checked> Ancestral places and homes</label>
+          <label><input type="checkbox" id="bookIncludeInstitutions" checked> Institutions and affiliations</label>
+          <label><input type="checkbox" id="bookIncludePhotos" checked> Uploaded portraits and home images</label>
+          <label><input type="checkbox" id="bookIncludeSources" checked> Source register and evidence notes</label>
+        </div>
+        <label class="feature-select-label">Book title<input id="legacyBookTitle" maxlength="140" value="The Lacsamana–Ortega Family Heritage" /></label>
+        <button type="button" class="archive-action" id="generateLegacyBookBtn">Generate and download family book</button>
+        <p id="legacyBookStatus" class="archive-form-status" aria-live="polite"></p>
+      </section>
+
+      <div class="archive-backup-row"><p>Archive entries you add here are saved locally in this browser, separately from FamilySearch. Export a local archive backup before changing devices or clearing browser data.</p><div class="archive-backup-actions"><button type="button" class="archive-action secondary cloud-admin-only" id="exportArchiveBtn">Export archive notes</button><button type="button" class="archive-action secondary cloud-admin-only" id="importArchiveBtn">Import archive notes</button><input type="file" id="importArchiveFile" accept="application/json,.json" hidden></div></div>
+    </section>
+
+    <section class="content-section source-section" id="sources">
+      <div class="section-heading"><div><div class="eyebrow">RECORDS & REFERENCES</div><h2>Sources and research notes</h2></div></div>
+      <div class="source-grid">
+        <article class="source-card">
+          <h3>Shared Lacsamana ancestry</h3>
+          <ul>
+            <li><a href="https://www.familysearch.org/tree/person/details/GNHK-MZ3" target="_blank" rel="noopener">FamilySearch · Ramona Lopez Lacsamana (GNHK-MZ3)</a> — profile details transcribed from the supplied screenshot; the profile showed no attached sources.</li>
+            <li><a href="https://www.familysearch.org/tree/person/details/G138-FPT" target="_blank" rel="noopener">FamilySearch · Evaristo Guadalupe y Villaverde (G138-FPT)</a> — dates and places transcribed from the supplied screenshot; the profile showed a Medium quality score and Sources (0).</li>
+            <li><a href="https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" target="_blank" rel="noopener">Ortega Reunion 2017 souvenir program</a> — family-tree diagram and Francisca–Leon sibling connection.</li>
+            <li><a href="https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/" target="_blank" rel="noopener">Provincial Government of La Union</a> — Joaquin J. Ortega, Francisca Lacsamana, and their fourteen children.</li>
+          </ul>
+        </article>
+        <article class="source-card">
+          <h3>Manoling, Pacoy and Rafy</h3>
+          <ul>
+            <li><a href="https://qa.philstar.com/nation/2024/10/10/2391451/ortegas-battle-la-union-posts/amp" target="_blank" rel="noopener">The Philippine Star · Ortegas battle for La Union posts</a> — Manoling’s relationship to Mario and Pablo, and his children Pacoy, Mannix, Joy and Alfred; Joy’s aunt relationship to Rafy.</li>
+            <li><a href="https://interaksyon.philstar.com/politics-issues/2024/08/30/282560/joseph-jeff-francisco-ortego-nyc-chair/" target="_blank" rel="noopener">Interaksyon · Who is Joseph “Jeff” Ortega?</a> — Jeff is Manoling’s son and Pacoy’s brother.</li>
+            <li><a href="https://poropointfreeport.gov.ph/new/ppmc-extends-sincere-condolences-to-the-family-of-hon-manuel-manoling-c-ortega/" target="_blank" rel="noopener">Poro Point Management Corporation · condolence notice</a> — Manoling’s wife Geraldine “Denny” and son Manuel Victor “Mannix”.</li>
+            <li><a href="https://launion.gov.ph/bm-ortega-takes-oath-as-the-new-ex-officio-member-of-lu-sp/" target="_blank" rel="noopener">Provincial Government of La Union · Geraldine “Denny” Ortega takes oath (August 2, 2018)</a> — identifies Denny as Manoling’s wife and mentions their seven children; the article does not name all seven.</li>
+            <li><a href="https://www.itu.int/net4/wsis/forum/2023/Agenda/Session/350" target="_blank" rel="noopener">International Telecommunication Union · Rafy Ortega-David profile</a> — Pacoy III and Vini as her parents, identifies Rafy as their third daughter, and names her husband Kevin Louie C. David and son Valentino Manuel O. David. The profile implies at least two older sisters but does not give a total sibling count.</li>
+            <li><a href="https://laup.launion.gov.ph/cgi-bin/koha/opac-retrieve-file.pl?id=90d3dd48d9f77224c1d72c4a8c6b91ac" target="_blank" rel="noopener">La Union local government article · Ortegas still hold sway</a> — brother and nephew relationships among Ortega relatives.</li>
+          </ul>
+        </article>
+        <article class="source-card">
+          <h3>Extended Ortega descendants</h3>
+          <ul>
+            <li><a href="https://newsinfo.inquirer.net/1053450/ortegas-of-la-union-bury-hatchet-for-polls/amp" target="_blank" rel="noopener">Philippine Daily Inquirer · Ortegas of La Union bury hatchet for polls</a> — eight Ortega brothers, Pablo and Mariquita’s children, and Roberto’s son.</li>
+            <li><a href="https://pulitiklan.com/pamilya/la-union/ortega" target="_blank" rel="noopener">PULITIKLAN · Ortega family of La Union</a> — compiled names and reported family relationships; verify against primary records.</li>
+          </ul>
+        </article>
+        <article class="source-card">
+          <h3>Nationality and religion references</h3>
+          <ul>
+            <li><a href="https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf" target="_blank" rel="noopener">Archivo Agustiniano · 2019 historical register</a> — lists Evaristo Guadalupe, born in Ocaña (Toledo) in 1830, his Philippine assignments, and death in San Juan, La Union in 1887. Nationality is described conservatively as Spanish-born rather than treating birthplace as citizenship proof.</li>
+            <li><a href="https://www.augustinianorder.org/who-we-are" target="_blank" rel="noopener">Order of Saint Augustine · Who We Are</a> — identifies the Augustinians as religious priests and brothers in the Catholic Church; used to interpret Evaristo’s OSA designation.</li>
+            <li><a href="https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" target="_blank" rel="noopener">Ortega Reunion 2017 souvenir program</a> — identifies Joaquin as a Filipino candidate / first elected Filipino Civil Governor, records Francisca’s birthplace, describes the couple attending Holy Mass, and notes Luis’s daily Mass and family rosaries.</li>
+          </ul>
+        </article>
+        <article class="source-card">
+          <h3>Research cautions</h3>
+          <ul>
+            <li>Names and relationships from user-provided family material and FamilySearch tree screenshots are labeled separately from independently sourced facts.</li>
+            <li>The ITU profile identifies Rafy as Pacoy III and Vini’s third daughter, implying at least two older sisters. It does not give a total sibling count or identify those sisters by name.</li>
+            <li>Jeff’s parentage and brother relationship are based on Interaksyon. A spouse or children are not identified in the cited article.</li>
+            <li>Separate Leon Lacsamana index records remain unconnected unless original evidence establishes identity.</li>
+            <li>Estimated birth years and indexed marriage details need confirmation against original registers.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="data-panel">
+        <div><div class="eyebrow">LOCAL EDITS</div><h3>Preserve your changes</h3><p>People you add or edit are saved in this browser. Export a backup regularly to move them to another device.</p></div>
+        <div class="data-tools">
+          <button type="button" class="btn" id="exportBtn">Export edits</button>
+          <button type="button" class="btn cloud-admin-only" id="importBtn">Import edits</button>
+          <button type="button" class="btn danger cloud-admin-only" id="resetBtn">Reset edits</button>
+          <input type="file" id="importFile" accept="application/json,.json" hidden />
+        </div>
+      </div>
+    </section>
+    <footer class="site-footer"><span>LACSAMANA × ORTEGA FAMILY TREE</span><span>Preserving names, relationships and stories.</span></footer>
+  </main>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <aside id="profileDrawer" class="profile-drawer" hidden aria-label="Family member profile">
+    <button type="button" id="closeProfile" class="close-plain profile-close" aria-label="Close profile">×</button>
+    <div id="personDetails" class="person-details" aria-live="polite"><p class="detail-note">Select a person in the tree.</p></div>
+  </aside>
+  <div id="famGrid" hidden></div>
+
+  <div class="cloud-login-backdrop" id="cloudLoginPanel" hidden>
+    <section class="cloud-login-card" role="dialog" aria-modal="true" aria-labelledby="cloudLoginTitle">
+      <button type="button" class="cloud-login-close" id="cloudLoginClose" aria-label="Close sign-in">×</button>
+      <span class="eyebrow">FAMILY ARCHIVE ADMINISTRATION</span>
+      <h2 id="cloudLoginTitle">Administrator sign in</h2>
+      <p>Only an account explicitly added to the family administrators list can edit the shared archive.</p>
+      <form id="cloudLoginForm" class="cloud-login-form">
+        <label>Email address<input id="cloudEmail" type="email" required autocomplete="username" maxlength="254"></label>
+        <label>Password<input id="cloudPassword" type="password" required autocomplete="current-password" maxlength="200"></label>
+        <button class="cloud-button cloud-login-submit" type="submit">Sign in securely</button>
+        <p id="cloudLoginMessage" role="status" aria-live="polite"></p>
+      </form>
+      <small>Account creation is disabled on the public website. Add administrator accounts through your Supabase project.</small>
+    </section>
+  </div>
+
+</body>
+</html>

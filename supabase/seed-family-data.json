@@ -1,0 +1,2440 @@
+{
+  "people": {
+    "antonio": {
+      "id": "antonio",
+      "name": "Antonio Ortega y Verzosa",
+      "role": "Joaquin’s father",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Worked at the Tabacalera in Carlatan, San Fernando (Wikipedia)."
+    },
+    "juana": {
+      "id": "juana",
+      "name": "Juana Joaquino",
+      "role": "Joaquin’s mother",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Of Surigao. Wikipedia spells the surname “Juaquino”; Joaquin’s own name, “Ortega y Joaquino”, uses the other spelling."
+    },
+    "joaquin": {
+      "id": "joaquin",
+      "name": "Gov. Joaquin Ortega y Joaquino",
+      "role": "1st Civil Governor of La Union",
+      "k": "src",
+      "nationality": "Filipino (described as a Filipino candidate and the first elected Filipino Civil Governor in the family-history program)",
+      "religion": "Roman Catholic practice documented in family history",
+      "d": "11 March 1866 – 31 May 1943",
+      "av": "🏛️",
+      "nationalityNote": "The 2017 Ortega Reunion program describes him among the Filipino candidates for governor and as the first elected Filipino Civil Governor. This is a historical biographical description, not a modern citizenship record.",
+      "religionNote": "The Ortega Reunion 2017 family-history account describes Joaquin and Francisca going to church to hear Holy Mass. This records religious practice; no baptism or parish membership record has been attached here.",
+      "nationalitySource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
+      "n": "Joaquin Ortega y Joaquino was born in Cebu on 11 March 1866 to Antonio Ortega y Verzosa and Juana Joaquino, according to the Ortega Reunion 2017 family-history program. The program says he studied at the University of Santo Tomas and worked with the Compania General de Tabacos de Filipinas (Tabacalera) in Carlatan, San Fernando, in 1889. The Taft Commission appointed him Civil Governor of La Union on 15 August 1901; he became the province’s first elected governor in 1902 and served through 1904. The same family-history account records later public service as Lieutenant Governor in Abra, Bontoc and Mountain Province (1905–1914), assignments involving Lepanto and Benguet (1916–1920), and Special Agent of the Bureau of Non-Christian Tribes (1920–1926). The Provincial Government of La Union confirms his appointment and elected-governor distinction and records that he died on 31 May 1943 at age 77. With Doña Francisca Lacsamana of Bangar, he raised fourteen children. The family program also recalls that he helped move women and children to safety during the American landing at the Tabacalera port, and that he raised his nephew Jesus Ortega Floirendo as his own. These latter details are from the published family account and should be read as family-history testimony, not as independently verified operational or legal records.",
+      "biographyStatus": "Published family-history account and Provincial Government sources; original birth, education, and career records are still desirable."
+    },
+    "francisca": {
+      "id": "francisca",
+      "name": "Doña Francisca Lopez Lacsamana-Ortega",
+      "role": "Generation 3 · Daughter of Ramona and Evaristo · Sister of Don Leon",
+      "k": "src",
+      "nationality": "Not separately documented (born in Bangar, La Union, Philippines)",
+      "religion": "Roman Catholic practice documented in family history",
+      "d": "9 March 1877 – 3 April 1964",
+      "av": "👑",
+      "nationalityNote": "The family-history program records her birthplace as Bangar, La Union. A formal nationality or citizenship record has not been located in the current archive.",
+      "religionNote": "The Ortega Reunion 2017 account describes her attending Holy Mass with Joaquin. This is evidence of recorded religious practice, not a substitute for a baptism or parish record.",
+      "nationalitySource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
+      "n": "Doña Francisca Lacsamana, known in the family as ‘Lola Paca’, was born in Bangar, La Union on 9 March 1877 and died on 3 April 1964 at age 87, according to the Ortega Reunion 2017 souvenir program. The Provincial Government of La Union identifies her as the wife of Don Joaquin J. Ortega and confirms that they raised fourteen children. The supplied FamilySearch tree screenshots show Ramona Lopez Lacsamana and Evaristo Guadalupe y Villaverde as her parents; the reunion program independently identifies her brother as Leon Lacsamana. The family program preserves stories of Joaquin travelling from San Fernando to Bangar to court her, and of their Sunday routine of attending Mass. It also describes her home, ‘Daya’, as a welcoming place where relatives arriving from Manila and other distant places could stay and spend vacations, and recalls that she encouraged family gatherings. The name Doña Francisca Lacsamana de Ortega was later given to a memorial municipal high school in Bangar; Batas Pambansa Blg. 458, approved 10 June 1983, converted it into a national high school. The courtship and household anecdotes are family recollections printed in the reunion program; dates and parentage still warrant original civil or parish record corroboration.",
+      "biographyStatus": "Dates and family-life account from Ortega Reunion 2017; marriage and fourteen-child family confirmed by Provincial Government; memorial-school name confirmed by Batas Pambansa 458."
+    },
+    "martin-lacsamana": {
+      "id": "martin-lacsamana",
+      "name": "Martin Lacsamana",
+      "role": "Generation 1 · Great-great-great-grandfather · Father of Ramona · Bangar, La Union",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied FamilySearch tree screenshot shows Martin Lacsamana and Narcisa Lopez as Ramona Lopez Lacsamana’s parents. Exact dates are not visible in the supplied screenshot. The displayed relationship is retained as a FamilySearch-tree lead, not as an independently inspected original civil or church record."
+    },
+    "narcisa-lopez": {
+      "id": "narcisa-lopez",
+      "name": "Narcisa Lopez",
+      "role": "Generation 1 · Great-great-great-grandmother · Mother of Ramona · Bangar, La Union",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "fam": "Lopez",
+      "n": "The supplied FamilySearch tree screenshot shows Narcisa Lopez paired with Martin Lacsamana as Ramona Lopez Lacsamana’s parents. Exact dates are not visible in the supplied screenshot. The displayed relationship is retained as a FamilySearch-tree lead, not as an independently inspected original record."
+    },
+    "evaristo-guadalupe": {
+      "id": "evaristo-guadalupe",
+      "name": "Evaristo Guadalupe y Villaverde, OSA",
+      "role": "Generation 2 · Great-great-grandfather · Father of Don Leon and Doña Francisca",
+      "k": "src",
+      "nationality": "Spanish-born; formal nationality not independently confirmed",
+      "religion": "Roman Catholic — Order of Saint Augustine (OSA)",
+      "d": "26 October 1830 – 17 January 1887",
+      "status": "family",
+      "av": "✦",
+      "nationalityNote": "An Augustinian archival register lists his birthplace as Ocaña, Toledo, Spain. The nationality field remains qualified because the source reviewed is a birthplace/missionary record, not a citizenship document.",
+      "religionNote": "His recorded OSA designation identifies the Order of Saint Augustine. The Order describes its members as religious priests and brothers in the Catholic Church.",
+      "nationalitySource": "https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf",
+      "religionSource": "https://www.augustinianorder.org/who-we-are",
+      "n": "The supplied FamilySearch profile screenshot (ID G138-FPT) displays birth on 26 October 1830 in Ocaña, Toledo, Castilla-La Mancha, Spain, and death on 17 January 1887 in San Juan, La Union, Philippines. An Augustinian archival register also lists Evaristo Guadalupe, born in Ocaña in 1830, serving in Philippine parishes and dying in San Juan, La Union on 17 January 1887. The profile screenshot shows Quality Score: Medium and Sources (0); the dates still need corroboration from original records. The supplied family-tree screenshot identifies him with Ramona as the parents of Don Leon and Doña Francisca."
+    },
+    "ramona-lopez": {
+      "id": "ramona-lopez",
+      "name": "Ramona Lopez Lacsamana",
+      "role": "Generation 2 · Great-great-grandmother · Mother of Don Leon and Doña Francisca",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1849–Deceased",
+      "status": "family",
+      "n": "The supplied FamilySearch profile screenshot displays Ramona Lopez Lacsamana (ID GNHK-MZ3), born 1849; no death date is shown. The supplied FamilySearch tree screenshots show Martin Lacsamana and Narcisa Lopez as her parents, and pair Ramona with Evaristo Guadalupe y Villaverde as the parents of Don Leon and Doña Francisca. The screenshot does not show original sources attached to Ramona’s profile, so these details should be corroborated against original records."
+    },
+    "leon": {
+      "id": "leon",
+      "name": "Don Leon Lacsamana",
+      "role": "Generation 3 · Son of Ramona and Evaristo · Brother of Doña Francisca · Carlatan",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "Birth date not yet established",
+      "n": "Don Leon Lacsamana is identified in the Ortega Reunion 2017 family-history program as the brother of Doña Francisca Lacsamana-Ortega; the reunion publication’s family-tree material also names Leon Lacsamana as Francisca’s brother. The supplied FamilySearch tree screenshots place Leon as a child of Ramona Lopez Lacsamana and Evaristo Guadalupe y Villaverde, but the screenshots are family-tree displays rather than original birth or baptism records. Family-supplied memoirs place Leon in Carlatan, San Fernando, and recall that he walked to visit Francisca and his children at Daya. The reunion program separately describes Daya as Francisca’s open family home for relatives visiting from Manila and other distant places; it does not provide a dated record of Leon’s individual journeys. The current family research reports a first marriage under the spelling Cayetana Munar, while the reunion program’s diagram uses Catalina Munar-Lacsamana; it is not yet established whether these forms identify the same person. Family-supplied records and indexes associate Leon with children Alfredo ‘Pidong’, Joaquin, Francisco and Eduardo, and report Paz Munar Lacsamana as a sibling of Eduardo and Pidong. These relationships remain research leads pending original civil or parish records. No reliable birth date, death date, or exact birthplace for Leon has been established. The honorific ‘Don’ is retained as family usage, not as a verified official title.",
+      "biographyStatus": "Sibling link supported by published Ortega family-history material; parentage, residence details, spouse-name variants and children remain family-tree or family-supplied leads requiring original records.",
+      "status": "family",
+      "av": "🏛️"
+    },
+    "cayetana": {
+      "id": "cayetana",
+      "name": "Cayetana Munar",
+      "role": "First wife of Leon",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Munar",
+      "status": "family",
+      "n": "Family-supplied / indexed civil-record details: Leon’s reported first marriage. The earlier HTML used the name ‘Catalina Munar-Lacsamana’. It has not yet been established whether Catalina and Cayetana are the same person."
+    },
+    "alfredo-pidong": {
+      "id": "alfredo-pidong",
+      "name": "Alfredo ‘Pidong’ Lacsamana",
+      "role": "Son of Leon and Cayetana",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "c. 1917",
+      "status": "family",
+      "n": "Estimated birth year based on the supplied civil-registration index: age 27 at marriage in 1944. Treat the year as an estimate, not a confirmed birth date."
+    },
+    "juanita-valdris": {
+      "id": "juanita-valdris",
+      "name": "Juanita Valdris",
+      "role": "Wife of Alfredo ‘Pidong’",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Valdris",
+      "status": "record",
+      "n": "Supplied indexed marriage details: married Alfredo Lacsamana on October 8, 1944 in Luna, La Union. Record 6079, page 71, registration 108. Indexed age 27; estimated birth year c. 1917. Parents listed: Andres Valdris and Marcelina Bautista. Original register image still needs examination."
+    },
+    "andres-valdris": {
+      "id": "andres-valdris",
+      "name": "Andres Valdris",
+      "role": "Father of Juanita Valdris",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "marcelina-bautista": {
+      "id": "marcelina-bautista",
+      "name": "Marcelina Bautista",
+      "role": "Mother of Juanita Valdris",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "emilia-garcia": {
+      "id": "emilia-garcia",
+      "name": "Emilia / Emiliana Garcia",
+      "role": "Second wife of Leon · name variant",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Garcia",
+      "status": "family",
+      "n": "The supplied material gives both Emilia and Emiliana Garcia. Keep both forms visible until the original record establishes the spelling."
+    },
+    "joaquin-lac": {
+      "id": "joaquin-lac",
+      "name": "Joaquin Lacsamana",
+      "role": "Generation 4 · Grandfather · Son of Don Leon",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "c. 1927",
+      "status": "family",
+      "n": "Supplied indexed marriage details: age 28 at marriage registration on January 2, 1955 in La Union; estimated birth year c. 1927. Original registration image not yet examined."
+    },
+    "concepcion-viloria": {
+      "id": "concepcion-viloria",
+      "name": "Concepcion Viloria",
+      "role": "Wife of Joaquin Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Viloria",
+      "status": "record",
+      "n": "Supplied indexed marriage details: married Joaquin Lacsamana on January 2, 1955 in La Union. Indexed age 29; estimated birth year c. 1926. Parents listed: Leocadio Viloria and Prisea Nuval. Original register image still needs examination."
+    },
+    "leocadio-viloria": {
+      "id": "leocadio-viloria",
+      "name": "Leocadio Viloria",
+      "role": "Father of Concepcion Viloria",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "prisea-nuval": {
+      "id": "prisea-nuval",
+      "name": "Prisea Nuval",
+      "role": "Mother of Concepcion Viloria",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "francisco-lac": {
+      "id": "francisco-lac",
+      "name": "Francisco Lacsamana",
+      "role": "Son of Leon and Emilia / Emiliana",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "c. 1929",
+      "status": "family",
+      "n": "Supplied indexed marriage details: age 29 at marriage registration on September 8, 1958 in La Union; estimated birth year c. 1929. Original registration image not yet examined."
+    },
+    "pacita-lomiteng": {
+      "id": "pacita-lomiteng",
+      "name": "Pacita Lomiteng",
+      "role": "Wife of Francisco Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Lomiteng",
+      "status": "record",
+      "n": "Supplied indexed marriage details: married Francisco Lacsamana on September 8, 1958 in La Union. Indexed age 27; estimated birth year c. 1931. Parents listed: Mariano Lomiteng and Rafaela Buyao. Original register image still needs examination."
+    },
+    "mariano-lomiteng": {
+      "id": "mariano-lomiteng",
+      "name": "Mariano Lomiteng",
+      "role": "Father of Pacita Lomiteng",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "rafaela-buyao": {
+      "id": "rafaela-buyao",
+      "name": "Rafaela Buyao",
+      "role": "Mother of Pacita Lomiteng",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "eduardo": {
+      "id": "eduardo",
+      "name": "Eduardo Lacsamana",
+      "role": "Son of Leon and Emilia / Emiliana",
+      "k": "you",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "c. 1933",
+      "status": "family",
+      "av": "🏡",
+      "n": "Supplied indexed marriage details: age 26 at marriage registration on July 27, 1959 in La Union; estimated birth year c. 1933. Married Purita Argueza. Original registration image not yet examined."
+    },
+    "paz-munar": {
+      "id": "paz-munar",
+      "name": "Paz Munar Lacsamana",
+      "role": "Sibling of Eduardo and Pidong · Generation 4",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Family-supplied relationship: identified as a sibling of Eduardo Lacsamana and Pidong Lacsamana. The exact parent/partner placement and original record have not yet been supplied, so this relationship is kept provisional."
+    },
+    "purita-argueza": {
+      "id": "purita-argueza",
+      "name": "Purita Argueza",
+      "role": "Wife of Eduardo Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Argueza",
+      "status": "record",
+      "n": "Supplied indexed marriage details: married Eduardo Lacsamana on July 27, 1959 in La Union. Indexed age 18; estimated birth year c. 1941. Parents listed: Isabelo Argueza and Concepcion Rillera. Original register image still needs examination."
+    },
+    "isabelo-argueza": {
+      "id": "isabelo-argueza",
+      "name": "Isabelo Argueza",
+      "role": "Father of Purita Argueza",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "concepcion-rillera": {
+      "id": "concepcion-rillera",
+      "name": "Concepcion Rillera",
+      "role": "Mother of Purita Argueza",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "jeffrey": {
+      "id": "jeffrey",
+      "name": "Jeffrey Lacsamana",
+      "role": "Generation 5 · Father · Son of Eduardo",
+      "k": "you",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "edna": {
+      "id": "edna",
+      "name": "Edna Lacsamana",
+      "role": "Child of Eduardo and Purita · sibling of Jeffrey · wife of Arthur Lee Jr. · mother of Richard and Noel John Lee",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Family-supplied correction from Adrian: Arthur Lee Jr. is Edna Lacsamana’s husband. Richard Lee and Noel John Lee are listed as Edna’s sons. Dates and original records have not yet been added."
+    },
+    "jerry": {
+      "id": "jerry",
+      "name": "Jerry Lacsamana",
+      "role": "Child of Eduardo and Purita · sibling of Jeffrey",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
+    "richard-lee": {
+      "id": "richard-lee",
+      "name": "Richard Lee",
+      "role": "Son of Edna Lacsamana",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Identified by Adrian as a son of Edna Lacsamana. Birth date, spouse, children, and supporting records have not yet been supplied."
+    },
+    "noel-john-lee": {
+      "id": "noel-john-lee",
+      "name": "Noel John Lee",
+      "role": "Son of Edna Lacsamana",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Listed in the family-supplied information as a son of Edna Lacsamana. No spouse relationship is assigned to Noel John Lee in the current corrected data."
+    },
+    "arthur-lee-jr": {
+      "id": "arthur-lee-jr",
+      "name": "Arthur Lee Jr.",
+      "role": "Husband of Edna Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Corrected family-supplied relationship: Arthur Lee Jr. is the husband of Edna Lacsamana. Marriage date, location, and additional details have not yet been supplied."
+    },
+    "sheryll-dacanay": {
+      "id": "sheryll-dacanay",
+      "name": "Sheryll Dacanay",
+      "role": "Mother of Adrian and Eloisa · born 21 August 1985",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "21 August 1985",
+      "av": "👩",
+      "status": "family",
+      "n": "Identified by Adrian as his mother. Birth date: 21 August 1985. Birthplace, parents, siblings, nationality, religion, and supporting records have not yet been supplied; these fields remain undocumented rather than inferred."
+    },
+    "adrian": {
+      "id": "adrian",
+      "name": "Adrian Lacsamana",
+      "role": "Generation 6 · You · Son of Jeffrey Lacsamana and Sheryll Dacanay",
+      "k": "you",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "self": 1,
+      "av": "💻",
+      "status": "family"
+    },
+    "sister": {
+      "id": "sister",
+      "name": "Eloisa Lacsamana",
+      "role": "Sister of Adrian Lacsamana · Daughter of Jeffrey Lacsamana and Sheryll Dacanay",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "av": "👩",
+      "status": "family",
+      "n": "Identified by Adrian as his sister. She is connected as a child of Jeffrey Lacsamana and Sheryll Dacanay. Birth date and additional details have not yet been supplied."
+    },
+    "dad-sib-1": {
+      "id": "dad-sib-1",
+      "name": "Uncle/Aunt 1 — name needed",
+      "role": "Sibling of Jeffrey",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "ed": 1,
+      "status": "unknown"
+    },
+    "dad-sib-1-child": {
+      "id": "dad-sib-1-child",
+      "name": "Cousin — name needed",
+      "role": "Child of this aunt/uncle",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "ed": 1,
+      "status": "unknown"
+    },
+    "dad-sib-2": {
+      "id": "dad-sib-2",
+      "name": "Uncle/Aunt 2 — name needed",
+      "role": "Sibling of Jeffrey",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "ed": 1,
+      "status": "unknown"
+    },
+    "dad-sib-2-child": {
+      "id": "dad-sib-2-child",
+      "name": "Cousin — name needed",
+      "role": "Child of this aunt/uncle",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "ed": 1,
+      "status": "unknown"
+    },
+    "leon-bulacan": {
+      "id": "leon-bulacan",
+      "name": "Leon Lacsamana",
+      "role": "Separate record group · Bulacan / Manila",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unlinked",
+      "n": "Separate person record group supplied by the user. No evidence currently establishes that this Leon is the Don Leon of La Union."
+    },
+    "alejandra-capalad": {
+      "id": "alejandra-capalad",
+      "name": "Alejandra Capalad",
+      "role": "Wife listed in Bulacan / Manila group",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Capalad",
+      "status": "record"
+    },
+    "macario-lac": {
+      "id": "macario-lac",
+      "name": "Macario Lacsamana",
+      "role": "Child listed in Bulacan / Manila group",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record",
+      "n": "Indexed marriage registration: November 16, 1962; age 62 (estimated birth year c. 1900). Spouse: Felicidad Santos, indexed age 60 (c. 1902). Other people listed: Ramon Santos and Candida Lacsamana. Relationship of those additional names is not specified in the supplied extract."
+    },
+    "felicidad-santos": {
+      "id": "felicidad-santos",
+      "name": "Felicidad Santos",
+      "role": "Wife of Macario Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Santos",
+      "status": "record"
+    },
+    "ramon-santos": {
+      "id": "ramon-santos",
+      "name": "Ramon Santos",
+      "role": "Also listed on the Macario marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "candida-lacsamana": {
+      "id": "candida-lacsamana",
+      "name": "Candida Lacsamana",
+      "role": "Also listed on the Macario marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "inocencia-lac": {
+      "id": "inocencia-lac",
+      "name": "Inocencia Lacsamana",
+      "role": "Child listed in Bulacan / Manila group",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record",
+      "n": "Indexed marriage: April 12, 1922, Marilao, Bulacan. Age 19 (estimated birth year c. 1903). Spouse: Alejandro David, indexed age 25 (c. 1897). Registry: record 405, page 16, registration 19. Other names listed: Felipe David and Dominga Timbal; their relationship to this couple is not established by the supplied extract."
+    },
+    "alejandro-david": {
+      "id": "alejandro-david",
+      "name": "Alejandro David",
+      "role": "Husband of Inocencia Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "David",
+      "status": "record"
+    },
+    "felipe-david": {
+      "id": "felipe-david",
+      "name": "Felipe David",
+      "role": "Also listed on the Inocencia marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "dominga-timbal": {
+      "id": "dominga-timbal",
+      "name": "Dominga Timbal",
+      "role": "Also listed on the Inocencia marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "leon-teodora": {
+      "id": "leon-teodora",
+      "name": "Leon Lacsamana",
+      "role": "Separate record group · Teodora Lacanilao",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unlinked",
+      "n": "Separate record group supplied by the user. Do not merge with Don Leon of La Union without supporting evidence."
+    },
+    "teodora-lacanilao": {
+      "id": "teodora-lacanilao",
+      "name": "Teodora Lacanilao",
+      "role": "Wife listed in separate record group",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Lacanilao",
+      "status": "record"
+    },
+    "maxima-lac": {
+      "id": "maxima-lac",
+      "name": "Maxima Lacsamana",
+      "role": "Child listed in Teodora Lacanilao group",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record",
+      "n": "Supplied national civil-registration index: marriage registration dated May 21, 1959. Indexed age 20 (estimated birth year c. 1939). Spouse: Jose Sombillo, indexed age 22 (c. 1937). Other names listed: Benjamin Sombillo and Victoriana Samson; their roles are not established by the supplied extract."
+    },
+    "jose-sombillo": {
+      "id": "jose-sombillo",
+      "name": "Jose Sombillo",
+      "role": "Husband of Maxima Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Sombillo",
+      "status": "record"
+    },
+    "benjamin-sombillo": {
+      "id": "benjamin-sombillo",
+      "name": "Benjamin Sombillo",
+      "role": "Also listed on the Maxima marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "victoriana-samson": {
+      "id": "victoriana-samson",
+      "name": "Victoriana Samson",
+      "role": "Also listed on the Maxima marriage index · role unspecified",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "leon-laguna": {
+      "id": "leon-laguna",
+      "name": "Leon Lacsamana",
+      "role": "Separate record group · San Pablo, Laguna",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unlinked",
+      "n": "Separate Laguna record group supplied by the user. No evidence currently connects this Leon to the La Union lineage."
+    },
+    "rafaela-lac": {
+      "id": "rafaela-lac",
+      "name": "Rafaela Lacsamana",
+      "role": "Child listed in Laguna group · sex index conflict",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record",
+      "n": "Indexed death: October 25, 1953, San Pablo City, Laguna; document number 687; age 38 (estimated birth year c. 1915). The supplied index classifies Rafaela as male/son despite the feminine given name. Original image is required to resolve the discrepancy. Victor Umila is listed as child-in-law, but the exact relationship should be checked."
+    },
+    "victor-umila": {
+      "id": "victor-umila",
+      "name": "Victor Umila",
+      "role": "Listed as child-in-law in Laguna record",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "record"
+    },
+    "catalino": {
+      "id": "catalino",
+      "name": "Catalino Lacsamana",
+      "role": "Bangar line · your draft",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Kept from your first draft (“Bangar line · uncle / collateral”). Where he fits in Leon’s family was not established."
+    },
+    "romana": {
+      "id": "romana",
+      "name": "Romana Lacsamana",
+      "role": "Lopez line · your draft",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Kept from your first draft (“Lopez line · aunt branch”). Where she fits in Leon’s family was not established."
+    },
+    "mario-lac": {
+      "id": "mario-lac",
+      "name": "Mario Lacsamana",
+      "role": "Cousin of the Ortegas",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "source",
+      "n": "Listed among 15 Ortega family members seeking posts in 2007 and described as a cousin (Philstar). The article does not say how he connects to Francisca’s or Leon’s line."
+    },
+    "antonia": {
+      "id": "antonia",
+      "name": "Antonia Ortega y Lacsamana",
+      "role": "Eldest child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1894–1974"
+    },
+    "pio": {
+      "id": "pio",
+      "name": "Gov. Pio Ancheta",
+      "role": "Husband · Gov. 1919–22",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Ancheta",
+      "n": "Governor of La Union 1919–1922 (Wikipedia list of governors)."
+    },
+    "vicenta": {
+      "id": "vicenta",
+      "name": "Vicenta Ortega y Lacsamana Panis",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Roman Catholic (baptized at Bauang Catholic Church)",
+      "d": "1895–1984",
+      "religionNote": "The Ortega Reunion 2017 biography explicitly states that Vicenta was baptized at the Bauang Catholic Church.",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf"
+    },
+    "emiliano": {
+      "id": "emiliano",
+      "name": "Col. Emiliano Panis",
+      "role": "Husband · surgeon / lawyer",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Panis"
+    },
+    "carmen-panis": {
+      "id": "carmen-panis",
+      "name": "Carmen Panis",
+      "role": "Eldest child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "jacinto": {
+      "id": "jacinto",
+      "name": "Jose Protacio Jacinto Jr.",
+      "role": "Husband of Carmen",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Jacinto",
+      "n": "Carmen later married Jose Protacio Jacinto Jr. (reunion biography)."
+    },
+    "rafael-j": {
+      "id": "rafael-j",
+      "name": "Rafael Jacinto",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "jose-iii": {
+      "id": "jose-iii",
+      "name": "Jose Jacinto III",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "emiliano-j": {
+      "id": "emiliano-j",
+      "name": "Emiliano Jacinto",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "francisco-j": {
+      "id": "francisco-j",
+      "name": "Francisco Jacinto",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "juan-panis": {
+      "id": "juan-panis",
+      "name": "Juan Panis",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "lourdes-panis": {
+      "id": "lourdes-panis",
+      "name": "Lourdes Panis",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "antonio-panis": {
+      "id": "antonio-panis",
+      "name": "Antonio Panis",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "joaquin-panis": {
+      "id": "joaquin-panis",
+      "name": "Joaquin Panis",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "pacita-panis": {
+      "id": "pacita-panis",
+      "name": "Pacita Panis",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "joaquin-jr": {
+      "id": "joaquin-jr",
+      "name": "Joaquín Ortega Jr.",
+      "role": "Died in infancy",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1897–98",
+      "gone": 1,
+      "av": "🕊️"
+    },
+    "jose": {
+      "id": "jose",
+      "name": "Jose Alvaro Ortega y Lacsamana",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "paz": {
+      "id": "paz",
+      "name": "Paz “Pacing” Lacsamana",
+      "role": "Wife · reported Lacsamana cousin of the Ortega siblings",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Lacsamana",
+      "n": "The family biography describes her as a Lacsamana cousin of the Ortega siblings, but does not identify her parents or exact branch. She may be the same person as Paz Munar Lacsamana, whom the supplied family information identifies as a sibling of Eduardo and Pidong; the available material does not confirm that both names refer to one person, so they remain unmerged pending confirmation."
+    },
+    "kining": {
+      "id": "kining",
+      "name": "Joaquin “Kining” Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "cleofe": {
+      "id": "cleofe",
+      "name": "Cleofe “Pet” Balingit",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Balingit"
+    },
+    "mela": {
+      "id": "mela",
+      "name": "Manuela “Mela” Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "santos": {
+      "id": "santos",
+      "name": "Santos Dacanay",
+      "role": "Husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Dacanay"
+    },
+    "ollie": {
+      "id": "ollie",
+      "name": "Elena “Ollie” Dacanay",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "patchie": {
+      "id": "patchie",
+      "name": "Pazz “Patchie” Dacanay",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "third": {
+      "id": "third",
+      "name": "Jose “Third” Dacanay",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "cichit": {
+      "id": "cichit",
+      "name": "Leon “Cichit” Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "emily-alviar": {
+      "id": "emily-alviar",
+      "name": "Emily Alviar",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Alviar"
+    },
+    "michelle-ann": {
+      "id": "michelle-ann",
+      "name": "Michelle Ann Ortega",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "katrina": {
+      "id": "katrina",
+      "name": "Katrina Lyn Ortega",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "lj": {
+      "id": "lj",
+      "name": "Leon Jose “LJ” Ortega",
+      "role": "Child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Surname assumed from the parent’s name; the source gives first names only."
+    },
+    "luis": {
+      "id": "luis",
+      "name": "Luis Ortega y Lacsamana",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Roman Catholic practice documented in family biography",
+      "d": "1902–1983",
+      "religionNote": "The Ortega Reunion 2017 biography describes Luis attending daily Mass and leading family rosaries. This is a family-history account of religious practice; no baptismal record is attached here.",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf"
+    },
+    "lourdes-r": {
+      "id": "lourdes-r",
+      "name": "Lourdes Favis Rivero",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Rivero"
+    },
+    "chito": {
+      "id": "chito",
+      "name": "Luis “Chito” Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "lourdes-marie": {
+      "id": "lourdes-marie",
+      "name": "Lourdes Marie Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "pocholo": {
+      "id": "pocholo",
+      "name": "Salvador Joaquin “Pocholo” Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "bernardita": {
+      "id": "bernardita",
+      "name": "Bernardita Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "ofelia": {
+      "id": "ofelia",
+      "name": "Ofelia Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "padaw": {
+      "id": "padaw",
+      "name": "Manuel “Padaw” Ortega",
+      "role": "Son · listed separately",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The reunion biography lists him separately as Luis’s son, raised by Lola Paca. His mother is not named."
+    },
+    "ramona": {
+      "id": "ramona",
+      "name": "Ramona Ortega y Lacsamana Montilla",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1898–1972"
+    },
+    "eduardo-m": {
+      "id": "eduardo-m",
+      "name": "Col. Eduardo Resurreccion Montilla",
+      "role": "Husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Montilla"
+    },
+    "paquita": {
+      "id": "paquita",
+      "name": "Francisca Sophia “Paquita” Montilla",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "froilan": {
+      "id": "froilan",
+      "name": "Froilan Benitez Maglaya",
+      "role": "Husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Maglaya"
+    },
+    "edward": {
+      "id": "edward",
+      "name": "Eduardo Jose “Edward” Montilla",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "vicky": {
+      "id": "vicky",
+      "name": "Maria Victoria “Vicky” Manguerra",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Manguerra"
+    },
+    "penny": {
+      "id": "penny",
+      "name": "Lourdes “Penny” Montilla-Kleindienst",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "rolf": {
+      "id": "rolf",
+      "name": "Rolf Kleindienst",
+      "role": "Husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Kleindienst"
+    },
+    "john-edward": {
+      "id": "john-edward",
+      "name": "John Edward Kleindienst",
+      "role": "Died shortly after birth",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "gone": 1,
+      "av": "🕊️"
+    },
+    "litong": {
+      "id": "litong",
+      "name": "Manuel “Litong” Montilla",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "juanita": {
+      "id": "juanita",
+      "name": "Juanita L. Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "pacoy": {
+      "id": "pacoy",
+      "name": "Francisco Isabelo “Pacoy” Ortega y Lacsamana",
+      "role": "Son of Joaquin and Francisca · father of the eight Ortega brothers",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1904–1967",
+      "av": "⭐",
+      "n": "Represented La Union’s 2nd district for 24 years and died in 1967 while a Commission on Elections commissioner (Inquirer, 2013)."
+    },
+    "corazon": {
+      "id": "corazon",
+      "name": "Corazon Campos Ortega",
+      "role": "Wife of Francisco Isabelo “Pacoy” Ortega",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Campos",
+      "n": "A Bauang native (Wikipedia). The earlier family archive identifies her as the mother of the Ortega sibling group that includes Victor, Manoling, Pablo, Mario, Pepe, Kit, Bobby and Ramon."
+    },
+    "pacoy-francisco": {
+      "id": "pacoy-francisco",
+      "name": "Francisco Jr.",
+      "role": "Died age 14",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "gone": 1
+    },
+    "pacoy-corazon": {
+      "id": "pacoy-corazon",
+      "name": "Corazon Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "victor": {
+      "id": "victor",
+      "name": "Victor Francisco Campos Ortega",
+      "role": "Gov. 2001–07 · b. 1934",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Eldest of Francisco’s sons, born June 4, 1934 in San Fernando. Governor of La Union 2001–2007 (Wikipedia)."
+    },
+    "mary-jane": {
+      "id": "mary-jane",
+      "name": "Mary Jane Ortega",
+      "role": "Wife · San Fernando mayor",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Of Indang, Cavite; elected San Fernando mayor three times (Wikipedia, Inquirer)."
+    },
+    "lucia": {
+      "id": "lucia",
+      "name": "Lucia Ortega Castro",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "rosario": {
+      "id": "rosario",
+      "name": "Rosario Ortega Santiago",
+      "role": "Died",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "gone": 1
+    },
+    "baby-boy": {
+      "id": "baby-boy",
+      "name": "Baby Boy Ortega",
+      "role": "Died in infancy",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "gone": 1
+    },
+    "roberto": {
+      "id": "roberto",
+      "name": "Roberto “Bobby” Ortega",
+      "role": "Son · Baguio police chief",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Former Baguio police chief; called “Bungo” in a 2007 article (Inquirer 2013, Philstar 2007)."
+    },
+    "robert-jr": {
+      "id": "robert-jr",
+      "name": "Francisco Roberto “Pacoy” Ortega VI",
+      "role": "Son of Roberto “Bobby” Ortega",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The Inquirer’s November 14, 2018 report names Roberto/Bobby Ortega’s son as Francisco Roberto “Pacoy” Ortega VI. An earlier archive used the generic label “Robert Ortega Jr.”; this entry preserves that earlier name as a possible variant pending a primary record."
+    },
+    "aleck": {
+      "id": "aleck",
+      "name": "Aleck Ortega",
+      "role": "Son of Roberto",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Named as Roberto’s son in Philstar (2007)."
+    },
+    "michelle-o": {
+      "id": "michelle-o",
+      "name": "Michelle Ortega",
+      "role": "Daughter of Roberto",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Named as Roberto’s daughter in the Inquirer (2013)."
+    },
+    "carmen-o": {
+      "id": "carmen-o",
+      "name": "Carmen Ortega",
+      "role": "Died",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "gone": 1
+    },
+    "aurora": {
+      "id": "aurora",
+      "name": "Aurora Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "joaquin-p": {
+      "id": "joaquin-p",
+      "name": "Joaquin Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "manuel": {
+      "id": "manuel",
+      "name": "Manuel C. “Manoling” Ortega",
+      "role": "Son of Francisco Ortega · husband of Geraldine “Denny” · father of seven recorded children",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "d. 2025",
+      "n": "Former San Fernando mayor, 2nd-district representative (1998–2007), and Governor of La Union (2007–2016). The Philippine Star (October 10, 2024) identifies him as the elder brother of Mario and Pablo and as the father of Pacoy, Mannix/Manuel, Joy and Alfred. A 2024 Interaksyon report identifies Jeff as Manoling’s son and Pacoy’s brother. The Inquirer (November 14, 2018) identifies him as one of the eight Ortega brothers. Poro Point Management Corporation published a condolence notice for him on December 5, 2025, naming his wife Geraldine “Denny” and son Manuel Victor “Mannix”. A Provincial Government of La Union article (August 2, 2018) describes Denny as his wife and mentions their seven children, but does not name all seven; two unidentified child placeholders are retained rather than inventing names."
+    },
+    "geraldine-denny": {
+      "id": "geraldine-denny",
+      "name": "Geraldine “Denny” Ortega",
+      "role": "Wife of Manuel C. “Manoling” Ortega",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Ortega",
+      "status": "source",
+      "n": "Identified as Manoling’s wife by the Inquirer and the Provincial Government of La Union. Poro Point Management Corporation’s December 5, 2025 condolence notice names her as his wife."
+    },
+    "pacoy3": {
+      "id": "pacoy3",
+      "name": "Francisco Emmanuel “Pacoy” R. Ortega III",
+      "role": "Son of Manoling and Denny · husband of Vini · father of Rafy and her siblings",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Son of Manuel “Manoling” Ortega and brother of Mannix, Joy, Alfred and Jeff. Former Abono party-list representative and Governor of La Union (2016–2022). The Philippine Star and the La Union family election coverage identify him as Manoling’s son. He is married to Vini Nola Alviar Ortega."
+    },
+    "vini": {
+      "id": "vini",
+      "name": "Vini Nola Alviar Ortega",
+      "role": "Wife of Francisco Emmanuel “Pacoy” Ortega III",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Alviar",
+      "status": "source",
+      "n": "Identified in Politiko North Luzon as the wife of former Governor Pacoy Ortega III."
+    },
+    "pacoy3-daughter-1": {
+      "id": "pacoy3-daughter-1",
+      "name": "Older daughter — name not publicly identified",
+      "role": "Older sister of Raphaelle “Rafy” Ortega-David · daughter of Pacoy III and Vini",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unknown",
+      "n": "The ITU profile identifies Rafy as the third daughter of Pacoy III and Vini, which establishes at least two older daughters. This profile preserves one older sister without inventing her name."
+    },
+    "pacoy3-daughter-2": {
+      "id": "pacoy3-daughter-2",
+      "name": "Older daughter — name not publicly identified",
+      "role": "Older sister of Raphaelle “Rafy” Ortega-David · daughter of Pacoy III and Vini",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unknown",
+      "n": "The ITU profile identifies Rafy as the third daughter of Pacoy III and Vini, which establishes at least two older daughters. This profile preserves one older sister without inventing her name."
+    },
+    "raphaelle": {
+      "id": "raphaelle",
+      "name": "Raphaelle Veronica Alviar “Rafy” Ortega-David",
+      "role": "Daughter of Pacoy III and Vini · wife of Kevin David · mother of Valentino",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The International Telecommunication Union’s 2023 profile identifies Rafy as the third daughter of Francisco Emmanuel “Pacoy” Ortega III and Vini Nola Alviar Ortega, and names her husband Kevin Louie C. David and their son Valentino Manuel O. David. The wording establishes at least two older sisters, but the profile does not give a total sibling count or name those sisters. They remain unnamed here."
+    },
+    "kevin-david": {
+      "id": "kevin-david",
+      "name": "Kevin Louie C. David",
+      "role": "Husband of Raphaelle “Rafy” Ortega-David",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "David",
+      "status": "source"
+    },
+    "valentino-david": {
+      "id": "valentino-david",
+      "name": "Valentino Manuel O. David",
+      "role": "Son of Raphaelle “Rafy” Ortega-David and Kevin Louie C. David",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "source"
+    },
+    "alfredo": {
+      "id": "alfredo",
+      "name": "Alfred Pablo R. “Alfred” Ortega",
+      "role": "Son of Manoling and Denny · brother of Pacoy, Mannix, Joy and Jeff",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The Rappler and Philippine Star reports identify Alfred/Alfred Pablo R. Ortega as a child of Manoling. An earlier version of this archive used the shorter name “Alfredo Ortega”; that earlier spelling is retained here as a name variant pending a primary record."
+    },
+    "mannix": {
+      "id": "mannix",
+      "name": "Manuel Victor “Mannix” R. Ortega",
+      "role": "Son of Manoling and Denny · brother of Pacoy, Joy, Alfred and Jeff",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Named by Poro Point Management Corporation as Manoling’s son in its December 5, 2025 condolence notice; also identified as a child of Manoling in Rappler’s 2025 family-election report and Politiko North Luzon."
+    },
+    "joy": {
+      "id": "joy",
+      "name": "Joy Ortega",
+      "role": "Daughter of Manoling and Geraldine · sister of Pacoy, Mannix, Alfred and Jeff",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The Philippine Star (October 10, 2024) identifies Joy as a daughter of Manoling, sister of Pacoy, Mannix and Alfred, and aunt of Rafy Ortega-David. No spouse or children are named in the sources consulted for this update."
+    },
+    "jeff-ortega": {
+      "id": "jeff-ortega",
+      "name": "Joseph Francisco “Jeff” Ortega",
+      "role": "Son of Manoling and Denny · brother of Pacoy III, Mannix, Joy and Alfred",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "PhilSTAR Life (August 31, 2024) identifies Jeff as the son of former Governor Manuel “Manoling” Ortega and as the brother of Francisco Emmanuel “Pacoy” Ortega III. The article does not identify a spouse or children."
+    },
+    "manoling-child-6": {
+      "id": "manoling-child-6",
+      "name": "Unidentified child of Manoling and Denny",
+      "role": "Additional child mentioned in a public family reference · name not identified",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unknown",
+      "n": "The Provincial Government of La Union article dated August 2, 2018 says Geraldine “Denny” Ortega thanked her husband former Governor Manoling Ortega and her seven children. Five are identified by name in the public sources used for this archive; this entry preserves one of the two remaining unnamed children without guessing a name or gender."
+    },
+    "manoling-child-7": {
+      "id": "manoling-child-7",
+      "name": "Unidentified child of Manoling and Denny",
+      "role": "Additional child mentioned in a public family reference · name not identified",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unknown",
+      "n": "The Provincial Government of La Union article dated August 2, 2018 says Geraldine “Denny” Ortega thanked her husband former Governor Manoling Ortega and her seven children. Five are identified by name in the public sources used for this archive; this entry preserves one of the two remaining unnamed children without guessing a name or gender."
+    },
+    "emmanuel-victor": {
+      "id": "emmanuel-victor",
+      "name": "Emmanuel Victor Ortega",
+      "role": "Earlier family-tree entry · relationship needs confirmation",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "unlinked",
+      "n": "This name appeared in the earlier archive as a son of Manoling. The public sources consulted for this update name Pacoy, Mannix, Joy, Alfred and Jeff, but do not clarify whether Emmanuel Victor is another person or a name variant of Manuel Victor “Mannix”. It is intentionally kept unlinked until the identity is confirmed."
+    },
+    "kitchie": {
+      "id": "kitchie",
+      "name": "Francisca “Kitchie” Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "kit": {
+      "id": "kit",
+      "name": "Francisco “Kit” Ortega Jr.",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "yolanda": {
+      "id": "yolanda",
+      "name": "Yolanda Ortega Lopez",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "pablo": {
+      "id": "pablo",
+      "name": "Pablo C. Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "paolo": {
+      "id": "paolo",
+      "name": "Francisco Paolo Padua Ortega V",
+      "role": "Son of Pablo · b. 1984",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Wikipedia: born April 14, 1984, “the son of Pablo C. Ortega”. Representative of La Union’s 1st district since 2022 and Deputy Speaker of the House since August 2025."
+    },
+    "mariquita": {
+      "id": "mariquita",
+      "name": "Mariquita Padua Ortega",
+      "role": "Wife of Pablo C. Ortega",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Padua",
+      "status": "source",
+      "n": "Identified as Pablo Ortega’s wife by the Inquirer’s 2018 report and the Philippine Star’s 2024 election coverage."
+    },
+    "luzan": {
+      "id": "luzan",
+      "name": "Lucia Esperanza “Luzan” Ortega-Valero",
+      "role": "Daughter of Pablo and Mariquita · sister of Francisco Paolo Ortega V",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "source",
+      "n": "The Inquirer’s 2018 report names Luzan as one of Pablo and Mariquita’s children; the City of San Fernando identifies her as Pablo’s daughter."
+    },
+    "jose-ma": {
+      "id": "jose-ma",
+      "name": "Jose Ma. Ortega",
+      "role": "Son · board member",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Called “Pepe”; a provincial board member (Inquirer 2013)."
+    },
+    "ramon": {
+      "id": "ramon",
+      "name": "Ramon “Monet” Ortega",
+      "role": "Son · councilor",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "mario": {
+      "id": "mario",
+      "name": "Mario Eduardo “Tot” Campos Ortega",
+      "role": "Gov. 2025– · b. 1956",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Born Feb 3, 1956. Vice Governor 2019–2025, Governor of La Union since June 30, 2025. Wikipedia lists Victor and Bobby Ortega as his brothers, which places him among Pacoy’s sons, and calls Raphaelle Ortega-David his grandniece."
+    },
+    "danielle-bianca": {
+      "id": "danielle-bianca",
+      "name": "Danielle Bianca G. Ortega",
+      "role": "Daughter of Mario Eduardo “Tot” Ortega",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The City of San Fernando and recent La Union election coverage identify Danielle Bianca G. Ortega as Mario’s daughter. A spouse or children are not named in the sources used for this archive update."
+    },
+    "manuela": {
+      "id": "manuela",
+      "name": "Manuela Ortega Orros",
+      "role": "Died at childbirth",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1906",
+      "gone": 1
+    },
+    "justo1": {
+      "id": "justo1",
+      "name": "Justo “Titong” Orros Sr.",
+      "role": "First husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Orros",
+      "n": "Married Manuela first and, after her death, her sister Joaquina — the same man appears in branch 10."
+    },
+    "joaquina": {
+      "id": "joaquina",
+      "name": "Joaquina Ortega y Lacsamana Orros",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1907–"
+    },
+    "justo2": {
+      "id": "justo2",
+      "name": "Justo “Titong” Orros Sr.",
+      "role": "Second husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Orros",
+      "same": "justo1",
+      "n": "The same man as in branch 09: he married Joaquina after her sister Manuela died."
+    },
+    "justo-jr": {
+      "id": "justo-jr",
+      "name": "Justo Ortega Orros Jr.",
+      "role": "Judge & governor",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Roman Catholic (described as devout and a member of the Knights of Columbus)",
+      "religionNote": "The Ortega Reunion 2017 biography describes him as a devout Catholic and a member of the Knights of Columbus of St. William the Hermit Parish.",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
+      "n": "A former Pangasinan judge, elected Governor of La Union in 1992 and in office 1992–2001 (Ortega Reunion 2017 and other published references). The Inquirer calls him “a cousin of the Ortegas” without naming his parents; he is placed under Joaquina and Justo Sr. as in your draft, so confirm that link."
+    },
+    "jay-jay": {
+      "id": "jay-jay",
+      "name": "Jay-jay Orros",
+      "role": "Son · board member",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "Described as the son of former governor Justo Ortega Orros and a provincial board member (Philstar, 2007)."
+    },
+    "titing": {
+      "id": "titing",
+      "name": "Joaquin “Titing” L. Ortega Jr.",
+      "role": "Gov. 1988–92",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1916–1996",
+      "av": "⭐",
+      "n": "Joaquin “Titing” Lacsamana Ortega Jr., born Nov 7, 1916, died Sep 20, 1996. Won the 1969 House race and was elected Governor in 1988 (Wikipedia)."
+    },
+    "fely": {
+      "id": "fely",
+      "name": "Felicula “Fely” Nuesa",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Nuesa"
+    },
+    "cristina": {
+      "id": "cristina",
+      "name": "Cristina Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "carlos": {
+      "id": "carlos",
+      "name": "Carlos Ortega",
+      "role": "Son · board member",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "La Union provincial board member 1995–2001 (Wikipedia)."
+    },
+    "victoria": {
+      "id": "victoria",
+      "name": "Victoria Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "elizabeth": {
+      "id": "elizabeth",
+      "name": "Elizabeth Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "maria-c": {
+      "id": "maria-c",
+      "name": "Maria Concepcion Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "concepcion": {
+      "id": "concepcion",
+      "name": "Concepcion Ortega y Lacsamana",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1908–"
+    },
+    "mary": {
+      "id": "mary",
+      "name": "Maria Ortega y Lacsamana",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "d": "1914–1965"
+    },
+    "fernandico": {
+      "id": "fernandico",
+      "name": "Dr. Fernandico Gonong",
+      "role": "Husband",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Gonong"
+    },
+    "marietta": {
+      "id": "marietta",
+      "name": "Marietta Gonong",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "tessie": {
+      "id": "tessie",
+      "name": "Teresita “Tessie” Peralta",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "dinah": {
+      "id": "dinah",
+      "name": "Fernandica “Dinah” Cantorna",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "evaristo": {
+      "id": "evaristo",
+      "name": "Evaristo Ortega y Lacsamana",
+      "role": "Son · youngest child",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Roman Catholic practice documented in family biography",
+      "religionNote": "The Ortega Reunion 2017 biography describes Bisting as modeling faith through attending Sunday Mass.",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf"
+    },
+    "rosa": {
+      "id": "rosa",
+      "name": "Rosa Viloria Ubaldo Ortega",
+      "role": "Wife",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Roman Catholic — Secular Carmelite (OCDS)",
+      "fam": "Ubaldo",
+      "religionNote": "The Ortega Reunion 2017 biography states that Rosa became a member of the Secular Carmelite Order (OCDS).",
+      "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf"
+    },
+    "emily": {
+      "id": "emily",
+      "name": "Emily Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "steve": {
+      "id": "steve",
+      "name": "Evaristo Jr. “Steve” Ortega",
+      "role": "Son",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "rosa-d": {
+      "id": "rosa-d",
+      "name": "Dr. Rosa Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "flor": {
+      "id": "flor",
+      "name": "Florita “Flor” Ortega",
+      "role": "Daughter",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "luz": {
+      "id": "luz",
+      "name": "Ma. Luz “Luchie” Bolong",
+      "role": "Daughter · twin",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    },
+    "nila": {
+      "id": "nila",
+      "name": "Ma. Nila “Nile” Argel",
+      "role": "Daughter · twin",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources"
+    }
+  },
+  "unions": [
+    {
+      "a": "antonio",
+      "b": "juana",
+      "kids": [
+        "joaquin"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "andres-valdris",
+      "b": "marcelina-bautista",
+      "kids": [
+        "juanita-valdris"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "martin-lacsamana",
+      "b": "narcisa-lopez",
+      "kids": [
+        "ramona-lopez"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "ramona-lopez",
+      "b": "evaristo-guadalupe",
+      "kids": [
+        "leon",
+        "francisca"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "leon",
+      "b": "cayetana",
+      "kids": [
+        "alfredo-pidong"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "leon",
+      "b": null,
+      "kids": [
+        "paz-munar"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "alfredo-pidong",
+      "b": "juanita-valdris",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "leocadio-viloria",
+      "b": "prisea-nuval",
+      "kids": [
+        "concepcion-viloria"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "joaquin-lac",
+      "b": "concepcion-viloria",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "mariano-lomiteng",
+      "b": "rafaela-buyao",
+      "kids": [
+        "pacita-lomiteng"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "francisco-lac",
+      "b": "pacita-lomiteng",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "isabelo-argueza",
+      "b": "concepcion-rillera",
+      "kids": [
+        "purita-argueza"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "leon",
+      "b": "emilia-garcia",
+      "kids": [
+        "joaquin-lac",
+        "francisco-lac",
+        "eduardo"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "eduardo",
+      "b": "purita-argueza",
+      "kids": [
+        "jeffrey",
+        "edna",
+        "jerry"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "edna",
+      "b": "arthur-lee-jr",
+      "kids": [
+        "richard-lee",
+        "noel-john-lee"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "jeffrey",
+      "b": "sheryll-dacanay",
+      "kids": [
+        "adrian",
+        "sister"
+      ],
+      "line": "you"
+    },
+    {
+      "a": "dad-sib-1",
+      "b": null,
+      "kids": [
+        "dad-sib-1-child"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "dad-sib-2",
+      "b": null,
+      "kids": [
+        "dad-sib-2-child"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "leon-bulacan",
+      "b": "alejandra-capalad",
+      "kids": [
+        "macario-lac",
+        "inocencia-lac"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "macario-lac",
+      "b": "felicidad-santos",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "inocencia-lac",
+      "b": "alejandro-david",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "leon-teodora",
+      "b": "teodora-lacanilao",
+      "kids": [
+        "maxima-lac"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "maxima-lac",
+      "b": "jose-sombillo",
+      "kids": [],
+      "line": "pending"
+    },
+    {
+      "a": "leon-laguna",
+      "b": null,
+      "kids": [
+        "rafaela-lac"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "antonia",
+      "b": "pio",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "carmen-panis",
+      "b": "jacinto",
+      "kids": [
+        "rafael-j",
+        "jose-iii",
+        "emiliano-j",
+        "francisco-j"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "vicenta",
+      "b": "emiliano",
+      "kids": [
+        "carmen-panis",
+        "juan-panis",
+        "lourdes-panis",
+        "antonio-panis",
+        "joaquin-panis",
+        "pacita-panis"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "kining",
+      "b": "cleofe",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "mela",
+      "b": "santos",
+      "kids": [
+        "ollie",
+        "patchie",
+        "third"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "cichit",
+      "b": "emily-alviar",
+      "kids": [
+        "michelle-ann",
+        "katrina",
+        "lj"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "jose",
+      "b": "paz",
+      "kids": [
+        "kining",
+        "mela",
+        "cichit"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "luis",
+      "b": "lourdes-r",
+      "kids": [
+        "chito",
+        "lourdes-marie",
+        "pocholo",
+        "bernardita",
+        "ofelia",
+        "padaw"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "paquita",
+      "b": "froilan",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "edward",
+      "b": "vicky",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "penny",
+      "b": "rolf",
+      "kids": [
+        "john-edward"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "ramona",
+      "b": "eduardo-m",
+      "kids": [
+        "paquita",
+        "edward",
+        "penny",
+        "litong"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "victor",
+      "b": "mary-jane",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "roberto",
+      "b": null,
+      "kids": [
+        "robert-jr",
+        "aleck",
+        "michelle-o"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "pacoy3",
+      "b": "vini",
+      "kids": [
+        "pacoy3-daughter-1",
+        "pacoy3-daughter-2",
+        "raphaelle"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "raphaelle",
+      "b": "kevin-david",
+      "kids": [
+        "valentino-david"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "manuel",
+      "b": "geraldine-denny",
+      "kids": [
+        "pacoy3",
+        "mannix",
+        "joy",
+        "alfredo",
+        "jeff-ortega",
+        "manoling-child-6",
+        "manoling-child-7"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "pablo",
+      "b": "mariquita",
+      "kids": [
+        "paolo",
+        "luzan"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "mario",
+      "b": null,
+      "kids": [
+        "danielle-bianca"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "pacoy",
+      "b": "corazon",
+      "kids": [
+        "pacoy-francisco",
+        "pacoy-corazon",
+        "victor",
+        "lucia",
+        "rosario",
+        "baby-boy",
+        "roberto",
+        "carmen-o",
+        "aurora",
+        "joaquin-p",
+        "manuel",
+        "kitchie",
+        "kit",
+        "yolanda",
+        "pablo",
+        "jose-ma",
+        "ramon",
+        "mario"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "manuela",
+      "b": "justo1",
+      "kids": [],
+      "line": "blood"
+    },
+    {
+      "a": "justo-jr",
+      "b": null,
+      "kids": [
+        "jay-jay"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "joaquina",
+      "b": "justo2",
+      "kids": [
+        "justo-jr"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "titing",
+      "b": "fely",
+      "kids": [
+        "cristina",
+        "carlos",
+        "victoria",
+        "elizabeth",
+        "maria-c"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "mary",
+      "b": "fernandico",
+      "kids": [
+        "marietta",
+        "tessie",
+        "dinah"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "evaristo",
+      "b": "rosa",
+      "kids": [
+        "emily",
+        "steve",
+        "rosa-d",
+        "flor",
+        "luz",
+        "nila"
+      ],
+      "line": "blood"
+    },
+    {
+      "a": "francisca",
+      "b": "joaquin",
+      "kids": [
+        "antonia",
+        "vicenta",
+        "joaquin-jr",
+        "jose",
+        "luis",
+        "ramona",
+        "juanita",
+        "pacoy",
+        "manuela",
+        "joaquina",
+        "titing",
+        "concepcion",
+        "mary",
+        "evaristo"
+      ],
+      "line": "blood"
+    }
+  ],
+  "chip": {
+    "kining": "11 children — names not listed in the program",
+    "paquita": "6 children — names not listed in the program",
+    "edward": "6 children — names not listed in the program",
+    "pacoy3": "At least two older sisters are implied by Rafy being identified as the third daughter"
+  },
+  "branchNotes": {
+    "leon": "Family-supplied sibling grouping identifies Eduardo, Paz Munar Lacsamana, and Pidong Lacsamana as siblings. Their maternal relationships are not fully established in the supplied information; separate marriage units are retained rather than assuming one mother.",
+    "antonia": "The reunion biography says they had no children.",
+    "vicenta": "Carmen later married Jose Protacio Jacinto Jr.; their four sons were Rafael, Jose III, Emiliano and Francisco.",
+    "joaquin-jr": "The family tree records his death in infancy; no descendants. A later son, Joaquin “Titing” (branch 11), is also styled “Jr.”",
+    "jose": "Paz is described as a cousin, so this is also a Lacsamana link. Kining and Cleofe had 11 children; Mela and Santos Dacanay had Elena “Ollie”, Pazz “Patchie” and Jose “Third”; Cichit and Emily Alviar had Michelle Ann, Katrina Lyn and Leon Jose “LJ”.",
+    "luis": "The first five are children of Luis and Lourdes. The reunion biography also identifies Manuel “Padaw” as Luis’s son, raised by Lola Paca.",
+    "ramona": "Paquita and Froilan Benitez Maglaya had six children. Edward and Maria Victoria “Vicky” Manguerra had six children. Penny and Rolf Kleindienst had a son, John Edward, who died shortly after birth.",
+    "juanita": "The reunion family-tree diagram names Juanita; the accessible program does not provide a spouse or children.",
+    "pacoy": "The 2017 reunion biography lists 18 children, including three who died young; the Inquirer (2013) counts 15 — eight sons and seven daughters. Victor, Manuel, Pablo, Mario and other sons are tied to Pacoy by the Inquirer, Wikipedia and Philstar; the governors’ terms come from Wikipedia’s list of La Union governors.",
+    "manuela": "The reunion biography says Manuela died at childbirth one year after the marriage; no surviving child is listed. Justo Orros Sr. then married her sister Joaquina (branch 10) — the same person.",
+    "joaquina": "The reunion program identifies Joaquina as Justo Orros Sr.’s second wife after her sister Manuela. Your draft cites FamilySearch for Justo Jr. being their son; that could not be re-checked, and the Inquirer (2013) only calls him “a cousin of the Ortegas”.",
+    "titing": "Five children are named in the reunion program.",
+    "concepcion": "The reunion biography says she never married and had no children; she cared for her mother and nieces and nephews.",
+    "mary": "The reunion biography names three daughters.",
+    "evaristo": "The reunion biography and the Ortega Twins biography name all six children."
+  },
+  "familyIndex": [
+    {
+      "name": "Don Leon Lacsamana · La Union",
+      "how": "Leon is reported as Francisca’s brother. His reported children are Alfredo, Joaquin, Francisco and Eduardo, through two reported marriages. The Eduardo branch continues through Jeffrey, Adrian and Eloisa, and through Edna Lacsamana, her husband Arthur Lee Jr., and their reported sons Richard Lee and Noel John Lee. Family-supplied and indexed details remain awaiting original-record verification.",
+      "ids": [
+        "ramona-lopez",
+        "leon",
+        "cayetana",
+        "alfredo-pidong",
+        "emilia-garcia",
+        "joaquin-lac",
+        "francisco-lac",
+        "eduardo",
+        "jeffrey",
+        "edna",
+        "jerry",
+        "richard-lee",
+        "noel-john-lee",
+        "arthur-lee-jr",
+        "adrian",
+        "sister"
+      ]
+    },
+    {
+      "name": "Munar · Garcia",
+      "how": "Cayetana Munar and Emilia / Emiliana Garcia are listed as Leon’s first and second wives in the supplied family research. The earlier Catalina Munar spelling remains unresolved.",
+      "ids": [
+        "leon",
+        "cayetana",
+        "emilia-garcia"
+      ]
+    },
+    {
+      "name": "Valdris · Bautista",
+      "how": "Juanita Valdris married Alfredo ‘Pidong’ Lacsamana in Luna on October 8, 1944. Andres Valdris and Marcelina Bautista are listed as her parents in the supplied index.",
+      "ids": [
+        "alfredo-pidong",
+        "juanita-valdris",
+        "andres-valdris",
+        "marcelina-bautista"
+      ]
+    },
+    {
+      "name": "Viloria · Nuval",
+      "how": "Concepcion Viloria married Joaquin Lacsamana in a registration dated January 2, 1955. Leocadio Viloria and Prisea Nuval are listed as her parents.",
+      "ids": [
+        "joaquin-lac",
+        "concepcion-viloria",
+        "leocadio-viloria",
+        "prisea-nuval"
+      ]
+    },
+    {
+      "name": "Lomiteng · Buyao",
+      "how": "Pacita Lomiteng married Francisco Lacsamana in a registration dated September 8, 1958. Mariano Lomiteng and Rafaela Buyao are listed as her parents.",
+      "ids": [
+        "francisco-lac",
+        "pacita-lomiteng",
+        "mariano-lomiteng",
+        "rafaela-buyao"
+      ]
+    },
+    {
+      "name": "Argueza · Rillera",
+      "how": "Purita Argueza married Eduardo Lacsamana in a registration dated July 27, 1959. Their children are Jeffrey, Edna and Jerry. Isabelo Argueza and Concepcion Rillera are listed as Purita’s parents.",
+      "ids": [
+        "eduardo",
+        "purita-argueza",
+        "jeffrey",
+        "edna",
+        "jerry",
+        "isabelo-argueza",
+        "concepcion-rillera"
+      ]
+    },
+    {
+      "name": "Lee · Edna Lacsamana’s descendants",
+      "how": "Corrected family-supplied information identifies Arthur Lee Jr. as Edna Lacsamana’s husband, and Richard Lee and Noel John Lee as her reported sons. Dates and original supporting records have not yet been supplied.",
+      "ids": [
+        "edna",
+        "richard-lee",
+        "noel-john-lee",
+        "arthur-lee-jr"
+      ]
+    },
+    {
+      "name": "Separate Leon record groups",
+      "how": "Bulacan / Manila (Alejandra Capalad), Teodora Lacanilao, and San Pablo / Laguna records are kept separate. They are not linked to Don Leon of La Union without evidence.",
+      "ids": [
+        "leon-bulacan",
+        "alejandra-capalad",
+        "macario-lac",
+        "inocencia-lac",
+        "leon-teodora",
+        "teodora-lacanilao",
+        "maxima-lac",
+        "leon-laguna",
+        "rafaela-lac",
+        "victor-umila",
+        "ramon-santos",
+        "candida-lacsamana",
+        "felipe-david",
+        "dominga-timbal",
+        "benjamin-sombillo",
+        "victoriana-samson"
+      ]
+    },
+    {
+      "name": "Ancheta",
+      "how": "Antonia Ortega married Gov. Pio Ancheta, Governor of La Union 1919–1922. They had no children.",
+      "ids": [
+        "antonia",
+        "pio"
+      ]
+    },
+    {
+      "name": "Panis · Jacinto",
+      "how": "Vicenta Ortega married Col. Emiliano Panis, a surgeon and lawyer. Their daughter Carmen later married Jose Protacio Jacinto Jr.; they had four sons.",
+      "ids": [
+        "vicenta",
+        "emiliano",
+        "carmen-panis",
+        "jacinto",
+        "rafael-j",
+        "jose-iii",
+        "emiliano-j",
+        "francisco-j"
+      ]
+    },
+    {
+      "name": "Balingit · Dacanay · Alviar",
+      "how": "Through the children of Jose Alvaro Ortega and Paz Lacsamana: Kining married Cleofe “Pet” Balingit (11 children), Mela married Santos Dacanay, and Cichit married Emily Alviar.",
+      "ids": [
+        "jose",
+        "paz",
+        "kining",
+        "cleofe",
+        "mela",
+        "santos",
+        "cichit",
+        "emily-alviar"
+      ]
+    },
+    {
+      "name": "Rivero",
+      "how": "Luis Ortega married Lourdes Favis Rivero; they had five children, and Luis also had a son, Manuel “Padaw”.",
+      "ids": [
+        "luis",
+        "lourdes-r"
+      ]
+    },
+    {
+      "name": "Montilla · Maglaya · Manguerra · Kleindienst",
+      "how": "Ramona Ortega married Col. Eduardo Resurreccion Montilla. Their children married Froilan Benitez Maglaya (Paquita), Maria Victoria “Vicky” Manguerra (Edward) and Rolf Kleindienst (Penny).",
+      "ids": [
+        "ramona",
+        "eduardo-m",
+        "paquita",
+        "froilan",
+        "edward",
+        "vicky",
+        "penny",
+        "rolf"
+      ]
+    },
+    {
+      "name": "Campos",
+      "how": "Francisco “Pacoy” Ortega, congressman, married Corazon Campos of Bauang. Their sons Victor and Mario Eduardo carry Campos as a middle name, and several became governors of La Union.",
+      "ids": [
+        "pacoy",
+        "corazon",
+        "victor",
+        "manuel",
+        "mario"
+      ]
+    },
+    {
+      "name": "Alviar",
+      "how": "Vini Nola Alviar married Francisco “Pacoy” Ortega III, Governor 2016–2022; Emily Alviar married Leon “Cichit” Ortega. Whether the two Alviar families are related is not stated.",
+      "ids": [
+        "vini",
+        "pacoy3",
+        "emily-alviar",
+        "cichit"
+      ]
+    },
+    {
+      "name": "Orros",
+      "how": "Manuela, and after her death her sister Joaquina, married Justo “Titong” Orros Sr. Justo Orros Jr., a judge and Governor of La Union 1992–2001, is placed as Joaquina’s son following your draft (the Inquirer calls him “a cousin of the Ortegas”); his son Jay-jay served on the provincial board.",
+      "ids": [
+        "manuela",
+        "justo1",
+        "joaquina",
+        "justo2",
+        "justo-jr",
+        "jay-jay"
+      ]
+    },
+    {
+      "name": "Nuesa",
+      "how": "Joaquin “Titing” Ortega, Governor 1988–1992, married Felicula “Fely” Nuesa; they had five children.",
+      "ids": [
+        "titing",
+        "fely",
+        "carlos"
+      ]
+    },
+    {
+      "name": "Gonong · Peralta · Cantorna",
+      "how": "Maria Ortega married Dr. Fernandico Gonong. Their daughters are Marietta Gonong, Teresita “Tessie” Peralta and Fernandica “Dinah” Cantorna.",
+      "ids": [
+        "mary",
+        "fernandico",
+        "marietta",
+        "tessie",
+        "dinah"
+      ]
+    },
+    {
+      "name": "Ubaldo · Bolong · Argel",
+      "how": "Evaristo Ortega married Rosa Viloria Ubaldo. Their six children include the twins Ma. Luz “Luchie” Bolong and Ma. Nila “Nile” Argel.",
+      "ids": [
+        "evaristo",
+        "rosa",
+        "luz",
+        "nila"
+      ]
+    }
+  ]
+}
