@@ -1,0 +1,12 @@
+{
+  "name": "lacsamana-ortega-family-archive",
+  "version": "14.0.0",
+  "private": true,
+  "description": "Public Lacsamana\u2013Ortega family archive with Supabase-backed shared edits",
+  "scripts": {
+    "dev": "vercel dev",
+    "check": "node scripts/check.js",
+    "deploy": "vercel --prod",
+    "seed": "node scripts/seed-supabase.js"
+  }
+}
