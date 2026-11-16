@@ -10,6 +10,7 @@ const api = read("api/config.js");
 const seed = JSON.parse(read("supabase/seed-family-data.json"));
 const schema = read("supabase/schema.sql");
 const contributionMigration = read("supabase/migrations/002_family_contributions.sql");
+const researchMigration = read("supabase/migrations/003_family_research_center.sql");
 
 new vm.Script(script, { filename: "public/script.js" });
 new vm.Script(db, { filename: "public/database.js" });
@@ -25,7 +26,7 @@ for (const file of ["styles.css", "script.js", "database.js"]) {
 for (const f of [
   "public/index.html", "public/styles.css", "public/script.js", "public/database.js",
   "api/config.js", "supabase/schema.sql", "supabase/seed-family-data.json",
-  "scripts/seed-supabase.js", "vercel.json", "README-DEPLOY.md", "supabase/migrations/002_family_contributions.sql"
+  "scripts/seed-supabase.js", "vercel.json", "README-DEPLOY.md", "supabase/migrations/002_family_contributions.sql", "supabase/migrations/003_family_research_center.sql"
 ]) {
   if (!fs.existsSync(path.join(root, f))) throw new Error("Missing project file: " + f);
 }
@@ -51,4 +52,37 @@ if (api.includes("SUPABASE_SECRET_KEY") || api.includes("SUPABASE_SERVICE_ROLE_K
   throw new Error("A server-side Supabase secret must not be exposed by the config API.");
 }
 if (fs.existsSync(path.join(root, ".env.local"))) throw new Error("Do not package .env.local in a deployment ZIP.");
-console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and seed data (${peopleCount} people, ${unionCount} unions, ${indexCount} family-index groups).`);
+for (const marker of ["profileTitle", "initPremiumInteractions", "closeProfileDrawer", "readingProgressBar", "backToTop"]) {
+  if (!script.includes(marker)) throw new Error("Missing V16 interaction enhancement: " + marker);
+}
+for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track", ".profile-drawer", ".archive-index a.is-active"]) {
+  if (!read("public/styles.css").includes(marker)) throw new Error("Missing V16 design system marker: " + marker);
+}
+if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
+  throw new Error("V16 display typography or dialog accessibility markup is missing.");
+}
+for (const marker of ["family_research_records", "family_timeline_events", "family_research_tasks", "family-research-files", "Read visible family research records", "Read visible family timeline events"]) {
+  if (!researchMigration.includes(marker) || !schema.includes(marker)) throw new Error("Research migration/schema is missing " + marker);
+}
+for (const id of ["family-research-center", "researchRecordForm", "researchTaskForm", "timelineEventForm", "timelineSearch", "timelinePersonFilter", "timelineYearFilter", "researchRecordList"]) {
+  if (!ids.includes(id)) throw new Error("Missing V17 Research Center / timeline element: " + id);
+}
+for (const method of ["loadResearchWorkspace", "createResearchRecord", "deleteResearchRecord", "researchFileUrl", "createTimelineEvent", "deleteTimelineEvent", "createResearchTask", "updateResearchTask", "deleteResearchTask"]) {
+  if (!db.includes(method)) throw new Error("Cloud client is missing V17 research method: " + method);
+}
+
+if (!researchMigration.includes("public = false") || !researchMigration.includes("file_size_limit = 26214400")) {
+  throw new Error("Research storage bucket must remain private and capped at 25 MB.");
+}
+for (const table of ["family_research_records", "family_timeline_events", "family_research_tasks"]) {
+  if (!researchMigration.includes(`alter table public.${table} enable row level security`)) {
+    throw new Error("RLS is not enabled for " + table);
+  }
+}
+if (!html.includes('id="researchRecordPublish"') || !html.includes('id="timelineEventPublish"')) {
+  throw new Error("Public publication must require an explicit confirmation checkbox.");
+}
+if (!read("package.json").includes('"version": "17.0.0"')) {
+  throw new Error("Project package version is not 17.0.0.");
+}
+console.log(`Checks passed: JS syntax, unique HTML IDs, project references, private research storage, RLS, publication confirmations, contribution portal, and seed data (${peopleCount} people, ${unionCount} unions, ${indexCount} family-index groups).`);

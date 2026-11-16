@@ -158,6 +158,7 @@
       <nav class="archive-index" aria-label="Family archive sections">
         <a href="#name-history">Surname origins</a>
         <a href="#family-timeline">Timeline</a>
+        <a href="#family-research-center">Research center</a>
         <a href="#geographic-map">Geography</a>
         <a href="#historical-documents">Documents & photos</a>
         <a href="#unidentified-relatives">Unidentified relatives</a>
@@ -176,9 +177,94 @@
       </nav>
 
       <section class="archive-subsection" id="family-timeline">
-        <div class="archive-subhead"><div><div class="eyebrow">CHRONOLOGY</div><h3>Historical family timeline</h3></div></div>
-        <p class="archive-note">The timeline includes dated information already present in the supplied family research and source notes. Indexed ages remain estimates, and uncertain dates are labeled.</p>
+        <div class="archive-subhead"><div><div class="eyebrow">CHRONOLOGY · EVIDENCE-LED</div><h3>Interactive historical timeline</h3></div><span id="timelineResultsSummary" class="archive-counter">Loading events…</span></div>
+        <p class="archive-note">Explore dated family milestones alongside newly approved historical events. Filter by person, period, event type, or evidence status. Approximate and disputed dates remain visibly qualified; undated research gaps are kept separate from the chronological sequence.</p>
+        <div class="timeline-filter-panel" aria-label="Timeline filters">
+          <label>Search timeline<input type="search" id="timelineSearch" placeholder="Search names, places, events, sources…" autocomplete="off"></label>
+          <label>Family member<select id="timelinePersonFilter"><option value="">All family members</option></select></label>
+          <label>Year<select id="timelineYearFilter"><option value="">All years</option></select></label>
+          <label>Event type<select id="timelineTypeFilter"><option value="">All event types</option><option value="birth">Birth</option><option value="baptism">Baptism</option><option value="marriage">Marriage</option><option value="death">Death</option><option value="residence">Residence / migration</option><option value="education">Education</option><option value="public_service">Public service</option><option value="family_memory">Family memory</option><option value="historical_milestone">Historical milestone</option><option value="research_gap">Research gap</option><option value="other">Other</option></select></label>
+          <label>Evidence status<select id="timelineEvidenceFilter"><option value="">All statuses</option><option value="verified">Verified</option><option value="partially_verified">Partially verified</option><option value="unverified">Unverified</option><option value="disputed">Disputed</option></select></label>
+          <label class="timeline-undated-filter"><input type="checkbox" id="timelineShowUndated" checked> Include undated entries</label>
+          <button type="button" class="archive-action secondary" id="timelineClearFilters">Clear filters</button>
+        </div>
         <div id="timelineList" class="archive-timeline"></div>
+        <form id="timelineEventForm" class="archive-form cloud-admin-only" hidden>
+          <div class="archive-form-heading"><strong>Add a historical timeline event</strong><span>Administrator only · Add a source and qualify uncertain dates</span></div>
+          <div class="archive-form-grid">
+            <label>Event title<input id="timelineEventTitle" required maxlength="180" placeholder="Describe the documented event"></label>
+            <label>Event type<select id="timelineEventType"><option value="historical_milestone">Historical milestone</option><option value="birth">Birth</option><option value="baptism">Baptism</option><option value="marriage">Marriage</option><option value="death">Death</option><option value="residence">Residence / migration</option><option value="education">Education</option><option value="public_service">Public service</option><option value="family_memory">Family memory</option><option value="research_gap">Research gap</option><option value="other">Other</option></select></label>
+            <label>Date as displayed<input id="timelineEventDateLabel" required maxlength="100" placeholder="e.g. 9 March 1877, 1849, c. 1900, or Date not established"></label>
+            <label>Date precision<select id="timelineEventPrecision"><option value="exact">Exact date</option><option value="year">Year only</option><option value="approximate">Approximate</option><option value="undated">Undated</option></select></label>
+            <label>Sort date (optional)<input id="timelineEventSortDate" type="date"></label>
+            <label>Place<input id="timelineEventLocation" maxlength="180" placeholder="Town, province, country (if known)"></label>
+            <label>Evidence status<select id="timelineEventEvidence"><option value="partially_verified">Partially verified</option><option value="verified">Verified</option><option value="unverified">Unverified</option><option value="disputed">Disputed</option></select></label>
+            <label>Related family members<select id="timelineEventPeople" multiple size="5" aria-describedby="timelinePeopleHint"></select><small id="timelinePeopleHint">Use Ctrl or Shift to select more than one person.</small></label>
+            <label>Supporting research record<select id="timelineEventSourceRecord"><option value="">No linked research record</option></select></label>
+            <label class="wide">Event details<textarea id="timelineEventDescription" rows="3" required maxlength="3000" placeholder="State what the source says and what remains uncertain."></textarea></label>
+            <label class="wide">External source URL<input id="timelineEventSourceUrl" type="url" maxlength="1000" placeholder="https://…"></label>
+            <label>Visibility<select id="timelineEventVisibility"><option value="private">Private · administrators only</option><option value="family">Family · invited contributors</option><option value="public">Public · visible to everyone</option></select></label>
+            <label class="timeline-publish-confirm"><span><input type="checkbox" id="timelineEventPublish"> Publish this event publicly</span><small>Only check after reviewing the source and any living-person details.</small></label>
+          </div>
+          <button class="archive-action" id="saveTimelineEvent" type="submit">Save timeline event</button><p id="timelineEventStatus" class="archive-form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="archive-subsection expansion-section" id="family-research-center">
+        <div class="archive-subhead"><div><div class="eyebrow">SOURCE REGISTER · DIGITAL PRESERVATION</div><h3>Family Research Center</h3></div><span id="researchRecordCount" class="archive-counter">Historical record library</span></div>
+        <p class="archive-note">A structured research workspace for certificates, church registers, census pages, photographs, letters, newspapers, and other family evidence. Documents are stored in a private cloud bucket; access is controlled by each record's visibility. A file's presence is not proof of the claim it is attached to.</p>
+        <div id="researchAccessMessage" class="research-access-message" role="status" aria-live="polite">Checking research workspace access…</div>
+        <div class="research-library-toolbar">
+          <label>Find a record<input type="search" id="researchRecordSearch" placeholder="Search title, person, archive, place…" autocomplete="off"></label>
+          <label>Record type<select id="researchRecordTypeFilter"><option value="">All record types</option><option value="birth">Birth record</option><option value="baptism">Baptism record</option><option value="marriage">Marriage record</option><option value="death">Death record</option><option value="census">Census / population register</option><option value="photograph">Photograph</option><option value="letter">Letter / correspondence</option><option value="newspaper">Newspaper / publication</option><option value="government">Government record</option><option value="church">Church / religious record</option><option value="military">Military record</option><option value="school">School / education record</option><option value="land">Land / property record</option><option value="other">Other</option></select></label>
+          <label>Evidence status<select id="researchRecordEvidenceFilter"><option value="">All statuses</option><option value="verified">Verified</option><option value="partially_verified">Partially verified</option><option value="unverified">Unverified</option><option value="disputed">Disputed</option></select></label>
+        </div>
+        <div id="researchRecordList" class="research-record-grid" aria-live="polite"><p class="archive-empty">Loading research records…</p></div>
+        <form id="researchRecordForm" class="archive-form cloud-admin-only" hidden>
+          <div class="archive-form-heading"><strong>Register a historical source</strong><span>Administrator only · Files are private unless you deliberately publish them</span></div>
+          <div class="archive-form-grid">
+            <label>Record title<input id="researchRecordTitle" required maxlength="180" placeholder="e.g. Parish baptism register entry for…"></label>
+            <label>Record type<select id="researchRecordType"><option value="birth">Birth record</option><option value="baptism">Baptism record</option><option value="marriage">Marriage record</option><option value="death">Death record</option><option value="census">Census / population register</option><option value="photograph">Photograph</option><option value="letter">Letter / correspondence</option><option value="newspaper">Newspaper / publication</option><option value="government">Government record</option><option value="church">Church / religious record</option><option value="military">Military record</option><option value="school">School / education record</option><option value="land">Land / property record</option><option value="other">Other</option></select></label>
+            <label>Related people<select id="researchRecordPeople" multiple size="5" aria-describedby="researchPeopleHint"></select><small id="researchPeopleHint">Use Ctrl or Shift to select several family members. Leave blank for an unassigned source.</small></label>
+            <label>Evidence status<select id="researchRecordEvidence"><option value="partially_verified">Partially verified</option><option value="verified">Verified</option><option value="unverified">Unverified</option><option value="disputed">Disputed</option></select></label>
+            <label>Archive / repository<input id="researchRepository" maxlength="220" placeholder="Archive, parish, government office, collection"></label>
+            <label>Collection / publication<input id="researchCollection" maxlength="220" placeholder="Register, book, collection, publication"></label>
+            <label>Reference / page / folio<input id="researchReferenceCode" maxlength="160" placeholder="Volume, page, folio, certificate no."></label>
+            <label>Record date / period<input id="researchRecordDate" maxlength="120" placeholder="Exact or approximate date as written"></label>
+            <label>Place<input id="researchRecordPlace" maxlength="180" placeholder="Town, province, country (if known)"></label>
+            <label>Visibility<select id="researchRecordVisibility"><option value="private">Private · administrators only</option><option value="family">Family · invited contributors</option><option value="public">Public · visible to everyone</option></select></label>
+            <label class="wide">Description and research notes<textarea id="researchRecordDescription" rows="3" required maxlength="4000" placeholder="Describe what the source contains, who created it, and its limitations."></textarea></label>
+            <label class="wide">External source URL<input id="researchRecordSourceUrl" type="url" maxlength="1000" placeholder="https://…"></label>
+            <label class="wide">Upload a scan or document<input id="researchRecordFile" type="file" accept="application/pdf,image/jpeg,image/png,image/webp,text/plain,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><small>PDF, JPG, PNG, WebP, TXT, DOC/DOCX, XLS/XLSX · maximum 25 MB. Use only material you have permission to store.</small></label>
+            <label class="timeline-publish-confirm"><span><input type="checkbox" id="researchRecordPublish"> Publish this record publicly</span><small>Public visibility requires this separate confirmation. Never publish private addresses, identity details, or sensitive records about living people.</small></label>
+          </div>
+          <div class="research-timeline-toggle"><label><input type="checkbox" id="researchIncludeTimeline"> Also create a timeline event from this record</label></div>
+          <div id="researchTimelineFields" class="research-timeline-fields" hidden>
+            <div class="archive-form-grid">
+              <label>Timeline event title<input id="researchEventTitle" maxlength="180" placeholder="Defaults to the record title"></label>
+              <label>Date as displayed<input id="researchEventDateLabel" maxlength="100" placeholder="e.g. 9 March 1877 or c. 1900"></label>
+              <label>Date precision<select id="researchEventPrecision"><option value="exact">Exact date</option><option value="year">Year only</option><option value="approximate">Approximate</option><option value="undated">Undated</option></select></label>
+              <label>Sort date (optional)<input id="researchEventSortDate" type="date"></label>
+              <label>Event type<select id="researchEventType"><option value="historical_milestone">Historical milestone</option><option value="birth">Birth</option><option value="baptism">Baptism</option><option value="marriage">Marriage</option><option value="death">Death</option><option value="residence">Residence / migration</option><option value="education">Education</option><option value="public_service">Public service</option><option value="family_memory">Family memory</option><option value="research_gap">Research gap</option><option value="other">Other</option></select></label>
+              <label class="wide">Timeline description<textarea id="researchEventDescription" rows="2" maxlength="3000" placeholder="What does this source establish? What remains uncertain?"></textarea></label>
+            </div>
+          </div>
+          <button class="archive-action" id="saveResearchRecord" type="submit">Save research record</button><p id="researchRecordStatus" class="archive-form-status" role="status" aria-live="polite"></p>
+        </form>
+        <div class="research-task-heading"><div><span class="eyebrow">OPEN QUESTIONS</span><h4>Research tasks</h4><p class="archive-note">Track unresolved dates, missing records, identity questions, and conflicts that need documentary review.</p></div><span id="researchTaskCount" class="archive-counter">Administrator workspace</span></div>
+        <form id="researchTaskForm" class="archive-form cloud-admin-only" hidden>
+          <div class="archive-form-heading"><strong>Add a research task</strong><span>Private administrator research queue</span></div>
+          <div class="archive-form-grid">
+            <label>Research question / task<input id="researchTaskTitle" required maxlength="180" placeholder="e.g. Locate Don Leon's baptism record"></label>
+            <label>Related person<select id="researchTaskPerson"><option value="">No person assigned</option></select></label>
+            <label>Priority<select id="researchTaskPriority"><option value="normal">Normal</option><option value="high">High</option><option value="urgent">Urgent</option><option value="low">Low</option></select></label>
+            <label>Research status<select id="researchTaskStatus"><option value="open">Open</option><option value="in_progress">In progress</option><option value="blocked">Blocked</option><option value="complete">Complete</option></select></label>
+            <label class="wide">What needs to be established?<textarea id="researchTaskQuestion" rows="2" maxlength="2000" placeholder="Describe the gap or conflicting claims."></textarea></label>
+            <label class="wide">Suggested repository / next source<input id="researchTaskSourceHint" maxlength="500" placeholder="Parish archive, civil registry, newspaper issue, page, URL…"></label>
+          </div>
+          <button class="archive-action" id="saveResearchTask" type="submit">Add research task</button><p id="researchTaskStatusMessage" class="archive-form-status" role="status" aria-live="polite"></p>
+        </form>
+        <div id="researchTaskList" class="research-task-list" aria-live="polite"></div>
       </section>
 
       <section class="archive-subsection" id="geographic-map">

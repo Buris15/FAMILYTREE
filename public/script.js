@@ -1235,6 +1235,10 @@ $("#resetBtn").addEventListener("click", () => {
 const ARCHIVE_KEY = "lacsamana-family-archive:v1";
 const emptyArchiveStore = () => ({ stories: [], achievements: [], properties: [], links: [], institutions: [], lifeStories: [], homeEntries: [], migrationStories: [] });
 let archiveStore = emptyArchiveStore();
+let researchRecords = [];
+let researchTimelineEvents = [];
+let researchTasks = [];
+let researchWorkspaceErrors = [];
 function loadArchiveStore() {
   try {
     const raw = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || "null");
@@ -1442,13 +1446,456 @@ function renderSurnameRegister() {
   const target = $("#surnameRegistry"); if (!target) return;
   target.innerHTML = SURNAME_REGISTER.map(([name, kind, note]) => '<article class="surname-entry"><span class="archive-mini-label">' + esc(kind) + '</span><strong>' + esc(name) + '</strong><p>' + esc(note) + '</p></article>').join("");
 }
+const RESEARCH_EVIDENCE_LABELS = {
+  verified: "Verified",
+  partially_verified: "Partially verified",
+  unverified: "Unverified",
+  disputed: "Disputed"
+};
+const RESEARCH_TYPE_LABELS = {
+  birth: "Birth record", baptism: "Baptism record", marriage: "Marriage record", death: "Death record",
+  census: "Census / population register", photograph: "Photograph", letter: "Letter / correspondence",
+  newspaper: "Newspaper / publication", government: "Government record", church: "Church / religious record",
+  military: "Military record", school: "School / education record", land: "Land / property record", other: "Other"
+};
+const TIMELINE_TYPE_LABELS = {
+  birth: "Birth", baptism: "Baptism", marriage: "Marriage", death: "Death", residence: "Residence / migration",
+  education: "Education", public_service: "Public service", family_memory: "Family memory",
+  historical_milestone: "Historical milestone", research_gap: "Research gap", other: "Other"
+};
+function inferTimelineEvidence(event) {
+  if (event.evidence_status && RESEARCH_EVIDENCE_LABELS[event.evidence_status]) return event.evidence_status;
+  const status = String(event.status || "").toLowerCase();
+  const detail = String(event.detail || "").toLowerCase();
+  if (/disput|conflict|contradict/.test(status + " " + detail)) return "disputed";
+  if (/research gap|not established|awaiting documentation|not yet established/.test(status + " " + detail)) return "unverified";
+  if (/family memory|family recollection|oral history|family-reported/.test(status + " " + detail)) return "unverified";
+  if (/not attached|screenshot|published family-history|program|indexed|estimated/.test(status + " " + detail)) return "partially_verified";
+  return "partially_verified";
+}
+function inferTimelineType(event) {
+  if (event.event_type && TIMELINE_TYPE_LABELS[event.event_type]) return event.event_type;
+  const text = (String(event.title || "") + " " + String(event.detail || "")).toLowerCase();
+  if (/\bborn\b|\bbirth\b/.test(text)) return "birth";
+  if (/baptis/.test(text)) return "baptism";
+  if (/marri/.test(text)) return "marriage";
+  if (/\bdies\b|\bdied\b|\bdeath\b/.test(text)) return "death";
+  if (/governor|public service|appointed|office|elected/.test(text)) return "public_service";
+  if (/residen|migrat|travel|moved|place/.test(text)) return "residence";
+  if (/research gap|awaiting documentation|not established/.test(text)) return "research_gap";
+  if (/family memory|family recollection|oral history/.test(text)) return "family_memory";
+  return "historical_milestone";
+}
+function timelineYear(event) {
+  const raw = String(event.sort_date || event.sort || event.event_date || event.date || "");
+  const match = raw.match(/(?:16|17|18|19|20)\d{2}/);
+  return match ? match[0] : "";
+}
+function timelineRows() {
+  const builtIn = ARCHIVE_EVENTS.map((event, index) => ({
+    id: "built-in-" + index,
+    title: event.title,
+    event_date: event.date,
+    sort_date: event.sort && !String(event.sort).startsWith("0000") ? event.sort : null,
+    detail: event.detail,
+    description: event.detail,
+    status: event.status,
+    evidence_status: inferTimelineEvidence(event),
+    people: event.people || [],
+    person_ids: event.people || [],
+    source_url: event.url || "",
+    source_label: event.urlLabel || "Source",
+    event_type: inferTimelineType(event),
+    location: "",
+    source_record_id: null,
+    built_in: true
+  }));
+  const custom = researchTimelineEvents.map((event) => ({
+    ...event,
+    date: event.event_date || "Date not established",
+    detail: event.description || "",
+    status: RESEARCH_EVIDENCE_LABELS[event.evidence_status] || "Evidence status not recorded",
+    people: event.person_ids || [],
+    source_url: event.source_url || "",
+    built_in: false
+  }));
+  return builtIn.concat(custom);
+}
 function renderTimeline() {
   const target = $("#timelineList"); if (!target) return;
-  target.innerHTML = ARCHIVE_EVENTS.slice().sort((a,b) => a.sort.localeCompare(b.sort)).map((e) => {
-    const people = e.people.map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
-    return '<article class="timeline-event"><div class="timeline-date">' + esc(e.date) + '</div><div class="timeline-mark"><i></i></div><div class="timeline-body"><h4>' + esc(e.title) + '</h4><p>' + esc(e.detail) + '</p><span class="archive-mini-label">' + esc(e.status) + '</span><div class="archive-inline-links">' + people + (e.url ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlLabel || "Source ↗") + '</a>' : '') + '</div></div></article>';
+  const search = String($("#timelineSearch")?.value || "").trim().toLowerCase();
+  const person = $("#timelinePersonFilter")?.value || "";
+  const year = $("#timelineYearFilter")?.value || "";
+  const type = $("#timelineTypeFilter")?.value || "";
+  const evidence = $("#timelineEvidenceFilter")?.value || "";
+  const includeUndated = $("#timelineShowUndated")?.checked !== false;
+  const rows = timelineRows();
+  const years = [...new Set(rows.map(timelineYear).filter(Boolean))].sort((a,b) => Number(b) - Number(a));
+  const yearSelect = $("#timelineYearFilter");
+  if (yearSelect) {
+    const current = yearSelect.value;
+    yearSelect.innerHTML = '<option value="">All years</option>' + years.map((value) => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
+    if (years.includes(current)) yearSelect.value = current;
+  }
+  const filtered = rows.filter((event) => {
+    const eventYear = timelineYear(event);
+    const ids = event.people || event.person_ids || [];
+    const status = inferTimelineEvidence(event);
+    const eventType = inferTimelineType(event);
+    if (!includeUndated && !eventYear) return false;
+    if (person && !ids.includes(person)) return false;
+    if (year && eventYear !== year) return false;
+    if (type && eventType !== type) return false;
+    if (evidence && status !== evidence) return false;
+    const personText = ids.map((id) => PEOPLE[id] ? nameOf(PEOPLE[id]) : id).join(" ");
+    const haystack = [event.title,event.event_date,event.date,event.detail,event.description,event.status,event.location,event.source_url,event.source_label,personText].join(" ").toLowerCase();
+    return !search || haystack.includes(search);
+  }).sort((a,b) => {
+    const ay = timelineYear(a), by = timelineYear(b);
+    const as = String(a.sort_date || (ay ? ay + "-01-01" : "9999-99-99"));
+    const bs = String(b.sort_date || (by ? by + "-01-01" : "9999-99-99"));
+    if (ay && !by) return -1;
+    if (!ay && by) return 1;
+    return as.localeCompare(bs) || String(a.title).localeCompare(String(b.title));
+  });
+  const summary = $("#timelineResultsSummary");
+  if (summary) summary.textContent = "Showing " + filtered.length + " of " + rows.length + " events";
+  if (!filtered.length) {
+    target.innerHTML = '<p class="archive-empty">No events match these filters. Clear one or more filters to broaden the timeline.</p>';
+    return;
+  }
+  let previousGroup = null;
+  target.innerHTML = filtered.map((event) => {
+    const yearLabel = timelineYear(event) || "Undated / year not established";
+    const group = yearLabel;
+    let divider = "";
+    if (group !== previousGroup) {
+      divider = '<div class="timeline-year-divider"><span>' + esc(group) + '</span></div>';
+      previousGroup = group;
+    }
+    const ids = event.people || event.person_ids || [];
+    const people = ids.map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
+    const status = inferTimelineEvidence(event);
+    const statusLabel = RESEARCH_EVIDENCE_LABELS[status] || event.status || "Evidence status not stated";
+    const sourceRecord = event.source_record_id && researchRecords.find((record) => record.id === event.source_record_id);
+    const sourceAction = sourceRecord ? '<button type="button" class="timeline-source-record" data-open-research-record="' + esc(sourceRecord.id) + '">View source record</button>' : "";
+    const sourceLink = event.source_url ? '<a href="' + esc(event.source_url) + '" target="_blank" rel="noopener">' + esc(event.source_label || "Open source ↗") + '</a>' : "";
+    const location = event.location ? '<span class="timeline-location">' + esc(event.location) + '</span>' : "";
+    const precision = event.date_precision && event.date_precision !== "exact" ? '<span class="timeline-precision">' + esc(event.date_precision.replace(/_/g," ")) + '</span>' : "";
+    const remove = !event.built_in && window.FamilyCloud?.isAdmin ? '<button type="button" class="research-delete-link" data-delete-timeline-event="' + esc(event.id) + '">Remove event</button>' : "";
+    return divider + '<article class="timeline-event timeline-event-' + esc(event.event_type || "other") + '"><div class="timeline-date">' + esc(event.event_date || event.date || "Date not established") + precision + '</div><div class="timeline-mark"><i></i></div><div class="timeline-body"><div class="timeline-event-meta"><span>' + esc(TIMELINE_TYPE_LABELS[event.event_type] || TIMELINE_TYPE_LABELS[inferTimelineType(event)]) + '</span><span class="research-evidence-badge ' + esc(status) + '">' + esc(statusLabel) + '</span></div><h4>' + esc(event.title) + '</h4><p>' + esc(event.detail || event.description || "") + '</p>' + location + '<div class="archive-inline-links">' + people + sourceAction + sourceLink + remove + '</div></div></article>';
   }).join("");
 }
+
+let researchFeaturesReady = false;
+function selectedValues(select) {
+  return select ? Array.from(select.selectedOptions || []).map((option) => option.value).filter(Boolean) : [];
+}
+function researchPersonNames(ids) {
+  return (ids || []).map((id) => PEOPLE[id] ? nameOf(PEOPLE[id]) : id).filter(Boolean);
+}
+function researchVisibilityLabel(value) {
+  return ({private:"Private · administrators", family:"Family · invited contributors", public:"Public"})[value] || "Private";
+}
+function researchRecordSearchText(record) {
+  return [record.title, RESEARCH_TYPE_LABELS[record.record_type], record.repository, record.collection_title, record.reference_code, record.record_date, record.place, record.description, record.source_url, researchPersonNames(record.person_ids).join(" ")].join(" ").toLowerCase();
+}
+function setResearchAccessMessage() {
+  const node = $("#researchAccessMessage");
+  const cloud = window.FamilyCloud;
+  if (!node) return;
+  if (!cloud || !cloud.configured) node.textContent = "Cloud research storage is not connected. Configure Supabase and run migration 003 to activate shared research records and the secure document library.";
+  else if (researchWorkspaceErrors.length) node.textContent = "The research database needs setup or attention. In your Supabase project, run supabase/migrations/003_family_research_center.sql, then reload this page. Details: " + researchWorkspaceErrors.join(" · ");
+  else if (cloud.isAdmin) node.textContent = "Administrator workspace · You can add research records, attach private scans, create timeline events, and manage research tasks.";
+  else if (cloud.isContributor) node.textContent = "Invited family contributor · You can view records shared with the family and any public records. Send new discoveries through the contribution portal for administrator review.";
+  else node.textContent = "Public archive view · Only records and events deliberately published by an administrator appear here. Private and family-only documents remain hidden.";
+}
+async function refreshResearchWorkspace() {
+  const cloud = window.FamilyCloud;
+  if (!cloud || !cloud.configured) {
+    researchRecords = []; researchTimelineEvents = []; researchTasks = [];
+    researchWorkspaceErrors = ["Supabase is not configured"];
+    return;
+  }
+  try {
+    const result = await cloud.loadResearchWorkspace();
+    researchRecords = result.records || [];
+    researchTimelineEvents = result.timelineEvents || [];
+    researchTasks = result.tasks || [];
+    researchWorkspaceErrors = result.errors || [];
+  } catch (error) {
+    researchWorkspaceErrors = [error.message || "Research data could not be loaded"];
+    researchRecords = []; researchTimelineEvents = []; researchTasks = [];
+  }
+}
+function updateResearchSourceSelect() {
+  const select = $("#timelineEventSourceRecord");
+  if (!select) return;
+  const old = select.value;
+  select.innerHTML = '<option value="">No linked research record</option>' + researchRecords.map((record) => '<option value="' + esc(record.id) + '">' + esc(record.title) + ' · ' + esc(researchVisibilityLabel(record.visibility)) + '</option>').join("");
+  if (researchRecords.some((record) => record.id === old)) select.value = old;
+}
+async function renderResearchCenter() {
+  const cloud = window.FamilyCloud;
+  const admin = !!(cloud && cloud.configured && cloud.isAdmin);
+  const contributor = !!(cloud && cloud.configured && (cloud.isContributor || cloud.isAdmin));
+  ["researchRecordForm","researchTaskForm","timelineEventForm"].forEach((id) => { const form = $("#" + id); if (form) form.hidden = !admin; });
+  const taskList = $("#researchTaskList");
+  if (taskList) taskList.hidden = !admin;
+  setResearchAccessMessage();
+  const recordList = $("#researchRecordList");
+  const search = String($("#researchRecordSearch")?.value || "").trim().toLowerCase();
+  const type = $("#researchRecordTypeFilter")?.value || "";
+  const evidence = $("#researchRecordEvidenceFilter")?.value || "";
+  const filtered = researchRecords.filter((record) => (!type || record.record_type === type) && (!evidence || record.evidence_status === evidence) && (!search || researchRecordSearchText(record).includes(search)));
+  const count = $("#researchRecordCount");
+  if (count) count.textContent = researchRecords.length + " accessible record" + (researchRecords.length === 1 ? "" : "s");
+  if (recordList) {
+    const cards = await Promise.all(filtered.map(async (record) => {
+      let attachment = "";
+      if (record.storage_path) {
+        try {
+          const url = await cloud.researchFileUrl(record.storage_path);
+          if (url) attachment = '<a class="research-file-link" href="' + esc(url) + '" target="_blank" rel="noopener">Open private file ↗</a>';
+        } catch (error) { attachment = '<span class="research-file-unavailable">File is not available to this account.</span>'; }
+      }
+      const people = researchPersonNames(record.person_ids);
+      const personLinks = (record.person_ids || []).map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
+      const evidenceLabel = RESEARCH_EVIDENCE_LABELS[record.evidence_status] || "Not classified";
+      const visibility = researchVisibilityLabel(record.visibility);
+      const citationParts = [record.repository, record.collection_title, record.reference_code, record.record_date, record.place].filter(Boolean);
+      const cite = citationParts.length ? '<p class="research-citation-line">' + citationParts.map(esc).join(" · ") + '</p>' : "";
+      const source = record.source_url ? '<a href="' + esc(record.source_url) + '" target="_blank" rel="noopener">Open original source ↗</a>' : "";
+      const remove = admin ? '<button type="button" class="research-delete-link" data-delete-research-record="' + esc(record.id) + '">Delete record</button>' : "";
+      return '<article class="research-record-card" id="research-record-' + esc(record.id) + '"><div class="research-record-meta"><span>' + esc(RESEARCH_TYPE_LABELS[record.record_type] || record.record_type) + '</span><span class="research-evidence-badge ' + esc(record.evidence_status) + '">' + esc(evidenceLabel) + '</span></div><h4>' + esc(record.title) + '</h4>' + (people.length ? '<p class="research-person-names">' + people.map(esc).join(" · ") + '</p>' : '<p class="research-person-names">No person linked</p>') + cite + '<p class="research-record-description">' + esc(record.description || "No description supplied.") + '</p><div class="research-record-footer"><span>' + esc(visibility) + '</span><div>' + attachment + source + remove + '</div></div>' + (personLinks ? '<div class="archive-inline-links">' + personLinks + '</div>' : '') + '</article>';
+    }));
+    recordList.innerHTML = cards.join("") || (researchRecords.length ? '<p class="archive-empty">No research records match these filters.</p>' : '<p class="archive-empty">No records are available in this view yet. The administrator can add sources here; public visitors see only records explicitly published for public access.</p>');
+  }
+  updateResearchSourceSelect();
+  const taskCount = $("#researchTaskCount");
+  if (taskCount) taskCount.textContent = researchTasks.length + " tracked question" + (researchTasks.length === 1 ? "" : "s");
+  if (taskList) {
+    taskList.innerHTML = researchTasks.length ? researchTasks.map((task) => {
+      const person = task.person_id && PEOPLE[task.person_id] ? nameOf(PEOPLE[task.person_id]) : "Unassigned";
+      return '<article class="research-task-card"><div class="research-task-card-head"><span class="research-task-priority ' + esc(task.priority) + '">' + esc(task.priority) + ' priority</span><span class="research-task-status ' + esc(task.status) + '">' + esc(String(task.status || "open").replace(/_/g," ")) + '</span></div><h4>' + esc(task.title) + '</h4><p class="research-task-person">' + esc(person) + '</p>' + (task.research_question ? '<p>' + esc(task.research_question) + '</p>' : '') + (task.source_hint ? '<p class="research-citation-line">Next source: ' + esc(task.source_hint) + '</p>' : '') + '<div class="research-task-actions"><label>Update status<select data-research-task-status="' + esc(task.id) + '"><option value="open" ' + (task.status === "open" ? "selected" : "") + '>Open</option><option value="in_progress" ' + (task.status === "in_progress" ? "selected" : "") + '>In progress</option><option value="blocked" ' + (task.status === "blocked" ? "selected" : "") + '>Blocked</option><option value="complete" ' + (task.status === "complete" ? "selected" : "") + '>Complete</option></select></label><button type="button" class="research-delete-link" data-delete-research-task="' + esc(task.id) + '">Delete task</button></div></article>';
+    }).join("") : '<p class="archive-empty">No research tasks have been added. Create a task for each missing record, uncertain identity, or conflicting date that needs follow-up.</p>';
+  }
+}
+function setResearchStatus(id, message) {
+  const node = $("#" + id);
+  if (node) node.textContent = message;
+}
+function urlIsHttp(value) {
+  if (!value) return true;
+  try { return /^https?:$/.test(new URL(value).protocol); } catch (error) { return false; }
+}
+function initResearchFeatures() {
+  if (researchFeaturesReady) return;
+  researchFeaturesReady = true;
+  ["timelineSearch","timelinePersonFilter","timelineYearFilter","timelineTypeFilter","timelineEvidenceFilter","timelineShowUndated"].forEach((id) => {
+    const control = $("#" + id); if (control) control.addEventListener(control.tagName === "INPUT" ? "input" : "change", renderTimeline);
+  });
+  $("#timelineClearFilters")?.addEventListener("click", () => {
+    ["timelineSearch","timelinePersonFilter","timelineYearFilter","timelineTypeFilter","timelineEvidenceFilter"].forEach((id) => { const field = $("#" + id); if (field) field.value = ""; });
+    if ($("#timelineShowUndated")) $("#timelineShowUndated").checked = true;
+    renderTimeline();
+  });
+  ["researchRecordSearch","researchRecordTypeFilter","researchRecordEvidenceFilter"].forEach((id) => {
+    const control = $("#" + id); if (control) control.addEventListener(control.tagName === "INPUT" ? "input" : "change", renderResearchCenter);
+  });
+  const visibility = $("#researchRecordVisibility");
+  const publish = $("#researchRecordPublish");
+  const syncPublishVisibility = () => {
+    if (publish) {
+      const enabled = visibility?.value === "public";
+      publish.disabled = !enabled;
+      if (!enabled) publish.checked = false;
+    }
+  };
+  visibility?.addEventListener("change", syncPublishVisibility); syncPublishVisibility();
+  const includeTimeline = $("#researchIncludeTimeline");
+  includeTimeline?.addEventListener("change", () => { const fields = $("#researchTimelineFields"); if (fields) fields.hidden = !includeTimeline.checked; });
+  const timelineVisibility = $("#timelineEventVisibility");
+  const timelinePublish = $("#timelineEventPublish");
+  const syncTimelinePublish = () => {
+    if (timelinePublish) {
+      const enabled = timelineVisibility?.value === "public";
+      timelinePublish.disabled = !enabled;
+      if (!enabled) timelinePublish.checked = false;
+    }
+  };
+  timelineVisibility?.addEventListener("change", syncTimelinePublish); syncTimelinePublish();
+
+  const recordForm = $("#researchRecordForm");
+  recordForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = $("#saveResearchRecord");
+    const sourceUrl = $("#researchRecordSourceUrl").value.trim();
+    const publicRequested = $("#researchRecordPublish").checked;
+    const recordVisibility = $("#researchRecordVisibility").value;
+    if (!urlIsHttp(sourceUrl)) { setResearchStatus("researchRecordStatus", "Enter a valid http or https source URL."); return; }
+    if (recordVisibility === "public" && !publicRequested) { setResearchStatus("researchRecordStatus", "Confirm public publication, or choose Family / Private visibility."); return; }
+    if (button) button.disabled = true;
+    setResearchStatus("researchRecordStatus", "Uploading the record and saving its citation…");
+    try {
+      const personIds = selectedValues($("#researchRecordPeople"));
+      const file = $("#researchRecordFile").files[0] || null;
+      const record = await window.FamilyCloud.createResearchRecord({
+        title: $("#researchRecordTitle").value.trim(),
+        record_type: $("#researchRecordType").value,
+        person_ids: personIds,
+        repository: $("#researchRepository").value.trim(),
+        collection_title: $("#researchCollection").value.trim(),
+        reference_code: $("#researchReferenceCode").value.trim(),
+        record_date: $("#researchRecordDate").value.trim(),
+        place: $("#researchRecordPlace").value.trim(),
+        description: $("#researchRecordDescription").value.trim(),
+        source_url: sourceUrl,
+        evidence_status: $("#researchRecordEvidence").value,
+        visibility: recordVisibility,
+        is_published: publicRequested
+      }, file);
+      let timelineCreated = false;
+      let timelineFailure = "";
+      if ($("#researchIncludeTimeline").checked) {
+        const precision = $("#researchEventPrecision").value;
+        const sortDate = precision === "undated" ? null : $("#researchEventSortDate").value || null;
+        const eventTitle = $("#researchEventTitle").value.trim() || record.title;
+        const eventDate = $("#researchEventDateLabel").value.trim() || record.record_date || "Date not established";
+        const eventDescription = $("#researchEventDescription").value.trim() || record.description;
+        try {
+          await window.FamilyCloud.createTimelineEvent({
+            title: eventTitle,
+            event_type: $("#researchEventType").value,
+            event_date: eventDate,
+            sort_date: sortDate,
+            date_precision: precision,
+            person_ids: personIds,
+            location: record.place,
+            description: eventDescription,
+            evidence_status: record.evidence_status,
+            source_record_id: record.id,
+            source_label: record.title,
+            source_url: record.source_url,
+            visibility: record.visibility,
+            is_published: record.is_published
+          });
+          timelineCreated = true;
+        } catch (error) {
+          timelineFailure = error.message || "The linked timeline event could not be saved.";
+        }
+      }
+      recordForm.reset();
+      if ($("#researchTimelineFields")) $("#researchTimelineFields").hidden = true;
+      syncPublishVisibility();
+      await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter();
+      if (timelineFailure) {
+        setResearchStatus("researchRecordStatus", "The research record was saved, but its timeline event was not: " + timelineFailure + " You can add the event separately below.");
+      } else {
+        setResearchStatus("researchRecordStatus", timelineCreated ? "Research record saved and linked to the historical timeline." : "Research record and citation saved securely.");
+      }
+    } catch (error) {
+      setResearchStatus("researchRecordStatus", error.message || "The research record could not be saved.");
+    } finally { if (button) button.disabled = false; }
+  });
+
+  const timelineForm = $("#timelineEventForm");
+  timelineForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = $("#saveTimelineEvent");
+    const sourceUrl = $("#timelineEventSourceUrl").value.trim();
+    const visibilityValue = $("#timelineEventVisibility").value;
+    const published = $("#timelineEventPublish").checked;
+    if (!urlIsHttp(sourceUrl)) { setResearchStatus("timelineEventStatus", "Enter a valid http or https source URL."); return; }
+    if (visibilityValue === "public" && !published) { setResearchStatus("timelineEventStatus", "Confirm public publication, or choose Family / Private visibility."); return; }
+    const sourceRecordId = $("#timelineEventSourceRecord").value || null;
+    const sourceRecord = sourceRecordId ? researchRecords.find((item) => item.id === sourceRecordId) : null;
+    if (published && sourceRecord && (sourceRecord.visibility !== "public" || sourceRecord.is_published !== true)) {
+      setResearchStatus("timelineEventStatus", "A public timeline event can only link to a research record already published publicly. Remove the link or publish the source record first."); return;
+    }
+    if (button) button.disabled = true;
+    setResearchStatus("timelineEventStatus", "Saving timeline event…");
+    try {
+      const precision = $("#timelineEventPrecision").value;
+      await window.FamilyCloud.createTimelineEvent({
+        title: $("#timelineEventTitle").value.trim(),
+        event_type: $("#timelineEventType").value,
+        event_date: $("#timelineEventDateLabel").value.trim(),
+        sort_date: precision === "undated" ? null : $("#timelineEventSortDate").value || null,
+        date_precision: precision,
+        person_ids: selectedValues($("#timelineEventPeople")),
+        location: $("#timelineEventLocation").value.trim(),
+        description: $("#timelineEventDescription").value.trim(),
+        evidence_status: $("#timelineEventEvidence").value,
+        source_record_id: sourceRecordId,
+        source_label: sourceRecord?.title || null,
+        source_url: sourceUrl,
+        visibility: visibilityValue,
+        is_published: published
+      });
+      timelineForm.reset(); syncTimelinePublish();
+      await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter();
+      setResearchStatus("timelineEventStatus", "Timeline event saved.");
+    } catch (error) { setResearchStatus("timelineEventStatus", error.message || "Timeline event could not be saved."); }
+    finally { if (button) button.disabled = false; }
+  });
+
+  const taskForm = $("#researchTaskForm");
+  taskForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const button = $("#saveResearchTask"); if (button) button.disabled = true;
+    setResearchStatus("researchTaskStatusMessage", "Adding research task…");
+    try {
+      await window.FamilyCloud.createResearchTask({
+        title: $("#researchTaskTitle").value.trim(), person_id: $("#researchTaskPerson").value || null,
+        priority: $("#researchTaskPriority").value, status: $("#researchTaskStatus").value,
+        research_question: $("#researchTaskQuestion").value.trim(), source_hint: $("#researchTaskSourceHint").value.trim()
+      });
+      taskForm.reset(); await refreshResearchWorkspace(); await renderResearchCenter();
+      setResearchStatus("researchTaskStatusMessage", "Research task added to the private administrator queue.");
+    } catch (error) { setResearchStatus("researchTaskStatusMessage", error.message || "Research task could not be saved."); }
+    finally { if (button) button.disabled = false; }
+  });
+
+  document.addEventListener("change", async (event) => {
+    const statusSelect = event.target.closest("[data-research-task-status]");
+    if (!statusSelect || !window.FamilyCloud?.isAdmin) return;
+    statusSelect.disabled = true;
+    try {
+      await window.FamilyCloud.updateResearchTask(statusSelect.dataset.researchTaskStatus, { status: statusSelect.value });
+      await refreshResearchWorkspace(); await renderResearchCenter();
+    } catch (error) { window.alert("Could not update research task: " + (error.message || "Unknown error")); statusSelect.disabled = false; }
+  });
+  document.addEventListener("click", async (event) => {
+    const removeRecord = event.target.closest("[data-delete-research-record]");
+    const removeTask = event.target.closest("[data-delete-research-task]");
+    const removeEvent = event.target.closest("[data-delete-timeline-event]");
+    const openRecord = event.target.closest("[data-open-research-record]");
+    if (removeRecord) {
+      if (!window.FamilyCloud?.isAdmin || !window.confirm("Delete this research record and its stored file? Any linked timeline event will remain but lose its record attachment.")) return;
+      removeRecord.disabled = true;
+      try { await window.FamilyCloud.deleteResearchRecord(removeRecord.dataset.deleteResearchRecord); await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter(); }
+      catch (error) { window.alert("Could not delete research record: " + (error.message || "Unknown error")); removeRecord.disabled = false; }
+    }
+    if (removeTask) {
+      if (!window.FamilyCloud?.isAdmin || !window.confirm("Delete this research task?")) return;
+      removeTask.disabled = true;
+      try { await window.FamilyCloud.deleteResearchTask(removeTask.dataset.deleteResearchTask); await refreshResearchWorkspace(); await renderResearchCenter(); }
+      catch (error) { window.alert("Could not delete research task: " + (error.message || "Unknown error")); removeTask.disabled = false; }
+    }
+    if (removeEvent) {
+      if (!window.FamilyCloud?.isAdmin || !window.confirm("Remove this administrator-added timeline event?")) return;
+      removeEvent.disabled = true;
+      try { await window.FamilyCloud.deleteTimelineEvent(removeEvent.dataset.deleteTimelineEvent); await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter(); }
+      catch (error) { window.alert("Could not remove timeline event: " + (error.message || "Unknown error")); removeEvent.disabled = false; }
+    }
+    if (openRecord) {
+      const record = document.getElementById("research-record-" + openRecord.dataset.openResearchRecord);
+      if (record) { record.scrollIntoView({ behavior: "smooth", block: "center" }); record.classList.add("research-record-highlight"); setTimeout(() => record.classList.remove("research-record-highlight"), 1800); }
+    }
+  });
+}
+
 let familyMigrationMap = null;
 let familyMapMarkers = [];
 let familyMapOverlays = [];
@@ -2207,7 +2654,8 @@ function initContributionPortal() {
 
 function initExpansionFeatures() {
   renderMigrationStories();
-  ["worldPersonSelect","homePersonSelect","portraitPersonSelect","institutionPersonSelect","lifePersonSelect","lifeNotePersonSelect","migrationStoryPerson"].forEach((id) => populateArchivePersonSelect(id, id === "homePersonSelect"));
+  ["worldPersonSelect","homePersonSelect","portraitPersonSelect","institutionPersonSelect","lifePersonSelect","lifeNotePersonSelect","migrationStoryPerson","researchRecordPeople","researchTaskPerson","timelinePersonFilter","timelineEventPeople"].forEach((id) => populateArchivePersonSelect(id, ["homePersonSelect","researchTaskPerson","timelinePersonFilter"].includes(id))); 
+  const timelinePersonFilter = $("#timelinePersonFilter"); if (timelinePersonFilter?.options[0]) timelinePersonFilter.options[0].textContent = "All family members";
   const worldSelect = $("#worldPersonSelect"); if (worldSelect) { worldSelect.value = PEOPLE["evaristo-guadalupe"] ? "evaristo-guadalupe" : worldSelect.options[0]?.value; worldSelect.addEventListener("change", renderWorldExplorer); }
   const region = $("#worldRegionSelect"); if (region) region.addEventListener("change", renderWorldExplorer);
   const lifeSelect = $("#lifePersonSelect"); if (lifeSelect) { lifeSelect.value = PEOPLE.leon ? "leon" : lifeSelect.options[0]?.value; lifeSelect.addEventListener("change", renderLifeStory); }
@@ -2279,7 +2727,7 @@ function renderLifeStory() {
   const kin = kinshipSummary(id);
   const spouseList = spousesOf(id).map((r) => PEOPLE[r.id]).filter(Boolean);
   const children = kidsOf(id).map((r) => PEOPLE[r.id]).filter(Boolean);
-  const events = ARCHIVE_EVENTS.filter((event) => event.people.includes(id)).slice().sort((a,b) => a.sort.localeCompare(b.sort));
+  const events = ARCHIVE_EVENTS.filter((event) => event.people.includes(id)).map((event) => ({ date: event.date, title: event.title, status: event.status, sort: event.sort || "9999-99-99" })).concat(researchTimelineEvents.filter((event) => (event.person_ids || []).includes(id)).map((event) => ({ date: event.event_date || "Date not established", title: event.title, status: RESEARCH_EVIDENCE_LABELS[event.evidence_status] || "Evidence status not recorded", sort: event.sort_date || "9999-99-99" }))).sort((a,b) => a.sort.localeCompare(b.sort));
   const places = GEOGRAPHY.flatMap((place) => (place.events || []).filter((event) => (event.personIds || []).includes(id)).map((event) => ({place:place.place,event})));
   const notes = archiveStore.lifeStories.filter((item) => item.personId === id);
   target.innerHTML = '<header class="life-story-header"><span class="archive-mini-label">' + expansionEscape(p.status || p.k || "Family profile") + '</span><h4>' + expansionEscape(nameOf(p)) + '</h4><p>' + expansionEscape(roleOf(p)) + (p.d ? ' · ' + expansionEscape(p.d) : '') + '</p><p>' + expansionEscape(p.n || "No biographical narrative has been added to this profile yet.") + '</p></header>' + historicalSectionsMarkup(id, expansionEscape) + '<div class="life-story-columns"><section class="life-story-block"><h5>Family connections</h5><p><strong>Parents:</strong> ' + expansionEscape(parents.map(nameOf).join(" · ") || "Not established") + '</p><p><strong>Spouse(s):</strong> ' + expansionEscape(spouseList.map(nameOf).join(" · ") || "Not established") + '</p><p><strong>Children:</strong> ' + expansionEscape(children.map(nameOf).join(" · ") || "No children recorded") + '</p><p><strong>Siblings:</strong> ' + expansionEscape(kin.siblings.map((sid) => PEOPLE[sid] ? nameOf(PEOPLE[sid]) : "").filter(Boolean).join(" · ") || "Not established") + '</p></section><section class="life-story-block"><h5>Recorded life events</h5>' + (events.length ? events.map((e) => '<div class="life-event-row"><strong>' + expansionEscape(e.date + " · " + e.title) + '</strong><span>' + expansionEscape(e.status) + '</span></div>').join("") : '<p>No dated family timeline events are currently linked to this person.</p>') + '</section><section class="life-story-block"><h5>Recorded places</h5>' + (places.length ? places.map((item) => '<div class="life-event-row"><strong>' + expansionEscape(item.place) + '</strong><span>' + expansionEscape(item.event.title + " · " + item.event.date + " · " + item.event.status) + '</span></div>').join("") : '<p>No birthplace, residence, marriage, or deathplace entry is connected in the current map.</p>') + '</section><section class="life-story-block"><h5>Additional biographical episodes</h5>' + (notes.length ? notes.map((item) => '<div class="life-event-row"><strong>' + expansionEscape(item.date + " · " + item.title) + '</strong><p>' + expansionEscape(item.body) + '</p><span>' + expansionEscape(item.type + " · " + (item.source || "No source supplied")) + '</span></div>').join("") : '<p>No additional biography episodes have been added for this person.</p>') + '</section></div>';
@@ -2287,7 +2735,7 @@ function renderLifeStory() {
 
 function renderArchiveSections() {
   renderSurnameRegister(); renderTimeline(); setupFamilyMapControls(); renderGeography(); renderUnidentified(); renderBiographies(); renderKnownSources(); renderAncestralPlaces(); renderSavedArchiveEntries();
-  initArchiveForms(); initExpansionFeatures(); renderArchiveFiles();
+  initArchiveForms(); initExpansionFeatures(); initResearchFeatures(); renderResearchCenter(); renderArchiveFiles();
 }
 
 /* ---------- V16 premium interaction layer ---------- */
@@ -2439,6 +2887,9 @@ async function bootFamilyArchive() {
         localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archiveStore));
       }
     } catch (error) { console.warn("Cloud archive notes could not be loaded; using this browser's saved copy.", error); }
+    await refreshResearchWorkspace();
+  } else {
+    researchWorkspaceErrors = ["Supabase is not configured"];
   }
   resetData();
   applyStore();
@@ -2477,6 +2928,9 @@ window.addEventListener("family-cloud-permission-change", async () => {
     localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archiveStore));
     renderSavedArchiveEntries(); renderAncestralPlaces(); renderInstitutionDirectory(); renderCustomLifeNotes(); renderAncestralHomeGallery(); renderMediaGalleries(); renderBiographies(); renderMigrationStories();
   } catch (error) { console.warn("Cloud archive notes could not be loaded.", error); }
+  await refreshResearchWorkspace();
+  renderTimeline();
+  await renderResearchCenter();
   await renderContributionPortal();
 });
 window.addEventListener("family-cloud-sync-request", async () => {

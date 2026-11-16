@@ -246,3 +246,9 @@ To activate V15 contributions on an existing V14 Supabase project, run `supabase
 The Digital Family Museum presents curated exhibits from supplied images and current family research. Family migration/place stories organize already-recorded geography events and administrator-sourced narratives; a sequence of places is not automatically a proven travel route. The existing Stories & Oral History section remains the place for preserved family interviews. The Legacy Book Generator can now include migration stories, museum exhibits, and approved public contributions.
 
 Contribution attachments use a private Supabase Storage bucket and signed, time-limited review URLs. They are not publicly exposed. Only the text and source information from contributions that an administrator explicitly approves for publication are displayed publicly.
+
+
+Version 16 UI/UX update: refined regal obsidian visual system, responsive archive forms and maps, accessible profile/sign-in overlays, keyboard shortcuts, search keyboard navigation, active archive section indicators, reading progress bar, and back-to-top control. No database migration or re-seed is required.
+
+
+Version 17 adds a Family Research Center with evidence statuses, source citations, related-person links, private document uploads, visibility controls, and administrator research tasks. It also upgrades the historical timeline with filters and administrator-added source-linked events. For an existing V16 Supabase project, run supabase/migrations/003_family_research_center.sql once, then deploy the V17 files. Do not reseed the genealogy data.

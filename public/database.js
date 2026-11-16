@@ -221,6 +221,145 @@
     if (error) throw error;
     return data?.signedUrl || null;
   }
+  const RESEARCH_ALLOWED_TYPES = new Set([
+    "application/pdf", "image/jpeg", "image/png", "image/webp", "text/plain",
+    "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-excel", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  ]);
+  function requireAdminForResearch() {
+    if (!state.client || !state.isAdmin || !state.user) throw new Error("Only an authenticated family administrator can add, change, or remove official research records and timeline events.");
+  }
+  function makeStorageName(file) {
+    const safeName = String(file.name || "research-document").normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "-").slice(-100);
+    const token = window.crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
+    return state.user.id + "/" + token + "-" + safeName;
+  }
+  async function loadResearchWorkspace() {
+    if (!state.client) return { records: [], timelineEvents: [], tasks: [], errors: ["Supabase is not configured."] };
+    const requests = [
+      state.client.from("family_research_records").select("*").order("created_at", { ascending: false }),
+      state.client.from("family_timeline_events").select("*").order("sort_date", { ascending: true, nullsFirst: false }).order("created_at", { ascending: true })
+    ];
+    if (state.isAdmin) requests.push(state.client.from("family_research_tasks").select("*").order("created_at", { ascending: false }));
+    const results = await Promise.all(requests);
+    const recordsResult = results[0];
+    const timelineResult = results[1];
+    const tasksResult = results[2] || { data: [], error: null };
+    const errors = [recordsResult.error, timelineResult.error, tasksResult.error].filter(Boolean).map((e) => e.message || "Research database request failed.");
+    return {
+      records: recordsResult.data || [],
+      timelineEvents: timelineResult.data || [],
+      tasks: tasksResult.data || [],
+      errors
+    };
+  }
+  async function createResearchRecord(entry, file) {
+    requireAdminForResearch();
+    let storagePath = null;
+    if (file) {
+      if (file.size > 25 * 1024 * 1024) throw new Error("Research files must be 25 MB or smaller.");
+      if (!RESEARCH_ALLOWED_TYPES.has(file.type)) throw new Error("Use a PDF, JPG, PNG, WebP, TXT, DOC/DOCX, or XLS/XLSX file.");
+      const path = makeStorageName(file);
+      const { data: uploaded, error: uploadError } = await state.client.storage.from("family-research-files").upload(path, file, { cacheControl: "3600", upsert: false, contentType: file.type || "application/octet-stream" });
+      if (uploadError) throw uploadError;
+      storagePath = uploaded.path;
+    }
+    const row = {
+      title: entry.title,
+      record_type: entry.record_type,
+      person_ids: entry.person_ids || [],
+      repository: entry.repository || null,
+      collection_title: entry.collection_title || null,
+      reference_code: entry.reference_code || null,
+      record_date: entry.record_date || null,
+      place: entry.place || null,
+      description: entry.description,
+      source_url: entry.source_url || null,
+      evidence_status: entry.evidence_status || "partially_verified",
+      visibility: entry.visibility || "private",
+      is_published: entry.is_published === true,
+      storage_path: storagePath
+    };
+    const { data, error } = await state.client.from("family_research_records").insert(row).select("*").single();
+    if (error) {
+      if (storagePath) await state.client.storage.from("family-research-files").remove([storagePath]).catch(() => {});
+      throw error;
+    }
+    return data;
+  }
+  async function deleteResearchRecord(id) {
+    requireAdminForResearch();
+    const { data, error: readError } = await state.client.from("family_research_records").select("id,storage_path").eq("id", id).maybeSingle();
+    if (readError) throw readError;
+    if (!data) return;
+    const { error } = await state.client.from("family_research_records").delete().eq("id", id);
+    if (error) throw error;
+    if (data.storage_path) {
+      const { error: storageError } = await state.client.storage.from("family-research-files").remove([data.storage_path]);
+      if (storageError) console.warn("Research row was deleted, but its stored file could not be removed.", storageError);
+    }
+  }
+  async function researchFileUrl(path) {
+    if (!state.client || !path) return null;
+    const { data, error } = await state.client.storage.from("family-research-files").createSignedUrl(path, 900);
+    if (error) throw error;
+    return data?.signedUrl || null;
+  }
+  async function createTimelineEvent(entry) {
+    requireAdminForResearch();
+    const row = {
+      title: entry.title,
+      event_type: entry.event_type || "historical_milestone",
+      event_date: entry.event_date || "Date not established",
+      sort_date: entry.sort_date || null,
+      date_precision: entry.date_precision || "undated",
+      person_ids: entry.person_ids || [],
+      location: entry.location || null,
+      description: entry.description,
+      evidence_status: entry.evidence_status || "partially_verified",
+      source_record_id: entry.source_record_id || null,
+      source_label: entry.source_label || null,
+      source_url: entry.source_url || null,
+      visibility: entry.visibility || "private",
+      is_published: entry.is_published === true
+    };
+    const { data, error } = await state.client.from("family_timeline_events").insert(row).select("*").single();
+    if (error) throw error;
+    return data;
+  }
+  async function deleteTimelineEvent(id) {
+    requireAdminForResearch();
+    const { error } = await state.client.from("family_timeline_events").delete().eq("id", id);
+    if (error) throw error;
+  }
+  async function createResearchTask(entry) {
+    requireAdminForResearch();
+    const row = {
+      title: entry.title,
+      person_id: entry.person_id || null,
+      research_question: entry.research_question || null,
+      priority: entry.priority || "normal",
+      status: entry.status || "open",
+      source_hint: entry.source_hint || null
+    };
+    const { data, error } = await state.client.from("family_research_tasks").insert(row).select("*").single();
+    if (error) throw error;
+    return data;
+  }
+  async function updateResearchTask(id, changes) {
+    requireAdminForResearch();
+    const update = {};
+    if (changes.status) update.status = changes.status;
+    if (changes.priority) update.priority = changes.priority;
+    const { error } = await state.client.from("family_research_tasks").update(update).eq("id", id);
+    if (error) throw error;
+  }
+  async function deleteResearchTask(id) {
+    requireAdminForResearch();
+    const { error } = await state.client.from("family_research_tasks").delete().eq("id", id);
+    if (error) throw error;
+  }
+
   async function initialize() {
     try {
       const response = await fetch("/api/config", { cache: "no-store" });
@@ -295,6 +434,15 @@
     submitContribution,
     reviewContribution,
     contributionAttachmentUrl,
+    loadResearchWorkspace,
+    createResearchRecord,
+    deleteResearchRecord,
+    researchFileUrl,
+    createTimelineEvent,
+    deleteTimelineEvent,
+    createResearchTask,
+    updateResearchTask,
+    deleteResearchTask,
   };
   window.FamilyCloud = api;
   api.ready = initialize();
