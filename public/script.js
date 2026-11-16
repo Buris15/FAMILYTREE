@@ -1235,10 +1235,6 @@ $("#resetBtn").addEventListener("click", () => {
 const ARCHIVE_KEY = "lacsamana-family-archive:v1";
 const emptyArchiveStore = () => ({ stories: [], achievements: [], properties: [], links: [], institutions: [], lifeStories: [], homeEntries: [], migrationStories: [] });
 let archiveStore = emptyArchiveStore();
-let researchRecords = [];
-let researchTimelineEvents = [];
-let researchTasks = [];
-let researchWorkspaceErrors = [];
 function loadArchiveStore() {
   try {
     const raw = JSON.parse(localStorage.getItem(ARCHIVE_KEY) || "null");
@@ -1277,7 +1273,7 @@ const SURNAME_REGISTER = [
   ["Joaquino / Juaquino", "Spelling variation to verify", "The supplied notes show both spellings in connection with Joaquin's maternal surname."],
   ["Munar", "Marriage / family surname", "Appears in Cayetana Munar and Paz Munar Lacsamana; exact relationships need original-record corroboration."],
   ["Garcia", "Marriage surname", "Appears in Emilia / Emiliana Garcia, reported as Leon's second wife."],
-  ["Valdris · Bautista", "Marriage-family surnames", "Appear in the supplied indexed marriage information for Juanita Valdris and her parents."],
+  ["Valdris · Valdivia · Bautista", "Marriage-family surnames / spelling discrepancy", "The earlier index says Valdris; the supplied 1944 register scan and family biography say Valdivia. Andres is also rendered with both forms until a certified copy resolves the spelling."],
   ["Viloria · Nuval", "Marriage-family surnames", "Appear in the supplied indexed marriage information for Concepcion Viloria and her parents."],
   ["Lomiteng · Buyao", "Marriage-family surnames", "Appear in the supplied indexed marriage information for Pacita Lomiteng and her parents."],
   ["Argueza · Rillera", "Marriage-family surnames", "Appear in the supplied indexed marriage information for Purita Argueza and her parents."],
@@ -1286,6 +1282,9 @@ const SURNAME_REGISTER = [
   ["Sombillo · Samson", "Separate record group", "Appear in the Teodora Lacanilao / Maxima Lacsamana index group."],
   ["Panis · Jacinto", "Ortega descendant surnames", "Appear in the Vicenta Ortega descendant branch."],
   ["Balingit · Dacanay · Alviar", "Ortega descendant / spouse surnames", "Appear in the family index through descendants of Jose Alvaro Ortega and Paz Lacsamana."],
+  ["Natarte", "Family surname", "Appears in the family-supplied parentage update for Sheryll Dacanay; original record not yet attached."],
+  ["Gandingan", "Marriage-family surname", "Appears in the family-supplied spouse and descendant update for Jerry Lacsamana."],
+  ["Agnes", "Marriage-family surname", "Appears in the family-supplied spouse update for Richard Lee; full identity details are not supplied."],
   ["Rivero · Favis", "Ortega descendant / spouse surnames", "Appear in the Luis Ortega branch and his wife's recorded name."],
   ["Montilla · Resurreccion", "Ortega descendant / spouse surnames", "Appear in the Ramona Ortega branch."],
   ["Maglaya · Benitez · Manguerra · Kleindienst", "Ortega descendant / spouse surnames", "Appear in marriages connected to the Ramona Ortega descendants."],
@@ -1302,6 +1301,7 @@ const ARCHIVE_EVENTS = [
   { date: "11 March 1866", sort: "1866-03-11", title: "Joaquin Ortega y Joaquino is born in Cebu", detail: "The Ortega Reunion 2017 souvenir program records this date and birthplace and identifies his parents as Antonio Ortega y Verzosa and Juana Joaquino. This is a published family-history source; an original baptismal or civil birth record remains desirable.", status: "Published family-history program · original birth record not attached", people: ["joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "9 March 1877", sort: "1877-03-09", title: "Doña Francisca is born in Bangar", detail: "The Ortega Reunion 2017 program gives this birth date and birthplace.", status: "Published family-history program", people: ["francisca"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "17 January 1887", sort: "1887-01-17", title: "Evaristo dies in San Juan, La Union", detail: "The date appears in the supplied FamilySearch screenshot and an Augustinian archival register cited in the current profile note.", status: "FamilySearch screenshot + Augustinian archival register", people: ["evaristo-guadalupe"], url: "https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf" },
+  { date: "8 March 1917", sort: "1917-03-08", title: "Juanita Valdivia Lacsamana is born in Alaminos", detail: "The supplied family biography gives this birth date and birthplace. The 1944 register scan's recorded age differs by about two months, so the discrepancy remains noted pending an original birth record.", status: "Family-supplied biography · birth record not attached", people: ["juanita-valdris"] },
   { date: "1889", sort: "1889-01-01", title: "Joaquin works with the Tabacalera in Carlatan", detail: "The Ortega Reunion 2017 family-history account states that Joaquin worked with the Compania General de Tabacos de Filipinas in Carlatan, San Fernando, in 1889. The date is from a published family-history narrative.", status: "Published family-history program", people: ["joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "1901–1904", sort: "1901-01-01", title: "Joaquin Ortega serves as Civil Governor of La Union", detail: "The Provincial Government of La Union commemorates Joaquin's appointment in 1901 and identifies his governorship as 1901–1904.", status: "Provincial Government of La Union", people: ["joaquin"], url: "https://launion.gov.ph/pglu-celebrates-don-joaquin-ortegas-life-and-memory/" },
   { date: "15 August 1901", sort: "1901-08-15", title: "Joaquin Ortega is appointed Civil Governor of La Union", detail: "The Provincial Government of La Union states that the Taft Commission appointed Joaquin Ortega on 15 August 1901 as the province's first Civil Governor.", status: "Provincial Government of La Union", people: ["joaquin"], url: "https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/" },
@@ -1311,11 +1311,12 @@ const ARCHIVE_EVENTS = [
   { date: "1916–1920", sort: "1916-01-01", title: "Joaquin receives assignments involving Lepanto and Benguet", detail: "The Ortega Reunion 2017 biography records similar duties for the sub-provinces of Lepanto and Benguet. Original appointment records have not been attached.", status: "Published family-history program · corroboration needed", people: ["joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "1920–1926", sort: "1920-01-01", title: "Joaquin serves as Special Agent of the Bureau of Non-Christian Tribes", detail: "The Ortega Reunion 2017 biography records this appointment and says he retired under the Osmeña Act in 1926. Original government service records are still needed.", status: "Published family-history program · corroboration needed", people: ["joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "31 May 1943", sort: "1943-05-31", title: "Don Joaquin Ortega dies", detail: "The Provincial Government of La Union records that Joaquin died on 31 May 1943 at age 77.", status: "Provincial Government of La Union · original civil death record not attached", people: ["joaquin"], url: "https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/" },
-  { date: "8 October 1944", sort: "1944-10-08", title: "Alfredo 'Pidong' Lacsamana and Juanita Valdris marry", detail: "Indexed marriage registration in Luna, La Union; record 6079, page 71, registration 108. Original register image still needs examination.", status: "User-supplied civil-registration index summary", people: ["alfredo-pidong", "juanita-valdris"] },
+  { date: "8 October 1944", sort: "1944-10-08", title: "Alfredo 'Pidong' Lacsamana and Juanita marry", detail: "The supplied register-page scan shows record 6079, page 71, registration 108, and lists Alfredo's parents as Leon Lacsamana and Cayetana Munar. The wife's entry appears to read Juanita Valdivia, while the earlier index says Valdris. The scan records ages 27 and 27 years 9 months; the family biography gives Juanita's birth date as 8 March 1917, so the age and spelling differences remain open.", status: "User-supplied register-page scan · Luna, La Union · spelling and age discrepancy retained", people: ["alfredo-pidong", "juanita-valdris"], url: "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", urlLabel: "View register scan ↗" },
   { date: "25 October 1953", sort: "1953-10-25", title: "Rafaela Lacsamana dies in San Pablo City", detail: "A separate Laguna index lists document 687 and age 38. The index's sex / relationship classification conflicts with the given name; identity is not connected to the main La Union line.", status: "Separate index record · identity and sex classification need review", people: ["rafaela-lac" ] },
-  { date: "2 January 1955", sort: "1955-01-02", title: "Joaquin Lacsamana and Concepcion Viloria marry", detail: "Indexed marriage registration in La Union; original registration image not yet examined.", status: "User-supplied civil-registration index summary", people: ["joaquin-lac", "concepcion-viloria"] },
-  { date: "8 September 1958", sort: "1958-09-08", title: "Francisco Lacsamana and Pacita Lomiteng marry", detail: "Indexed marriage registration in La Union; original registration image not yet examined.", status: "User-supplied civil-registration index summary", people: ["francisco-lac", "pacita-lomiteng"] },
-  { date: "27 July 1959", sort: "1959-07-27", title: "Eduardo Lacsamana and Purita Argueza marry", detail: "Indexed marriage registration in La Union; original registration image not yet examined.", status: "User-supplied civil-registration index summary", people: ["eduardo", "purita-argueza"] },
+  { date: "2 January 1955", sort: "1955-01-02", title: "Joaquin Lacsamana and Concepcion Viloria marry", detail: "The supplied marriage contract places the wedding at the Immaculate Conception Church in San Fernando, La Union. It names Leon Lacsamana and Emilia Garcia as Joaquin's parents and Leocadio Viloria and Prisea Nuval as Concepcion's parents. The contract records ages 27 years 10 months and 26 years 10 months; an earlier index summary gives Concepcion age 29.", status: "Supplied marriage contract scan · recorded ages differ from earlier index notes", people: ["joaquin-lac", "concepcion-viloria"], url: "assets/research/joaquin-lacsamana-concepcion-viloria-1955-marriage-contract.png", urlLabel: "View marriage contract ↗" },
+  { date: "8 September 1958", sort: "1958-09-08", title: "Francisco Lacsamana and Pacita Lomiteng marry", detail: "The supplied marriage contract places the wedding at the Office of the Justice of the Peace in San Fernando, La Union. It names Leon Lacsamana and Emiliana Garcia as Francisco's parents, and Mariano Lomiteng and Rafaela Buyao as Pacita's parents. The family notes also use the spelling Emilia Garcia.", status: "Supplied marriage contract scan · spouse-parent names recorded", people: ["francisco-lac", "pacita-lomiteng"], url: "assets/research/francisco-lacsamana-pacita-lomiteng-1958-marriage-contract.png", urlLabel: "View marriage contract ↗" },
+  { date: "27 July 1959", sort: "1959-07-27", title: "Eduardo Lacsamana and Purita Argueza marry", detail: "The supplied marriage contract places the wedding at the Office of the Justice of the Peace in San Fernando, La Union. It names Leon Lacsamana and Emilia Garcia as Eduardo's parents, and Isabelo Argueza and Concepcion Rillera as Purita's parents. The contract records Eduardo age 36 years 11 months, conflicting with the earlier index-based estimate of c. 1933.", status: "Supplied marriage contract scan · Eduardo age / birth-year discrepancy retained", people: ["eduardo", "purita-argueza"], url: "assets/research/eduardo-lacsamana-purita-argueza-1959-marriage-contract.png", urlLabel: "View marriage contract ↗" },
+  { date: "16 November 1962", sort: "1962-11-16", title: "Macario Lacsamana and Felicidad Santos marry", detail: "The supplied contract names Our Lady of Perpetual Help Parish as the place of marriage. It lists Leon Lacsamana and Alejandra Capalad as Macario's parents, and Ramon Santos and Candida Lacsamana as Felicidad's parents. This evidence supports the separate Leon / Bulacan–Manila record group, not the Don Leon of La Union branch.", status: "Supplied marriage contract scan · separate Leon record group", people: ["macario-lac", "felicidad-santos"], url: "assets/research/macario-lacsamana-felicidad-santos-1962-marriage-contract.png", urlLabel: "View marriage contract ↗" },
   { date: "3 April 1964", sort: "1964-04-03", title: "Doña Francisca dies", detail: "The Ortega Reunion 2017 family-history program gives this death date.", status: "Published family-history program", people: ["francisca"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
   { date: "21 August 1985", sort: "1985-08-21", title: "Sheryll Dacanay is born", detail: "Birth date supplied by Adrian. Birthplace and original birth record have not been supplied.", status: "Family-supplied information · source record not attached", people: ["sheryll-dacanay"] },
   { date: "2017", sort: "2017-01-01", title: "Ortega Reunion souvenir program documents the family history", detail: "The publication includes biographical notes, a family-tree diagram, the sibling connection between Francisca and Leon, and descendant information.", status: "Published family-history program", people: ["francisca", "leon", "joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
@@ -1368,14 +1369,15 @@ const GEOGRAPHY = [
     id:"san-fernando", place:"San Fernando City, La Union, Philippines", region:"launion", lat:16.6163, lng:120.3171,
     precision:"City reference point", source:"https://mapcarta.com/San_Fernando_%28La_Union%29",
     events:[
-      {type:"work", title:"Public service · Civil Governor of La Union", date:"1901–1904", personIds:["joaquin"], detail:"Don Joaquin Ortega served as La Union's first Civil Governor. This marks his documented public-service connection to the provincial capital; it is not a claim that this was his exact residence.", status:"Provincial Government of La Union historical article", source:"https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/"}
+      {type:"work", title:"Public service · Civil Governor of La Union", date:"1901–1904", personIds:["joaquin"], detail:"Don Joaquin Ortega served as La Union's first Civil Governor. This marks his documented public-service connection to the provincial capital; it is not a claim that this was his exact residence.", status:"Provincial Government of La Union historical article", source:"https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/"},
+      {type:"marriage", title:"Marriage contracts · Joaquin, Francisco and Eduardo Lacsamana branches", date:"1955–1959", personIds:["joaquin-lac","concepcion-viloria","francisco-lac","pacita-lomiteng","eduardo","purita-argueza"], detail:"Three supplied marriage contracts place these weddings in San Fernando, La Union: the 2 January 1955 contract names the Immaculate Conception Church, while the 8 September 1958 and 27 July 1959 contracts name the Office of the Justice of the Peace. The register scans list each couple's parents. These are marriage-record locations, not claims of permanent residence.", status:"Three user-supplied marriage contract scans", source:"assets/research/joaquin-lacsamana-concepcion-viloria-1955-marriage-contract.png"}
     ]
   },
   {
     id:"luna", place:"Luna, La Union, Philippines", region:"launion", lat:16.8528, lng:120.3761,
     precision:"Municipality reference point", source:"https://digital.library.unt.edu/explore/locations/p19728/",
     events:[
-      {type:"marriage", title:"Indexed marriage registration", date:"8 October 1944", personIds:["alfredo-pidong","juanita-valdris"], detail:"Alfredo 'Pidong' Lacsamana and Juanita Valdris are listed as marrying in Luna, La Union. Registry details supplied: record 6079, page 71, registration 108. This is the registration location, not a confirmed lifelong residence.", status:"User-supplied civil-registration index summary; original register image still needed", source:""}
+      {type:"marriage", title:"Register entry · Alfredo Lacsamana and Juanita Valdivia / Valdris", date:"8 October 1944", personIds:["alfredo-pidong","juanita-valdris"], detail:"Record 6079, page 71, registration 108. The supplied scan appears to spell the wife's name Valdivia; earlier index notes say Valdris. The registration location is not a confirmed lifelong residence.", status:"Supplied register-page scan · spelling discrepancy retained", source:"assets/research/alfredo-pidong-juanita-valdivia-register-p71.png"}
     ]
   },
   {
@@ -1408,8 +1410,13 @@ const KNOWN_ARCHIVE_SOURCES = [
   { title: "FamilySearch · Ramona Lopez Lacsamana", type: "Genealogy profile", url: "https://www.familysearch.org/tree/person/details/GNHK-MZ3", note: "Supplied screenshot identifies her profile ID and birth year; screenshot showed no attached sources." },
   { title: "FamilySearch · Evaristo Guadalupe y Villaverde", type: "Genealogy profile", url: "https://www.familysearch.org/tree/person/details/G138-FPT", note: "Supplied screenshot identifies profile details; screenshot showed Sources (0) and Medium quality score." },
   { title: "Provincial Government of La Union · Denny Ortega and seven children", type: "Government article", url: "https://launion.gov.ph/bm-ortega-takes-oath-as-the-new-ex-officio-member-of-lu-sp/", note: "The article mentions seven children but does not identify all seven by name." },
+  { title: "Alfredo Lacsamana and Juanita Valdivia / Valdris · register page 71", type: "Supplied civil-register scan · 8 October 1944", url: "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", note: "Register entry 6079, page 71, registration 108. The scan appears to read Juanita Valdivia and Andres Valdivia; earlier index notes use Valdris. Review the spelling discrepancy and age difference before treating the names as final." },
+  { title: "Joaquin Lacsamana and Concepcion Viloria · marriage contract", type: "Supplied marriage contract · 2 January 1955", url: "assets/research/joaquin-lacsamana-concepcion-viloria-1955-marriage-contract.png", note: "Records the wedding at the Immaculate Conception Church, San Fernando, La Union, and lists each spouse’s parents. The bride’s recorded age differs from the earlier index summary; the mother's name also has Prisea / Prinsea variants." },
+  { title: "Francisco Lacsamana and Pacita Lomiteng · marriage contract", type: "Supplied marriage contract · 8 September 1958", url: "assets/research/francisco-lacsamana-pacita-lomiteng-1958-marriage-contract.png", note: "Records the wedding at the Office of the Justice of the Peace, San Fernando, La Union, and lists Leon Lacsamana / Emiliana Garcia and Mariano Lomiteng / Rafaela Buyao as parents." },
+  { title: "Eduardo Lacsamana and Purita Argueza · marriage contract", type: "Supplied marriage contract · 27 July 1959", url: "assets/research/eduardo-lacsamana-purita-argueza-1959-marriage-contract.png", note: "Records the wedding at the Office of the Justice of the Peace, San Fernando, La Union, and lists both sets of parents. Eduardo’s recorded age (36 years 11 months) conflicts with the earlier age-index estimate." },
+  { title: "Macario Lacsamana and Felicidad Santos · marriage contract", type: "Supplied marriage contract · 16 November 1962", url: "assets/research/macario-lacsamana-felicidad-santos-1962-marriage-contract.png", note: "Records the marriage at Our Lady of Perpetual Help Parish and lists Leon Lacsamana / Alejandra Capalad as Macario’s parents and Ramon Santos / Candida Lacsamana as Felicidad’s. This is kept separate from the La Union Don Leon branch." },
 ];
-const BIOGRAPHY_IDS = ["leon", "francisca", "joaquin", "pio", "victor", "roberto", "manuel", "pacoy3", "titing", "justo-jr", "mario", "carlos"];
+const BIOGRAPHY_IDS = ["leon", "francisca", "joaquin", "juanita-valdris", "pio", "victor", "roberto", "manuel", "pacoy3", "titing", "justo-jr", "mario", "carlos"];
 const HISTORICAL_PROFILE_DETAILS = {
   leon: {
     heading: "Family history and the Lacsamana line",
@@ -1430,6 +1437,15 @@ const HISTORICAL_PROFILE_DETAILS = {
       { title: "Memorial school", body: "Her name was given to the Doña Francisca Lacsamana de Ortega Memorial Municipal High School in Bangar. Batas Pambansa Blg. 458, approved on 10 June 1983, converted the memorial municipal high school into a national high school under that name. This is an official legislative record of her lasting public commemoration.", evidence: "Batas Pambansa Blg. 458 · Senate Legislative Reference Bureau", source: "https://ldr.senate.gov.ph/legislative-issuance/batas-pambansa-458" }
     ]
   },
+  "juanita-valdris": {
+    heading: "Educator · academic leader · Catholic community service",
+    sections: [
+      { title: "Early life and education", body: "The family-supplied biography identifies Dr. Juanita Valdivia Lacsamana, Ed.D., affectionately known as “Tetang”, as born on 8 March 1917 in Alaminos, Pangasinan. It says she celebrated her 100th birthday in 2017. She began as a classroom teacher and later became principal of Gabaldon Elementary School in San Fernando, La Union. The biography says she earned a Master of Arts degree in Dagupan and completed a Doctor of Education degree at Saint Louis University, Baguio City, in 1976. The institutions and awards are preserved as family-supplied details pending independently checked personnel or school records.", evidence: "Family-supplied biographical research · original school / civil records not attached", source: "" },
+      { title: "Department of Education and higher education", body: "The supplied biography says she served as a District Supervisor and later as General Education Supervisor I for English in La Union, retiring in 1982. After retirement, she taught graduate students at Lorma College, Saint Louis College and Don Mariano Marcos Memorial State University, and served as Dean of the Graduate School at Osias Educational Foundation in Balaoan. It also records her as principal of St. Jude Montessori Educational Center at St. Jude Parish from 1989 to 1996. These appointments should be corroborated with school or Department of Education records before being described as independently verified.", evidence: "Family-supplied biographical research · appointment records not yet attached", source: "" },
+      { title: "Local governance and church leadership", body: "The family biography records an appointed position in the Sangguniang Bayan of the Municipality of San Fernando from 1987 to 1988. It also says she served as President of the Diocesan Catholic Women’s League from 1980 to 1985 and President of the St. William Cathedral Parish Council from 1983 to 1985. The account recalls that she attended daily Holy Mass with her husband, Alfredo “Pidong” Lacsamana. These are family-preserved biographical details; appointment and parish records would strengthen the archive.", evidence: "Family-supplied biographical research · civic and parish records not yet attached", source: "" },
+      { title: "Name and record variations", body: "The supplied 1944 register-page scan appears to use “Juanita Valdivia” and lists Andres Valdivia and Marcelina Bautista as her parents, while an earlier index summary uses the surname “Valdris”. The scan records age 27 years 9 months; the family biography supplies 8 March 1917 as her birth date. These differences are intentionally preserved for follow-up rather than silently merged. The biographical text says she received a Longevity Special Award at age 100. No death date is supplied in the current materials, so none is inferred.", evidence: "Supplied 1944 register-page scan + family-supplied biography · spelling / age differences open", source: "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png" }
+    ]
+  },
   joaquin: {
     heading: "First Civil Governor of La Union · public service and family",
     sections: [
@@ -1446,456 +1462,13 @@ function renderSurnameRegister() {
   const target = $("#surnameRegistry"); if (!target) return;
   target.innerHTML = SURNAME_REGISTER.map(([name, kind, note]) => '<article class="surname-entry"><span class="archive-mini-label">' + esc(kind) + '</span><strong>' + esc(name) + '</strong><p>' + esc(note) + '</p></article>').join("");
 }
-const RESEARCH_EVIDENCE_LABELS = {
-  verified: "Verified",
-  partially_verified: "Partially verified",
-  unverified: "Unverified",
-  disputed: "Disputed"
-};
-const RESEARCH_TYPE_LABELS = {
-  birth: "Birth record", baptism: "Baptism record", marriage: "Marriage record", death: "Death record",
-  census: "Census / population register", photograph: "Photograph", letter: "Letter / correspondence",
-  newspaper: "Newspaper / publication", government: "Government record", church: "Church / religious record",
-  military: "Military record", school: "School / education record", land: "Land / property record", other: "Other"
-};
-const TIMELINE_TYPE_LABELS = {
-  birth: "Birth", baptism: "Baptism", marriage: "Marriage", death: "Death", residence: "Residence / migration",
-  education: "Education", public_service: "Public service", family_memory: "Family memory",
-  historical_milestone: "Historical milestone", research_gap: "Research gap", other: "Other"
-};
-function inferTimelineEvidence(event) {
-  if (event.evidence_status && RESEARCH_EVIDENCE_LABELS[event.evidence_status]) return event.evidence_status;
-  const status = String(event.status || "").toLowerCase();
-  const detail = String(event.detail || "").toLowerCase();
-  if (/disput|conflict|contradict/.test(status + " " + detail)) return "disputed";
-  if (/research gap|not established|awaiting documentation|not yet established/.test(status + " " + detail)) return "unverified";
-  if (/family memory|family recollection|oral history|family-reported/.test(status + " " + detail)) return "unverified";
-  if (/not attached|screenshot|published family-history|program|indexed|estimated/.test(status + " " + detail)) return "partially_verified";
-  return "partially_verified";
-}
-function inferTimelineType(event) {
-  if (event.event_type && TIMELINE_TYPE_LABELS[event.event_type]) return event.event_type;
-  const text = (String(event.title || "") + " " + String(event.detail || "")).toLowerCase();
-  if (/\bborn\b|\bbirth\b/.test(text)) return "birth";
-  if (/baptis/.test(text)) return "baptism";
-  if (/marri/.test(text)) return "marriage";
-  if (/\bdies\b|\bdied\b|\bdeath\b/.test(text)) return "death";
-  if (/governor|public service|appointed|office|elected/.test(text)) return "public_service";
-  if (/residen|migrat|travel|moved|place/.test(text)) return "residence";
-  if (/research gap|awaiting documentation|not established/.test(text)) return "research_gap";
-  if (/family memory|family recollection|oral history/.test(text)) return "family_memory";
-  return "historical_milestone";
-}
-function timelineYear(event) {
-  const raw = String(event.sort_date || event.sort || event.event_date || event.date || "");
-  const match = raw.match(/(?:16|17|18|19|20)\d{2}/);
-  return match ? match[0] : "";
-}
-function timelineRows() {
-  const builtIn = ARCHIVE_EVENTS.map((event, index) => ({
-    id: "built-in-" + index,
-    title: event.title,
-    event_date: event.date,
-    sort_date: event.sort && !String(event.sort).startsWith("0000") ? event.sort : null,
-    detail: event.detail,
-    description: event.detail,
-    status: event.status,
-    evidence_status: inferTimelineEvidence(event),
-    people: event.people || [],
-    person_ids: event.people || [],
-    source_url: event.url || "",
-    source_label: event.urlLabel || "Source",
-    event_type: inferTimelineType(event),
-    location: "",
-    source_record_id: null,
-    built_in: true
-  }));
-  const custom = researchTimelineEvents.map((event) => ({
-    ...event,
-    date: event.event_date || "Date not established",
-    detail: event.description || "",
-    status: RESEARCH_EVIDENCE_LABELS[event.evidence_status] || "Evidence status not recorded",
-    people: event.person_ids || [],
-    source_url: event.source_url || "",
-    built_in: false
-  }));
-  return builtIn.concat(custom);
-}
 function renderTimeline() {
   const target = $("#timelineList"); if (!target) return;
-  const search = String($("#timelineSearch")?.value || "").trim().toLowerCase();
-  const person = $("#timelinePersonFilter")?.value || "";
-  const year = $("#timelineYearFilter")?.value || "";
-  const type = $("#timelineTypeFilter")?.value || "";
-  const evidence = $("#timelineEvidenceFilter")?.value || "";
-  const includeUndated = $("#timelineShowUndated")?.checked !== false;
-  const rows = timelineRows();
-  const years = [...new Set(rows.map(timelineYear).filter(Boolean))].sort((a,b) => Number(b) - Number(a));
-  const yearSelect = $("#timelineYearFilter");
-  if (yearSelect) {
-    const current = yearSelect.value;
-    yearSelect.innerHTML = '<option value="">All years</option>' + years.map((value) => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
-    if (years.includes(current)) yearSelect.value = current;
-  }
-  const filtered = rows.filter((event) => {
-    const eventYear = timelineYear(event);
-    const ids = event.people || event.person_ids || [];
-    const status = inferTimelineEvidence(event);
-    const eventType = inferTimelineType(event);
-    if (!includeUndated && !eventYear) return false;
-    if (person && !ids.includes(person)) return false;
-    if (year && eventYear !== year) return false;
-    if (type && eventType !== type) return false;
-    if (evidence && status !== evidence) return false;
-    const personText = ids.map((id) => PEOPLE[id] ? nameOf(PEOPLE[id]) : id).join(" ");
-    const haystack = [event.title,event.event_date,event.date,event.detail,event.description,event.status,event.location,event.source_url,event.source_label,personText].join(" ").toLowerCase();
-    return !search || haystack.includes(search);
-  }).sort((a,b) => {
-    const ay = timelineYear(a), by = timelineYear(b);
-    const as = String(a.sort_date || (ay ? ay + "-01-01" : "9999-99-99"));
-    const bs = String(b.sort_date || (by ? by + "-01-01" : "9999-99-99"));
-    if (ay && !by) return -1;
-    if (!ay && by) return 1;
-    return as.localeCompare(bs) || String(a.title).localeCompare(String(b.title));
-  });
-  const summary = $("#timelineResultsSummary");
-  if (summary) summary.textContent = "Showing " + filtered.length + " of " + rows.length + " events";
-  if (!filtered.length) {
-    target.innerHTML = '<p class="archive-empty">No events match these filters. Clear one or more filters to broaden the timeline.</p>';
-    return;
-  }
-  let previousGroup = null;
-  target.innerHTML = filtered.map((event) => {
-    const yearLabel = timelineYear(event) || "Undated / year not established";
-    const group = yearLabel;
-    let divider = "";
-    if (group !== previousGroup) {
-      divider = '<div class="timeline-year-divider"><span>' + esc(group) + '</span></div>';
-      previousGroup = group;
-    }
-    const ids = event.people || event.person_ids || [];
-    const people = ids.map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
-    const status = inferTimelineEvidence(event);
-    const statusLabel = RESEARCH_EVIDENCE_LABELS[status] || event.status || "Evidence status not stated";
-    const sourceRecord = event.source_record_id && researchRecords.find((record) => record.id === event.source_record_id);
-    const sourceAction = sourceRecord ? '<button type="button" class="timeline-source-record" data-open-research-record="' + esc(sourceRecord.id) + '">View source record</button>' : "";
-    const sourceLink = event.source_url ? '<a href="' + esc(event.source_url) + '" target="_blank" rel="noopener">' + esc(event.source_label || "Open source ↗") + '</a>' : "";
-    const location = event.location ? '<span class="timeline-location">' + esc(event.location) + '</span>' : "";
-    const precision = event.date_precision && event.date_precision !== "exact" ? '<span class="timeline-precision">' + esc(event.date_precision.replace(/_/g," ")) + '</span>' : "";
-    const remove = !event.built_in && window.FamilyCloud?.isAdmin ? '<button type="button" class="research-delete-link" data-delete-timeline-event="' + esc(event.id) + '">Remove event</button>' : "";
-    return divider + '<article class="timeline-event timeline-event-' + esc(event.event_type || "other") + '"><div class="timeline-date">' + esc(event.event_date || event.date || "Date not established") + precision + '</div><div class="timeline-mark"><i></i></div><div class="timeline-body"><div class="timeline-event-meta"><span>' + esc(TIMELINE_TYPE_LABELS[event.event_type] || TIMELINE_TYPE_LABELS[inferTimelineType(event)]) + '</span><span class="research-evidence-badge ' + esc(status) + '">' + esc(statusLabel) + '</span></div><h4>' + esc(event.title) + '</h4><p>' + esc(event.detail || event.description || "") + '</p>' + location + '<div class="archive-inline-links">' + people + sourceAction + sourceLink + remove + '</div></div></article>';
+  target.innerHTML = ARCHIVE_EVENTS.slice().sort((a,b) => a.sort.localeCompare(b.sort)).map((e) => {
+    const people = e.people.map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
+    return '<article class="timeline-event"><div class="timeline-date">' + esc(e.date) + '</div><div class="timeline-mark"><i></i></div><div class="timeline-body"><h4>' + esc(e.title) + '</h4><p>' + esc(e.detail) + '</p><span class="archive-mini-label">' + esc(e.status) + '</span><div class="archive-inline-links">' + people + (e.url ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.urlLabel || "Source ↗") + '</a>' : '') + '</div></div></article>';
   }).join("");
 }
-
-let researchFeaturesReady = false;
-function selectedValues(select) {
-  return select ? Array.from(select.selectedOptions || []).map((option) => option.value).filter(Boolean) : [];
-}
-function researchPersonNames(ids) {
-  return (ids || []).map((id) => PEOPLE[id] ? nameOf(PEOPLE[id]) : id).filter(Boolean);
-}
-function researchVisibilityLabel(value) {
-  return ({private:"Private · administrators", family:"Family · invited contributors", public:"Public"})[value] || "Private";
-}
-function researchRecordSearchText(record) {
-  return [record.title, RESEARCH_TYPE_LABELS[record.record_type], record.repository, record.collection_title, record.reference_code, record.record_date, record.place, record.description, record.source_url, researchPersonNames(record.person_ids).join(" ")].join(" ").toLowerCase();
-}
-function setResearchAccessMessage() {
-  const node = $("#researchAccessMessage");
-  const cloud = window.FamilyCloud;
-  if (!node) return;
-  if (!cloud || !cloud.configured) node.textContent = "Cloud research storage is not connected. Configure Supabase and run migration 003 to activate shared research records and the secure document library.";
-  else if (researchWorkspaceErrors.length) node.textContent = "The research database needs setup or attention. In your Supabase project, run supabase/migrations/003_family_research_center.sql, then reload this page. Details: " + researchWorkspaceErrors.join(" · ");
-  else if (cloud.isAdmin) node.textContent = "Administrator workspace · You can add research records, attach private scans, create timeline events, and manage research tasks.";
-  else if (cloud.isContributor) node.textContent = "Invited family contributor · You can view records shared with the family and any public records. Send new discoveries through the contribution portal for administrator review.";
-  else node.textContent = "Public archive view · Only records and events deliberately published by an administrator appear here. Private and family-only documents remain hidden.";
-}
-async function refreshResearchWorkspace() {
-  const cloud = window.FamilyCloud;
-  if (!cloud || !cloud.configured) {
-    researchRecords = []; researchTimelineEvents = []; researchTasks = [];
-    researchWorkspaceErrors = ["Supabase is not configured"];
-    return;
-  }
-  try {
-    const result = await cloud.loadResearchWorkspace();
-    researchRecords = result.records || [];
-    researchTimelineEvents = result.timelineEvents || [];
-    researchTasks = result.tasks || [];
-    researchWorkspaceErrors = result.errors || [];
-  } catch (error) {
-    researchWorkspaceErrors = [error.message || "Research data could not be loaded"];
-    researchRecords = []; researchTimelineEvents = []; researchTasks = [];
-  }
-}
-function updateResearchSourceSelect() {
-  const select = $("#timelineEventSourceRecord");
-  if (!select) return;
-  const old = select.value;
-  select.innerHTML = '<option value="">No linked research record</option>' + researchRecords.map((record) => '<option value="' + esc(record.id) + '">' + esc(record.title) + ' · ' + esc(researchVisibilityLabel(record.visibility)) + '</option>').join("");
-  if (researchRecords.some((record) => record.id === old)) select.value = old;
-}
-async function renderResearchCenter() {
-  const cloud = window.FamilyCloud;
-  const admin = !!(cloud && cloud.configured && cloud.isAdmin);
-  const contributor = !!(cloud && cloud.configured && (cloud.isContributor || cloud.isAdmin));
-  ["researchRecordForm","researchTaskForm","timelineEventForm"].forEach((id) => { const form = $("#" + id); if (form) form.hidden = !admin; });
-  const taskList = $("#researchTaskList");
-  if (taskList) taskList.hidden = !admin;
-  setResearchAccessMessage();
-  const recordList = $("#researchRecordList");
-  const search = String($("#researchRecordSearch")?.value || "").trim().toLowerCase();
-  const type = $("#researchRecordTypeFilter")?.value || "";
-  const evidence = $("#researchRecordEvidenceFilter")?.value || "";
-  const filtered = researchRecords.filter((record) => (!type || record.record_type === type) && (!evidence || record.evidence_status === evidence) && (!search || researchRecordSearchText(record).includes(search)));
-  const count = $("#researchRecordCount");
-  if (count) count.textContent = researchRecords.length + " accessible record" + (researchRecords.length === 1 ? "" : "s");
-  if (recordList) {
-    const cards = await Promise.all(filtered.map(async (record) => {
-      let attachment = "";
-      if (record.storage_path) {
-        try {
-          const url = await cloud.researchFileUrl(record.storage_path);
-          if (url) attachment = '<a class="research-file-link" href="' + esc(url) + '" target="_blank" rel="noopener">Open private file ↗</a>';
-        } catch (error) { attachment = '<span class="research-file-unavailable">File is not available to this account.</span>'; }
-      }
-      const people = researchPersonNames(record.person_ids);
-      const personLinks = (record.person_ids || []).map((id) => PEOPLE[id] ? archiveButton(nameOf(PEOPLE[id]), id) : "").filter(Boolean).join(" ");
-      const evidenceLabel = RESEARCH_EVIDENCE_LABELS[record.evidence_status] || "Not classified";
-      const visibility = researchVisibilityLabel(record.visibility);
-      const citationParts = [record.repository, record.collection_title, record.reference_code, record.record_date, record.place].filter(Boolean);
-      const cite = citationParts.length ? '<p class="research-citation-line">' + citationParts.map(esc).join(" · ") + '</p>' : "";
-      const source = record.source_url ? '<a href="' + esc(record.source_url) + '" target="_blank" rel="noopener">Open original source ↗</a>' : "";
-      const remove = admin ? '<button type="button" class="research-delete-link" data-delete-research-record="' + esc(record.id) + '">Delete record</button>' : "";
-      return '<article class="research-record-card" id="research-record-' + esc(record.id) + '"><div class="research-record-meta"><span>' + esc(RESEARCH_TYPE_LABELS[record.record_type] || record.record_type) + '</span><span class="research-evidence-badge ' + esc(record.evidence_status) + '">' + esc(evidenceLabel) + '</span></div><h4>' + esc(record.title) + '</h4>' + (people.length ? '<p class="research-person-names">' + people.map(esc).join(" · ") + '</p>' : '<p class="research-person-names">No person linked</p>') + cite + '<p class="research-record-description">' + esc(record.description || "No description supplied.") + '</p><div class="research-record-footer"><span>' + esc(visibility) + '</span><div>' + attachment + source + remove + '</div></div>' + (personLinks ? '<div class="archive-inline-links">' + personLinks + '</div>' : '') + '</article>';
-    }));
-    recordList.innerHTML = cards.join("") || (researchRecords.length ? '<p class="archive-empty">No research records match these filters.</p>' : '<p class="archive-empty">No records are available in this view yet. The administrator can add sources here; public visitors see only records explicitly published for public access.</p>');
-  }
-  updateResearchSourceSelect();
-  const taskCount = $("#researchTaskCount");
-  if (taskCount) taskCount.textContent = researchTasks.length + " tracked question" + (researchTasks.length === 1 ? "" : "s");
-  if (taskList) {
-    taskList.innerHTML = researchTasks.length ? researchTasks.map((task) => {
-      const person = task.person_id && PEOPLE[task.person_id] ? nameOf(PEOPLE[task.person_id]) : "Unassigned";
-      return '<article class="research-task-card"><div class="research-task-card-head"><span class="research-task-priority ' + esc(task.priority) + '">' + esc(task.priority) + ' priority</span><span class="research-task-status ' + esc(task.status) + '">' + esc(String(task.status || "open").replace(/_/g," ")) + '</span></div><h4>' + esc(task.title) + '</h4><p class="research-task-person">' + esc(person) + '</p>' + (task.research_question ? '<p>' + esc(task.research_question) + '</p>' : '') + (task.source_hint ? '<p class="research-citation-line">Next source: ' + esc(task.source_hint) + '</p>' : '') + '<div class="research-task-actions"><label>Update status<select data-research-task-status="' + esc(task.id) + '"><option value="open" ' + (task.status === "open" ? "selected" : "") + '>Open</option><option value="in_progress" ' + (task.status === "in_progress" ? "selected" : "") + '>In progress</option><option value="blocked" ' + (task.status === "blocked" ? "selected" : "") + '>Blocked</option><option value="complete" ' + (task.status === "complete" ? "selected" : "") + '>Complete</option></select></label><button type="button" class="research-delete-link" data-delete-research-task="' + esc(task.id) + '">Delete task</button></div></article>';
-    }).join("") : '<p class="archive-empty">No research tasks have been added. Create a task for each missing record, uncertain identity, or conflicting date that needs follow-up.</p>';
-  }
-}
-function setResearchStatus(id, message) {
-  const node = $("#" + id);
-  if (node) node.textContent = message;
-}
-function urlIsHttp(value) {
-  if (!value) return true;
-  try { return /^https?:$/.test(new URL(value).protocol); } catch (error) { return false; }
-}
-function initResearchFeatures() {
-  if (researchFeaturesReady) return;
-  researchFeaturesReady = true;
-  ["timelineSearch","timelinePersonFilter","timelineYearFilter","timelineTypeFilter","timelineEvidenceFilter","timelineShowUndated"].forEach((id) => {
-    const control = $("#" + id); if (control) control.addEventListener(control.tagName === "INPUT" ? "input" : "change", renderTimeline);
-  });
-  $("#timelineClearFilters")?.addEventListener("click", () => {
-    ["timelineSearch","timelinePersonFilter","timelineYearFilter","timelineTypeFilter","timelineEvidenceFilter"].forEach((id) => { const field = $("#" + id); if (field) field.value = ""; });
-    if ($("#timelineShowUndated")) $("#timelineShowUndated").checked = true;
-    renderTimeline();
-  });
-  ["researchRecordSearch","researchRecordTypeFilter","researchRecordEvidenceFilter"].forEach((id) => {
-    const control = $("#" + id); if (control) control.addEventListener(control.tagName === "INPUT" ? "input" : "change", renderResearchCenter);
-  });
-  const visibility = $("#researchRecordVisibility");
-  const publish = $("#researchRecordPublish");
-  const syncPublishVisibility = () => {
-    if (publish) {
-      const enabled = visibility?.value === "public";
-      publish.disabled = !enabled;
-      if (!enabled) publish.checked = false;
-    }
-  };
-  visibility?.addEventListener("change", syncPublishVisibility); syncPublishVisibility();
-  const includeTimeline = $("#researchIncludeTimeline");
-  includeTimeline?.addEventListener("change", () => { const fields = $("#researchTimelineFields"); if (fields) fields.hidden = !includeTimeline.checked; });
-  const timelineVisibility = $("#timelineEventVisibility");
-  const timelinePublish = $("#timelineEventPublish");
-  const syncTimelinePublish = () => {
-    if (timelinePublish) {
-      const enabled = timelineVisibility?.value === "public";
-      timelinePublish.disabled = !enabled;
-      if (!enabled) timelinePublish.checked = false;
-    }
-  };
-  timelineVisibility?.addEventListener("change", syncTimelinePublish); syncTimelinePublish();
-
-  const recordForm = $("#researchRecordForm");
-  recordForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const button = $("#saveResearchRecord");
-    const sourceUrl = $("#researchRecordSourceUrl").value.trim();
-    const publicRequested = $("#researchRecordPublish").checked;
-    const recordVisibility = $("#researchRecordVisibility").value;
-    if (!urlIsHttp(sourceUrl)) { setResearchStatus("researchRecordStatus", "Enter a valid http or https source URL."); return; }
-    if (recordVisibility === "public" && !publicRequested) { setResearchStatus("researchRecordStatus", "Confirm public publication, or choose Family / Private visibility."); return; }
-    if (button) button.disabled = true;
-    setResearchStatus("researchRecordStatus", "Uploading the record and saving its citation…");
-    try {
-      const personIds = selectedValues($("#researchRecordPeople"));
-      const file = $("#researchRecordFile").files[0] || null;
-      const record = await window.FamilyCloud.createResearchRecord({
-        title: $("#researchRecordTitle").value.trim(),
-        record_type: $("#researchRecordType").value,
-        person_ids: personIds,
-        repository: $("#researchRepository").value.trim(),
-        collection_title: $("#researchCollection").value.trim(),
-        reference_code: $("#researchReferenceCode").value.trim(),
-        record_date: $("#researchRecordDate").value.trim(),
-        place: $("#researchRecordPlace").value.trim(),
-        description: $("#researchRecordDescription").value.trim(),
-        source_url: sourceUrl,
-        evidence_status: $("#researchRecordEvidence").value,
-        visibility: recordVisibility,
-        is_published: publicRequested
-      }, file);
-      let timelineCreated = false;
-      let timelineFailure = "";
-      if ($("#researchIncludeTimeline").checked) {
-        const precision = $("#researchEventPrecision").value;
-        const sortDate = precision === "undated" ? null : $("#researchEventSortDate").value || null;
-        const eventTitle = $("#researchEventTitle").value.trim() || record.title;
-        const eventDate = $("#researchEventDateLabel").value.trim() || record.record_date || "Date not established";
-        const eventDescription = $("#researchEventDescription").value.trim() || record.description;
-        try {
-          await window.FamilyCloud.createTimelineEvent({
-            title: eventTitle,
-            event_type: $("#researchEventType").value,
-            event_date: eventDate,
-            sort_date: sortDate,
-            date_precision: precision,
-            person_ids: personIds,
-            location: record.place,
-            description: eventDescription,
-            evidence_status: record.evidence_status,
-            source_record_id: record.id,
-            source_label: record.title,
-            source_url: record.source_url,
-            visibility: record.visibility,
-            is_published: record.is_published
-          });
-          timelineCreated = true;
-        } catch (error) {
-          timelineFailure = error.message || "The linked timeline event could not be saved.";
-        }
-      }
-      recordForm.reset();
-      if ($("#researchTimelineFields")) $("#researchTimelineFields").hidden = true;
-      syncPublishVisibility();
-      await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter();
-      if (timelineFailure) {
-        setResearchStatus("researchRecordStatus", "The research record was saved, but its timeline event was not: " + timelineFailure + " You can add the event separately below.");
-      } else {
-        setResearchStatus("researchRecordStatus", timelineCreated ? "Research record saved and linked to the historical timeline." : "Research record and citation saved securely.");
-      }
-    } catch (error) {
-      setResearchStatus("researchRecordStatus", error.message || "The research record could not be saved.");
-    } finally { if (button) button.disabled = false; }
-  });
-
-  const timelineForm = $("#timelineEventForm");
-  timelineForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const button = $("#saveTimelineEvent");
-    const sourceUrl = $("#timelineEventSourceUrl").value.trim();
-    const visibilityValue = $("#timelineEventVisibility").value;
-    const published = $("#timelineEventPublish").checked;
-    if (!urlIsHttp(sourceUrl)) { setResearchStatus("timelineEventStatus", "Enter a valid http or https source URL."); return; }
-    if (visibilityValue === "public" && !published) { setResearchStatus("timelineEventStatus", "Confirm public publication, or choose Family / Private visibility."); return; }
-    const sourceRecordId = $("#timelineEventSourceRecord").value || null;
-    const sourceRecord = sourceRecordId ? researchRecords.find((item) => item.id === sourceRecordId) : null;
-    if (published && sourceRecord && (sourceRecord.visibility !== "public" || sourceRecord.is_published !== true)) {
-      setResearchStatus("timelineEventStatus", "A public timeline event can only link to a research record already published publicly. Remove the link or publish the source record first."); return;
-    }
-    if (button) button.disabled = true;
-    setResearchStatus("timelineEventStatus", "Saving timeline event…");
-    try {
-      const precision = $("#timelineEventPrecision").value;
-      await window.FamilyCloud.createTimelineEvent({
-        title: $("#timelineEventTitle").value.trim(),
-        event_type: $("#timelineEventType").value,
-        event_date: $("#timelineEventDateLabel").value.trim(),
-        sort_date: precision === "undated" ? null : $("#timelineEventSortDate").value || null,
-        date_precision: precision,
-        person_ids: selectedValues($("#timelineEventPeople")),
-        location: $("#timelineEventLocation").value.trim(),
-        description: $("#timelineEventDescription").value.trim(),
-        evidence_status: $("#timelineEventEvidence").value,
-        source_record_id: sourceRecordId,
-        source_label: sourceRecord?.title || null,
-        source_url: sourceUrl,
-        visibility: visibilityValue,
-        is_published: published
-      });
-      timelineForm.reset(); syncTimelinePublish();
-      await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter();
-      setResearchStatus("timelineEventStatus", "Timeline event saved.");
-    } catch (error) { setResearchStatus("timelineEventStatus", error.message || "Timeline event could not be saved."); }
-    finally { if (button) button.disabled = false; }
-  });
-
-  const taskForm = $("#researchTaskForm");
-  taskForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    const button = $("#saveResearchTask"); if (button) button.disabled = true;
-    setResearchStatus("researchTaskStatusMessage", "Adding research task…");
-    try {
-      await window.FamilyCloud.createResearchTask({
-        title: $("#researchTaskTitle").value.trim(), person_id: $("#researchTaskPerson").value || null,
-        priority: $("#researchTaskPriority").value, status: $("#researchTaskStatus").value,
-        research_question: $("#researchTaskQuestion").value.trim(), source_hint: $("#researchTaskSourceHint").value.trim()
-      });
-      taskForm.reset(); await refreshResearchWorkspace(); await renderResearchCenter();
-      setResearchStatus("researchTaskStatusMessage", "Research task added to the private administrator queue.");
-    } catch (error) { setResearchStatus("researchTaskStatusMessage", error.message || "Research task could not be saved."); }
-    finally { if (button) button.disabled = false; }
-  });
-
-  document.addEventListener("change", async (event) => {
-    const statusSelect = event.target.closest("[data-research-task-status]");
-    if (!statusSelect || !window.FamilyCloud?.isAdmin) return;
-    statusSelect.disabled = true;
-    try {
-      await window.FamilyCloud.updateResearchTask(statusSelect.dataset.researchTaskStatus, { status: statusSelect.value });
-      await refreshResearchWorkspace(); await renderResearchCenter();
-    } catch (error) { window.alert("Could not update research task: " + (error.message || "Unknown error")); statusSelect.disabled = false; }
-  });
-  document.addEventListener("click", async (event) => {
-    const removeRecord = event.target.closest("[data-delete-research-record]");
-    const removeTask = event.target.closest("[data-delete-research-task]");
-    const removeEvent = event.target.closest("[data-delete-timeline-event]");
-    const openRecord = event.target.closest("[data-open-research-record]");
-    if (removeRecord) {
-      if (!window.FamilyCloud?.isAdmin || !window.confirm("Delete this research record and its stored file? Any linked timeline event will remain but lose its record attachment.")) return;
-      removeRecord.disabled = true;
-      try { await window.FamilyCloud.deleteResearchRecord(removeRecord.dataset.deleteResearchRecord); await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter(); }
-      catch (error) { window.alert("Could not delete research record: " + (error.message || "Unknown error")); removeRecord.disabled = false; }
-    }
-    if (removeTask) {
-      if (!window.FamilyCloud?.isAdmin || !window.confirm("Delete this research task?")) return;
-      removeTask.disabled = true;
-      try { await window.FamilyCloud.deleteResearchTask(removeTask.dataset.deleteResearchTask); await refreshResearchWorkspace(); await renderResearchCenter(); }
-      catch (error) { window.alert("Could not delete research task: " + (error.message || "Unknown error")); removeTask.disabled = false; }
-    }
-    if (removeEvent) {
-      if (!window.FamilyCloud?.isAdmin || !window.confirm("Remove this administrator-added timeline event?")) return;
-      removeEvent.disabled = true;
-      try { await window.FamilyCloud.deleteTimelineEvent(removeEvent.dataset.deleteTimelineEvent); await refreshResearchWorkspace(); renderTimeline(); await renderResearchCenter(); }
-      catch (error) { window.alert("Could not remove timeline event: " + (error.message || "Unknown error")); removeEvent.disabled = false; }
-    }
-    if (openRecord) {
-      const record = document.getElementById("research-record-" + openRecord.dataset.openResearchRecord);
-      if (record) { record.scrollIntoView({ behavior: "smooth", block: "center" }); record.classList.add("research-record-highlight"); setTimeout(() => record.classList.remove("research-record-highlight"), 1800); }
-    }
-  });
-}
-
 let familyMigrationMap = null;
 let familyMapMarkers = [];
 let familyMapOverlays = [];
@@ -2293,7 +1866,7 @@ function renderAncestralPlaces() {
     ["Carlatan, San Fernando City", "Don Leon Lacsamana", "Residence in family memoir", "Family-reported account; no property deed attached"],
     ["Daya, San Fernando City", "Doña Francisca · Don Leon's children", "Place visited in family memoir", "Family-reported account"],
     ["San Juan, La Union", "Evaristo Guadalupe y Villaverde", "Recorded deathplace", "FamilySearch screenshot and Augustinian archival register"],
-    ["Luna, La Union", "Alfredo Lacsamana · Juanita Valdris", "Indexed marriage location · 1944", "User-supplied index summary; original register needed"],
+    ["Luna, La Union", "Alfredo Lacsamana · Juanita Valdivia / Valdris", "Register entry location · 1944", "Supplied register-page scan; surname and age differences remain unresolved"],
     ["Ocaña, Toledo, Spain", "Evaristo Guadalupe y Villaverde", "Recorded birthplace · 1830", "FamilySearch screenshot / Augustinian archival register"],
     ["Marilao, Bulacan", "Inocencia Lacsamana · Alejandro David", "Separate marriage-record location · 1922", "Unlinked research group"],
     ["San Pablo City, Laguna", "Rafaela Lacsamana · Victor Umila", "Separate death-record location · 1953", "Unlinked research group; index classification needs review"],
@@ -2654,8 +2227,7 @@ function initContributionPortal() {
 
 function initExpansionFeatures() {
   renderMigrationStories();
-  ["worldPersonSelect","homePersonSelect","portraitPersonSelect","institutionPersonSelect","lifePersonSelect","lifeNotePersonSelect","migrationStoryPerson","researchRecordPeople","researchTaskPerson","timelinePersonFilter","timelineEventPeople"].forEach((id) => populateArchivePersonSelect(id, ["homePersonSelect","researchTaskPerson","timelinePersonFilter"].includes(id))); 
-  const timelinePersonFilter = $("#timelinePersonFilter"); if (timelinePersonFilter?.options[0]) timelinePersonFilter.options[0].textContent = "All family members";
+  ["worldPersonSelect","homePersonSelect","portraitPersonSelect","institutionPersonSelect","lifePersonSelect","lifeNotePersonSelect","migrationStoryPerson"].forEach((id) => populateArchivePersonSelect(id, id === "homePersonSelect"));
   const worldSelect = $("#worldPersonSelect"); if (worldSelect) { worldSelect.value = PEOPLE["evaristo-guadalupe"] ? "evaristo-guadalupe" : worldSelect.options[0]?.value; worldSelect.addEventListener("change", renderWorldExplorer); }
   const region = $("#worldRegionSelect"); if (region) region.addEventListener("change", renderWorldExplorer);
   const lifeSelect = $("#lifePersonSelect"); if (lifeSelect) { lifeSelect.value = PEOPLE.leon ? "leon" : lifeSelect.options[0]?.value; lifeSelect.addEventListener("change", renderLifeStory); }
@@ -2727,7 +2299,7 @@ function renderLifeStory() {
   const kin = kinshipSummary(id);
   const spouseList = spousesOf(id).map((r) => PEOPLE[r.id]).filter(Boolean);
   const children = kidsOf(id).map((r) => PEOPLE[r.id]).filter(Boolean);
-  const events = ARCHIVE_EVENTS.filter((event) => event.people.includes(id)).map((event) => ({ date: event.date, title: event.title, status: event.status, sort: event.sort || "9999-99-99" })).concat(researchTimelineEvents.filter((event) => (event.person_ids || []).includes(id)).map((event) => ({ date: event.event_date || "Date not established", title: event.title, status: RESEARCH_EVIDENCE_LABELS[event.evidence_status] || "Evidence status not recorded", sort: event.sort_date || "9999-99-99" }))).sort((a,b) => a.sort.localeCompare(b.sort));
+  const events = ARCHIVE_EVENTS.filter((event) => event.people.includes(id)).slice().sort((a,b) => a.sort.localeCompare(b.sort));
   const places = GEOGRAPHY.flatMap((place) => (place.events || []).filter((event) => (event.personIds || []).includes(id)).map((event) => ({place:place.place,event})));
   const notes = archiveStore.lifeStories.filter((item) => item.personId === id);
   target.innerHTML = '<header class="life-story-header"><span class="archive-mini-label">' + expansionEscape(p.status || p.k || "Family profile") + '</span><h4>' + expansionEscape(nameOf(p)) + '</h4><p>' + expansionEscape(roleOf(p)) + (p.d ? ' · ' + expansionEscape(p.d) : '') + '</p><p>' + expansionEscape(p.n || "No biographical narrative has been added to this profile yet.") + '</p></header>' + historicalSectionsMarkup(id, expansionEscape) + '<div class="life-story-columns"><section class="life-story-block"><h5>Family connections</h5><p><strong>Parents:</strong> ' + expansionEscape(parents.map(nameOf).join(" · ") || "Not established") + '</p><p><strong>Spouse(s):</strong> ' + expansionEscape(spouseList.map(nameOf).join(" · ") || "Not established") + '</p><p><strong>Children:</strong> ' + expansionEscape(children.map(nameOf).join(" · ") || "No children recorded") + '</p><p><strong>Siblings:</strong> ' + expansionEscape(kin.siblings.map((sid) => PEOPLE[sid] ? nameOf(PEOPLE[sid]) : "").filter(Boolean).join(" · ") || "Not established") + '</p></section><section class="life-story-block"><h5>Recorded life events</h5>' + (events.length ? events.map((e) => '<div class="life-event-row"><strong>' + expansionEscape(e.date + " · " + e.title) + '</strong><span>' + expansionEscape(e.status) + '</span></div>').join("") : '<p>No dated family timeline events are currently linked to this person.</p>') + '</section><section class="life-story-block"><h5>Recorded places</h5>' + (places.length ? places.map((item) => '<div class="life-event-row"><strong>' + expansionEscape(item.place) + '</strong><span>' + expansionEscape(item.event.title + " · " + item.event.date + " · " + item.event.status) + '</span></div>').join("") : '<p>No birthplace, residence, marriage, or deathplace entry is connected in the current map.</p>') + '</section><section class="life-story-block"><h5>Additional biographical episodes</h5>' + (notes.length ? notes.map((item) => '<div class="life-event-row"><strong>' + expansionEscape(item.date + " · " + item.title) + '</strong><p>' + expansionEscape(item.body) + '</p><span>' + expansionEscape(item.type + " · " + (item.source || "No source supplied")) + '</span></div>').join("") : '<p>No additional biography episodes have been added for this person.</p>') + '</section></div>';
@@ -2735,7 +2307,7 @@ function renderLifeStory() {
 
 function renderArchiveSections() {
   renderSurnameRegister(); renderTimeline(); setupFamilyMapControls(); renderGeography(); renderUnidentified(); renderBiographies(); renderKnownSources(); renderAncestralPlaces(); renderSavedArchiveEntries();
-  initArchiveForms(); initExpansionFeatures(); initResearchFeatures(); renderResearchCenter(); renderArchiveFiles();
+  initArchiveForms(); initExpansionFeatures(); renderArchiveFiles();
 }
 
 /* ---------- V16 premium interaction layer ---------- */
@@ -2887,9 +2459,6 @@ async function bootFamilyArchive() {
         localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archiveStore));
       }
     } catch (error) { console.warn("Cloud archive notes could not be loaded; using this browser's saved copy.", error); }
-    await refreshResearchWorkspace();
-  } else {
-    researchWorkspaceErrors = ["Supabase is not configured"];
   }
   resetData();
   applyStore();
@@ -2928,9 +2497,6 @@ window.addEventListener("family-cloud-permission-change", async () => {
     localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archiveStore));
     renderSavedArchiveEntries(); renderAncestralPlaces(); renderInstitutionDirectory(); renderCustomLifeNotes(); renderAncestralHomeGallery(); renderMediaGalleries(); renderBiographies(); renderMigrationStories();
   } catch (error) { console.warn("Cloud archive notes could not be loaded.", error); }
-  await refreshResearchWorkspace();
-  renderTimeline();
-  await renderResearchCenter();
   await renderContributionPortal();
 });
 window.addEventListener("family-cloud-sync-request", async () => {

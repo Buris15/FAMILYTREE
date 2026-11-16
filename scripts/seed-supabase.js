@@ -42,6 +42,7 @@ async function main() {
     throw new Error("The base genealogy is already seeded. No changes were made. Use `npm run seed -- --force` only if you intentionally want to replace the base dataset; existing tree edits will be preserved.");
   }
   const existingEdits = current?.payload?.treeEdits || { over: {}, add: [] };
+  const isPublished = current ? current.is_published === true : true;
   const payload = { baseData, treeEdits: existingEdits };
   const response = await fetch(endpoint + "?on_conflict=id", {
     method: "POST",
@@ -49,7 +50,7 @@ async function main() {
       "Content-Type": "application/json",
       Prefer: "resolution=merge-duplicates,return=minimal"
     }),
-    body: JSON.stringify({ id: "main", payload, is_published: true, updated_at: new Date().toISOString() })
+    body: JSON.stringify({ id: "main", payload, is_published: isPublished, updated_at: new Date().toISOString() })
   });
   if (!response.ok) {
     throw new Error("Supabase seed failed (" + response.status + "): " + await response.text());
@@ -59,7 +60,8 @@ async function main() {
   console.log("Unions:", (baseData.unions || []).length);
   console.log("Family index groups:", (baseData.familyIndex || []).length);
   console.log("Existing shared tree edits preserved:", !!current?.payload?.treeEdits);
-  console.log("The published family_tree_state row now contains the base data and shared edits.");
+  console.log("Existing publication setting preserved:", isPublished);
+  console.log("The family_tree_state row now contains the base data and shared edits.");
   console.log("The secret key was used only by this local script and was not written to browser files.");
 }
 

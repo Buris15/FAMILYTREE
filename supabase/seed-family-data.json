@@ -131,27 +131,29 @@
       "religion": "Not documented in available sources",
       "d": "c. 1917",
       "status": "family",
-      "n": "Estimated birth year based on the supplied civil-registration index: age 27 at marriage in 1944. Treat the year as an estimate, not a confirmed birth date."
+      "n": "The supplied register-page scan (page 71; record 6079, registration 108) records Alfredo Lacsamana, age 27, and lists Leon Lacsamana and Cayetana Munar as his parents. The same entry names his wife as Juanita Valdivia and lists Andres Valdivia and Marcelina Bautista as her parents. Earlier index notes spell the surnames Valdris; preserve this as a name-variant discrepancy until a certified copy resolves it."
     },
     "juanita-valdris": {
       "id": "juanita-valdris",
-      "name": "Juanita Valdris",
-      "role": "Wife of Alfredo ‘Pidong’",
+      "name": "Juanita Valdivia Lacsamana",
+      "role": "Wife of Alfredo “Pidong” Lacsamana",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "fam": "Valdris",
+      "fam": "Valdivia / Valdris",
       "status": "record",
-      "n": "Supplied indexed marriage details: married Alfredo Lacsamana on October 8, 1944 in Luna, La Union. Record 6079, page 71, registration 108. Indexed age 27; estimated birth year c. 1917. Parents listed: Andres Valdris and Marcelina Bautista. Original register image still needs examination."
+      "n": "The supplied family biography identifies her as Dr. Juanita Valdivia Lacsamana, Ed.D., affectionately known as “Tetang”, born 8 March 1917 in Alaminos, Pangasinan. It says she celebrated her 100th birthday in 2017. The supplied 1944 register-page scan appears to read “Juanita Valdivia” and lists Andres Valdivia and Marcelina Bautista as her parents; the earlier indexed summary and archive label use “Juanita Valdris”. The scan records age 27 years 9 months, which does not exactly match the supplied 8 March 1917 birth date. Keep the name and age differences visible pending a certified record. Career and public-service details in the biography are family-supplied and have not yet been independently corroborated.",
+      "d": "8 March 1917"
     },
     "andres-valdris": {
       "id": "andres-valdris",
-      "name": "Andres Valdris",
-      "role": "Father of Juanita Valdris",
+      "name": "Andres Valdris / Valdivia",
+      "role": "Father listed for Juanita Valdris / Valdivia",
       "k": "todo",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "status": "family"
+      "status": "family",
+      "n": "The 1944 register-page scan appears to spell his surname “Valdivia”; the earlier supplied index says “Valdris”. The variant is unresolved."
     },
     "marcelina-bautista": {
       "id": "marcelina-bautista",
@@ -182,7 +184,7 @@
       "religion": "Not documented in available sources",
       "d": "c. 1927",
       "status": "family",
-      "n": "Supplied indexed marriage details: age 28 at marriage registration on January 2, 1955 in La Union; estimated birth year c. 1927. Original registration image not yet examined."
+      "n": "The supplied marriage contract dated 2 January 1955 at the Immaculate Conception Church, San Fernando, La Union records Joaquin Lacsamana as age 27 years 10 months and names Leon Lacsamana and Emilia Garcia as his parents. It names Concepcion Viloria and lists Leocadio Viloria and Prisea Nuval as her parents. Earlier index summaries gave Concepcion age 29; the scanned contract records 26 years 10 months, so the age discrepancy is retained rather than silently reconciled."
     },
     "concepcion-viloria": {
       "id": "concepcion-viloria",
@@ -193,7 +195,7 @@
       "religion": "Not documented in available sources",
       "fam": "Viloria",
       "status": "record",
-      "n": "Supplied indexed marriage details: married Joaquin Lacsamana on January 2, 1955 in La Union. Indexed age 29; estimated birth year c. 1926. Parents listed: Leocadio Viloria and Prisea Nuval. Original register image still needs examination."
+      "n": "The supplied marriage contract dated 2 January 1955 at the Immaculate Conception Church, San Fernando, La Union names Leocadio Viloria and Prisea Nuval as her parents. The contract records her age as 26 years 10 months; an earlier supplied index summary said 29. A separate updates note spells her mother’s name “Prinsea”; the scanned contract appears to read “Prisea”. Preserve the spelling and age variants pending a certified copy."
     },
     "leocadio-viloria": {
       "id": "leocadio-viloria",
@@ -222,7 +224,7 @@
       "religion": "Not documented in available sources",
       "d": "c. 1929",
       "status": "family",
-      "n": "Supplied indexed marriage details: age 29 at marriage registration on September 8, 1958 in La Union; estimated birth year c. 1929. Original registration image not yet examined."
+      "n": "The supplied marriage contract dated 8 September 1958 at the Office of the Justice of the Peace, San Fernando, La Union records Francisco Lacsamana, age 29, and names Leon Lacsamana and Emiliana Garcia as his parents. The spouse entry names Pacita Lomiteng, age 27, and lists Mariano Lomiteng and Rafaela Buyao as her parents. The family notes also use the variant “Emilia Garcia”."
     },
     "pacita-lomiteng": {
       "id": "pacita-lomiteng",
@@ -233,7 +235,7 @@
       "religion": "Not documented in available sources",
       "fam": "Lomiteng",
       "status": "record",
-      "n": "Supplied indexed marriage details: married Francisco Lacsamana on September 8, 1958 in La Union. Indexed age 27; estimated birth year c. 1931. Parents listed: Mariano Lomiteng and Rafaela Buyao. Original register image still needs examination."
+      "n": "The supplied marriage contract dated 8 September 1958 at the Office of the Justice of the Peace, San Fernando, La Union names Mariano Lomiteng and Rafaela Buyao as her parents. The contract records her age as 27 at marriage to Francisco Lacsamana."
     },
     "mariano-lomiteng": {
       "id": "mariano-lomiteng",
@@ -260,10 +262,10 @@
       "k": "you",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "d": "c. 1933",
+      "d": "c. 1922 (estimated from age recorded at marriage)",
       "status": "family",
       "av": "🏡",
-      "n": "Supplied indexed marriage details: age 26 at marriage registration on July 27, 1959 in La Union; estimated birth year c. 1933. Married Purita Argueza. Original registration image not yet examined."
+      "n": "The supplied marriage contract dated 27 July 1959 at the Office of the Justice of the Peace, San Fernando, La Union records Eduardo Lacsamana as age 36 years 11 months and identifies Leon Lacsamana and Emilia Garcia as his parents. This implies an approximate birth year around 1922, which conflicts with the earlier index-based estimate of c. 1933; the original contract age is shown here while the discrepancy remains open. The contract records Purita Argueza as age 18 years 5 months and names Isabelo Argueza and Concepcion Rillera as her parents."
     },
     "paz-munar": {
       "id": "paz-munar",
@@ -284,7 +286,7 @@
       "religion": "Not documented in available sources",
       "fam": "Argueza",
       "status": "record",
-      "n": "Supplied indexed marriage details: married Eduardo Lacsamana on July 27, 1959 in La Union. Indexed age 18; estimated birth year c. 1941. Parents listed: Isabelo Argueza and Concepcion Rillera. Original register image still needs examination."
+      "n": "The supplied marriage contract dated 27 July 1959 at the Office of the Justice of the Peace, San Fernando, La Union records Purita Argueza as age 18 years 5 months and identifies Isabelo Argueza and Concepcion Rillera as her parents. It names Eduardo Lacsamana, age 36 years 11 months, as her husband."
     },
     "isabelo-argueza": {
       "id": "isabelo-argueza",
@@ -464,7 +466,8 @@
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "status": "record",
-      "n": "Indexed marriage registration: November 16, 1962; age 62 (estimated birth year c. 1900). Spouse: Felicidad Santos, indexed age 60 (c. 1902). Other people listed: Ramon Santos and Candida Lacsamana. Relationship of those additional names is not specified in the supplied extract."
+      "n": "The supplied marriage contract dated 16 November 1962 at Our Lady of Perpetual Help Parish names Leon Lacsamana and Alejandra Capalad as Macario’s parents. It records Macario age 62 and his wife Felicidad Santos age 60; Ramon Santos and Candida Lacsamana are listed as Felicidad’s parents. This document supports the separate Bulacan / Manila Leon record group and does not establish that this Leon is Don Leon of the La Union family branch.",
+      "d": "c. 1900 (estimated from age recorded at marriage)"
     },
     "felicidad-santos": {
       "id": "felicidad-santos",
@@ -474,7 +477,9 @@
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "fam": "Santos",
-      "status": "record"
+      "status": "record",
+      "d": "c. 1902 (estimated from age recorded at marriage)",
+      "n": "The supplied marriage contract dated 16 November 1962 at Our Lady of Perpetual Help Parish records Felicidad Santos as age 60 and names Ramon Santos and Candida Lacsamana as her parents. It names Macario Lacsamana, age 62, as her husband."
     },
     "ramon-santos": {
       "id": "ramon-santos",
@@ -1715,6 +1720,146 @@
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources"
+    },
+    "rufino-dacanay": {
+      "id": "rufino-dacanay",
+      "name": "Rufino Dacanay",
+      "role": "Father listed for Sheryll Dacanay",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Family-supplied relationship from the 16 November 2026 research update; original birth or civil record not attached."
+    },
+    "felicidad-natarte": {
+      "id": "felicidad-natarte",
+      "name": "Felicidad Natarte",
+      "role": "Mother listed for Sheryll Dacanay",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Family-supplied relationship from the 16 November 2026 research update; original birth or civil record not attached."
+    },
+    "lourdes-lacsamana": {
+      "id": "lourdes-lacsamana",
+      "name": "Lourdes Lacsamana",
+      "role": "Eldest daughter of Alfredo “Pidong” and Juanita",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named as the eldest daughter in the family-supplied 16 November 2026 research update; no date or original record attached."
+    },
+    "oneil-lacsamana": {
+      "id": "oneil-lacsamana",
+      "name": "O’Neil Lacsamana",
+      "role": "Second eldest son of Alfredo “Pidong” and Juanita",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "alberto-lacsamana": {
+      "id": "alberto-lacsamana",
+      "name": "Alberto Lacsamana",
+      "role": "Middle child of Alfredo “Pidong” and Juanita",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "alfredo-jr-lacsamana": {
+      "id": "alfredo-jr-lacsamana",
+      "name": "Alfredo Lacsamana Jr.",
+      "role": "Second youngest son of Alfredo “Pidong” and Juanita",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "alfonso-ramon-mons-lacsamana": {
+      "id": "alfonso-ramon-mons-lacsamana",
+      "name": "Msgr. Alfonso Ramon “Mons” V. Lacsamana",
+      "role": "Youngest son of Alfredo “Pidong” and Juanita",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "milagros-gandingan": {
+      "id": "milagros-gandingan",
+      "name": "Milagros Gandingan",
+      "role": "Wife of Jerry Lacsamana",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Spouse relationship supplied in the 16 November 2026 family update; marriage date and original record not supplied."
+    },
+    "makoy-lacsamana": {
+      "id": "makoy-lacsamana",
+      "name": "Makoy Lacsamana",
+      "role": "Eldest child of Jerry and Milagros",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "josephine-lacsamana": {
+      "id": "josephine-lacsamana",
+      "name": "Josephine Lacsamana",
+      "role": "Second eldest daughter of Jerry and Milagros",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Name and birth order supplied in the family update; no date or original record attached."
+    },
+    "private-jerry-youngest": {
+      "id": "private-jerry-youngest",
+      "name": "Private",
+      "role": "Youngest daughter of Jerry and Milagros · name withheld",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied family update explicitly marks this child as Private. No identifying details are displayed."
+    },
+    "ariane-agnes": {
+      "id": "ariane-agnes",
+      "name": "Ariane Agnes",
+      "role": "Wife of Richard Lee",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Spouse relationship supplied in the 16 November 2026 family update; marriage date and original record not supplied."
+    },
+    "private-richard-eldest": {
+      "id": "private-richard-eldest",
+      "name": "Private",
+      "role": "Eldest daughter of Richard Lee and Ariane Agnes · name withheld",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied family update explicitly marks this child as Private. No identifying details are displayed."
+    },
+    "private-richard-youngest": {
+      "id": "private-richard-youngest",
+      "name": "Private",
+      "role": "Youngest daughter of Richard Lee and Ariane Agnes · name withheld",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied family update explicitly marks this child as Private. No identifying details are displayed."
     }
   },
   "unions": [
@@ -1732,7 +1877,7 @@
       "kids": [
         "juanita-valdris"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "martin-lacsamana",
@@ -1757,7 +1902,7 @@
       "kids": [
         "alfredo-pidong"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "leon",
@@ -1770,7 +1915,13 @@
     {
       "a": "alfredo-pidong",
       "b": "juanita-valdris",
-      "kids": [],
+      "kids": [
+        "lourdes-lacsamana",
+        "oneil-lacsamana",
+        "alberto-lacsamana",
+        "alfredo-jr-lacsamana",
+        "alfonso-ramon-mons-lacsamana"
+      ],
       "line": "pending"
     },
     {
@@ -1779,7 +1930,7 @@
       "kids": [
         "concepcion-viloria"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "joaquin-lac",
@@ -1793,7 +1944,7 @@
       "kids": [
         "pacita-lomiteng"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "francisco-lac",
@@ -1807,7 +1958,7 @@
       "kids": [
         "purita-argueza"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "leon",
@@ -1817,7 +1968,7 @@
         "francisco-lac",
         "eduardo"
       ],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "eduardo",
@@ -1876,7 +2027,7 @@
       "a": "macario-lac",
       "b": "felicidad-santos",
       "kids": [],
-      "line": "pending"
+      "line": "blood"
     },
     {
       "a": "inocencia-lac",
@@ -2183,6 +2334,41 @@
         "evaristo"
       ],
       "line": "blood"
+    },
+    {
+      "a": "rufino-dacanay",
+      "b": "felicidad-natarte",
+      "kids": [
+        "sheryll-dacanay"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "jerry",
+      "b": "milagros-gandingan",
+      "kids": [
+        "makoy-lacsamana",
+        "josephine-lacsamana",
+        "private-jerry-youngest"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "richard-lee",
+      "b": "ariane-agnes",
+      "kids": [
+        "private-richard-eldest",
+        "private-richard-youngest"
+      ],
+      "line": "pending"
+    },
+    {
+      "a": "ramon-santos",
+      "b": "candida-lacsamana",
+      "kids": [
+        "felicidad-santos"
+      ],
+      "line": "blood"
     }
   ],
   "chip": {
@@ -2206,12 +2392,15 @@
     "titing": "Five children are named in the reunion program.",
     "concepcion": "The reunion biography says she never married and had no children; she cared for her mother and nieces and nephews.",
     "mary": "The reunion biography names three daughters.",
-    "evaristo": "The reunion biography and the Ortega Twins biography name all six children."
+    "evaristo": "The reunion biography and the Ortega Twins biography name all six children.",
+    "alfredo-pidong": "The 1944 register-page scan supports the marriage entry and records Alfredo’s parents as Leon Lacsamana and Cayetana Munar. The five children listed under Alfredo and Juanita come from the family-supplied update; no individual birth records are attached yet.",
+    "jerry": "Milagros Gandingan is identified as Jerry’s wife in family-supplied notes. Their children are listed from the same update; the youngest daughter remains unnamed as Private.",
+    "richard-lee": "Ariane Agnes is identified as Richard Lee’s wife in family-supplied notes. Their two daughters are intentionally displayed as Private."
   },
   "familyIndex": [
     {
       "name": "Don Leon Lacsamana · La Union",
-      "how": "Leon is reported as Francisca’s brother. His reported children are Alfredo, Joaquin, Francisco and Eduardo, through two reported marriages. The Eduardo branch continues through Jeffrey, Adrian and Eloisa, and through Edna Lacsamana, her husband Arthur Lee Jr., and their reported sons Richard Lee and Noel John Lee. Family-supplied and indexed details remain awaiting original-record verification.",
+      "how": "Leon is reported as Francisca’s brother. His reported children include Alfredo “Pidong”, Joaquin, Francisco and Eduardo; the scanned contracts identify the parents named in the Joaquin, Francisco and Eduardo entries. Alfredo and Juanita’s five children are listed from the family update. The Eduardo branch continues through Jeffrey, Adrian and Eloisa; Edna, Arthur Lee Jr., Richard and Noel John; and Jerry with wife Milagros and their named / privacy-protected children. Sheryll Dacanay’s parent names are family-supplied leads. Family-supplied relationships remain provisional where original records are not attached.",
       "ids": [
         "ramona-lopez",
         "leon",
@@ -2228,7 +2417,21 @@
         "noel-john-lee",
         "arthur-lee-jr",
         "adrian",
-        "sister"
+        "sister",
+        "lourdes-lacsamana",
+        "oneil-lacsamana",
+        "alberto-lacsamana",
+        "alfredo-jr-lacsamana",
+        "alfonso-ramon-mons-lacsamana",
+        "milagros-gandingan",
+        "makoy-lacsamana",
+        "josephine-lacsamana",
+        "private-jerry-youngest",
+        "ariane-agnes",
+        "private-richard-eldest",
+        "private-richard-youngest",
+        "rufino-dacanay",
+        "felicidad-natarte"
       ]
     },
     {
@@ -2241,18 +2444,23 @@
       ]
     },
     {
-      "name": "Valdris · Bautista",
-      "how": "Juanita Valdris married Alfredo ‘Pidong’ Lacsamana in Luna on October 8, 1944. Andres Valdris and Marcelina Bautista are listed as her parents in the supplied index.",
+      "name": "Valdris · Valdivia · Bautista",
+      "how": "Juanita is named “Valdris” in the earlier supplied index and appears as “Valdivia” in the supplied 1944 register-page scan and family biography. The scan lists Andres Valdivia and Marcelina Bautista as her parents. Keep Valdris / Valdivia as an unresolved spelling discrepancy pending a certified copy.",
       "ids": [
         "alfredo-pidong",
         "juanita-valdris",
         "andres-valdris",
-        "marcelina-bautista"
+        "marcelina-bautista",
+        "lourdes-lacsamana",
+        "oneil-lacsamana",
+        "alberto-lacsamana",
+        "alfredo-jr-lacsamana",
+        "alfonso-ramon-mons-lacsamana"
       ]
     },
     {
       "name": "Viloria · Nuval",
-      "how": "Concepcion Viloria married Joaquin Lacsamana in a registration dated January 2, 1955. Leocadio Viloria and Prisea Nuval are listed as her parents.",
+      "how": "The 2 January 1955 marriage contract names Leocadio Viloria and Prisea Nuval as Concepcion’s parents. A separate update note spells the mother’s name “Prinsea”; the scan appears to read “Prisea”.",
       "ids": [
         "joaquin-lac",
         "concepcion-viloria",
@@ -2262,7 +2470,7 @@
     },
     {
       "name": "Lomiteng · Buyao",
-      "how": "Pacita Lomiteng married Francisco Lacsamana in a registration dated September 8, 1958. Mariano Lomiteng and Rafaela Buyao are listed as her parents.",
+      "how": "The 8 September 1958 marriage contract names Mariano Lomiteng and Rafaela Buyao as Pacita’s parents and records the marriage to Francisco Lacsamana in San Fernando, La Union.",
       "ids": [
         "francisco-lac",
         "pacita-lomiteng",
@@ -2272,7 +2480,7 @@
     },
     {
       "name": "Argueza · Rillera",
-      "how": "Purita Argueza married Eduardo Lacsamana in a registration dated July 27, 1959. Their children are Jeffrey, Edna and Jerry. Isabelo Argueza and Concepcion Rillera are listed as Purita’s parents.",
+      "how": "The 27 July 1959 marriage contract names Isabelo Argueza and Concepcion Rillera as Purita’s parents. It records Eduardo Lacsamana age 36 years 11 months, which conflicts with the earlier index-based birth-year estimate.",
       "ids": [
         "eduardo",
         "purita-argueza",
@@ -2280,22 +2488,29 @@
         "edna",
         "jerry",
         "isabelo-argueza",
-        "concepcion-rillera"
+        "concepcion-rillera",
+        "milagros-gandingan",
+        "makoy-lacsamana",
+        "josephine-lacsamana",
+        "private-jerry-youngest"
       ]
     },
     {
       "name": "Lee · Edna Lacsamana’s descendants",
-      "how": "Corrected family-supplied information identifies Arthur Lee Jr. as Edna Lacsamana’s husband, and Richard Lee and Noel John Lee as her reported sons. Dates and original supporting records have not yet been supplied.",
+      "how": "Edna Lacsamana and Arthur Lee Jr. are listed as the parents of Richard Lee and Noel John Lee. The family update adds Richard’s wife Ariane Agnes and two daughters whose names are withheld as Private.",
       "ids": [
         "edna",
         "richard-lee",
         "noel-john-lee",
-        "arthur-lee-jr"
+        "arthur-lee-jr",
+        "ariane-agnes",
+        "private-richard-eldest",
+        "private-richard-youngest"
       ]
     },
     {
       "name": "Separate Leon record groups",
-      "how": "Bulacan / Manila (Alejandra Capalad), Teodora Lacanilao, and San Pablo / Laguna records are kept separate. They are not linked to Don Leon of La Union without evidence.",
+      "how": "Separate Leon Lacsamana record groups are retained. The 16 November 1962 marriage contract identifies Macario’s parents as Leon Lacsamana and Alejandra Capalad and Felicidad’s parents as Ramon Santos and Candida Lacsamana. This is not evidence that this Leon is Don Leon of La Union.",
       "ids": [
         "leon-bulacan",
         "alejandra-capalad",
@@ -2312,7 +2527,8 @@
         "felipe-david",
         "dominga-timbal",
         "benjamin-sombillo",
-        "victoriana-samson"
+        "victoriana-samson",
+        "felicidad-santos"
       ]
     },
     {
@@ -2434,6 +2650,15 @@
         "rosa",
         "luz",
         "nila"
+      ]
+    },
+    {
+      "name": "Dacanay · Natarte",
+      "how": "The supplied family update names Rufino Dacanay and Felicidad Natarte as Sheryll Dacanay’s parents. This relationship remains a family-supplied lead; no original birth or civil record has been attached.",
+      "ids": [
+        "sheryll-dacanay",
+        "rufino-dacanay",
+        "felicidad-natarte"
       ]
     }
   ]
