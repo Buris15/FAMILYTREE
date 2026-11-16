@@ -1,103 +1,5 @@
 {
   "people": {
-  "rufino-dacanay": {
-    "id": "rufino-dacanay",
-    "name": "Rufino Dacanay",
-    "role": "Father of Sheryll Dacanay",
-    "k": "todo",
-    "nationality": "Not documented in available sources",
-    "religion": "Not documented in available sources"
-  },
-  "felicidad-natarte": {
-    "id": "felicidad-natarte",
-    "name": "Felicidad Natarte",
-    "role": "Mother of Sheryll Dacanay",
-    "k": "todo",
-    "nationality": "Not documented in available sources",
-    "religion": "Not documented in available sources"
-  },
-  "lourdes-lacsamana": {
-    "id": "lourdes-lacsamana",
-    "name": "Lourdes Lacsamana",
-    "role": "Eldest daughter of Alfredo ‘Pidong’ Lacsamana and Juanita Valdris",
-    "k": "todo"
-  },
-  "oneil-lacsamana": {
-    "id": "oneil-lacsamana",
-    "name": "O'Neil Lacsamana",
-    "role": "Second eldest son of Alfredo ‘Pidong’ Lacsamana and Juanita Valdris",
-    "k": "todo"
-  },
-  "alberto-lacsamana": {
-    "id": "alberto-lacsamana",
-    "name": "Alberto Lacsamana",
-    "role": "Middle child of Alfredo ‘Pidong’ Lacsamana and Juanita Valdris",
-    "k": "todo"
-  },
-  "alfredo-jr-lacsamana": {
-    "id": "alfredo-jr-lacsamana",
-    "name": "Alfredo Lacsamana Jr.",
-    "role": "Second youngest son of Alfredo ‘Pidong’ Lacsamana and Juanita Valdris",
-    "k": "todo"
-  },
-  "alfonso-mons-lacsamana": {
-    "id": "alfonso-mons-lacsamana",
-    "name": "Msgr. Alfonso Ramon “Mons” V. Lacsamana",
-    "role": "Youngest son of Alfredo ‘Pidong’ Lacsamana and Juanita Valdris",
-    "k": "todo"
-  },
-  "milagros-gandingan": {
-    "id": "milagros-gandingan",
-    "name": "Milagros Gandingan",
-    "role": "Wife of Jerry Lacsamana",
-    "k": "sp"
-  },
-  "makoy-lacsamana": {
-    "id": "makoy-lacsamana",
-    "name": "Makoy Lacsamana",
-    "role": "Eldest child of Jerry Lacsamana and Milagros Gandingan",
-    "k": "todo"
-  },
-  "josephine-lacsamana": {
-    "id": "josephine-lacsamana",
-    "name": "Josephine Lacsamana",
-    "role": "Second eldest daughter of Jerry Lacsamana and Milagros Gandingan",
-    "k": "todo"
-  },
-  "private-jerry-child": {
-    "id": "private-jerry-child",
-    "name": "Private",
-    "role": "Youngest daughter of Jerry Lacsamana and Milagros Gandingan",
-    "k": "todo",
-    "ed": 1
-  },
-  "ariane-agnes": {
-    "id": "ariane-agnes",
-    "name": "Ariane Agnes",
-    "role": "Wife of Richard Lee",
-    "k": "sp"
-  },
-  "private-richard-child1": {
-    "id": "private-richard-child1",
-    "name": "Private",
-    "role": "Eldest daughter of Richard Lee and Ariane Agnes",
-    "k": "todo",
-    "ed": 1
-  },
-  "private-richard-child2": {
-    "id": "private-richard-child2",
-    "name": "Private",
-    "role": "Youngest daughter of Richard Lee and Ariane Agnes",
-    "k": "todo",
-    "ed": 1
-  },
-  "juanita-valdris": {
-    "id": "juanita-valdris",
-    "name": "Juanita Valdris",
-    "role": "Wife of Alfredo ‘Pidong’",
-    "k": "sp",
-    "n": "Dr. Juanita Valdivia Lacsamana, Ed.D., affectionately known as \"Tetang,\" was a prominent educator, academic administrator, and devout Catholic lay leader in La Union. Born on March 8, 1917, in Alaminos, Pangasinan, she lived to become a centenarian, celebrating her 100th birthday in 2017.\n\nCareer Highlights:\n- Basic Education Leadership as a classroom teacher and school principal.\n- Earned Master's and Doctor of Education degrees.\n- Served in the Department of Education until retirement.\n- Post-retirement teaching at various colleges.\n- Leadership roles in church and local governance.\n- Recognized for longevity attributed to family bonds and faith."
-  },
     "antonio": {
       "id": "antonio",
       "name": "Antonio Ortega y Verzosa",
@@ -231,15 +133,16 @@
       "status": "family",
       "n": "Estimated birth year based on the supplied civil-registration index: age 27 at marriage in 1944. Treat the year as an estimate, not a confirmed birth date."
     },
-    
-    "marcelina-bautista": {
-      "id": "marcelina-bautista",
-      "name": "Marcelina Bautista",
-      "role": "Mother of Juanita Valdris",
-      "k": "todo",
+    "juanita-valdris": {
+      "id": "juanita-valdris",
+      "name": "Juanita Valdris",
+      "role": "Wife of Alfredo ‘Pidong’",
+      "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "status": "family"
+      "fam": "Valdris",
+      "status": "record",
+      "n": "Supplied indexed marriage details: married Alfredo Lacsamana on October 8, 1944 in Luna, La Union. Record 6079, page 71, registration 108. Indexed age 27; estimated birth year c. 1917. Parents listed: Andres Valdris and Marcelina Bautista. Original register image still needs examination."
     },
     "andres-valdris": {
       "id": "andres-valdris",
@@ -250,7 +153,15 @@
       "religion": "Not documented in available sources",
       "status": "family"
     },
-    
+    "marcelina-bautista": {
+      "id": "marcelina-bautista",
+      "name": "Marcelina Bautista",
+      "role": "Mother of Juanita Valdris",
+      "k": "todo",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family"
+    },
     "emilia-garcia": {
       "id": "emilia-garcia",
       "name": "Emilia / Emiliana Garcia",
@@ -1824,12 +1735,6 @@
       "line": "pending"
     },
     {
-    "a": "rufino-dacanay",
-    "b": "felicidad-natarte",
-    "kids": ["sheryll-dacanay"],
-    "line": "pending"
-  },
-    {
       "a": "martin-lacsamana",
       "b": "narcisa-lopez",
       "kids": [
@@ -1846,18 +1751,6 @@
       ],
       "line": "pending"
     },
-    {
-    "a": "alfredo-pidong",
-    "b": "juanita-valdris",
-    "kids": [
-      "lourdes-lacsamana",
-      "oneil-lacsamana",
-      "alberto-lacsamana",
-      "alfredo-jr-lacsamana",
-      "alfonso-mons-lacsamana"
-    ],
-    "line": "pending"
-  },
     {
       "a": "leon",
       "b": "cayetana",
@@ -1902,18 +1795,6 @@
       ],
       "line": "pending"
     },
-    {
-    "a": "jerry",
-    "b": "milagros-gandingan",
-    "kids": ["makoy-lacsamana", "josephine-lacsamana", "private-jerry-child"],
-    "line": "pending"
-  },
-  {
-    "a": "richard-lee",
-    "b": "ariane-agnes",
-    "kids": ["private-richard-child1", "private-richard-child2"],
-    "line": "pending"
-  },
     {
       "a": "francisco-lac",
       "b": "pacita-lomiteng",
