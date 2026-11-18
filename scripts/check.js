@@ -6,6 +6,8 @@ const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 const html = read("public/index.html");
 const script = read("public/script.js");
 const db = read("public/database.js");
+const researchWorkspace = read("public/research-workspace.js");
+const researchMigration = read("supabase/migrations/003_family_research_workspace.sql");
 const api = read("api/config.js");
 const seed = JSON.parse(read("supabase/seed-family-data.json"));
 const schema = read("supabase/schema.sql");
@@ -14,19 +16,20 @@ const seedScript = read("scripts/seed-supabase.js");
 
 new vm.Script(script, { filename: "public/script.js" });
 new vm.Script(db, { filename: "public/database.js" });
+new vm.Script(researchWorkspace, { filename: "public/research-workspace.js" });
 new vm.Script(api, { filename: "api/config.js" });
 new vm.Script(read("scripts/seed-supabase.js"), { filename: "scripts/seed-supabase.js" });
 
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
 const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
 if (duplicates.length) throw new Error("Duplicate HTML IDs: " + [...new Set(duplicates)].join(", "));
-for (const file of ["styles.css", "script.js", "database.js"]) {
+for (const file of ["styles.css", "script.js", "database.js", "research-workspace.js"]) {
   if (!html.includes(file)) throw new Error("index.html does not reference " + file);
 }
 for (const f of [
-  "public/index.html", "public/styles.css", "public/script.js", "public/database.js",
+  "public/index.html", "public/styles.css", "public/script.js", "public/database.js", "public/research-workspace.js",
   "api/config.js", "supabase/schema.sql", "supabase/seed-family-data.json",
-  "scripts/seed-supabase.js", "vercel.json", "README-DEPLOY.md", "supabase/migrations/002_family_contributions.sql"
+  "scripts/seed-supabase.js", "vercel.json", "README-DEPLOY.md", "supabase/migrations/002_family_contributions.sql", "supabase/migrations/003_family_research_workspace.sql"
 ]) {
   if (!fs.existsSync(path.join(root, f))) throw new Error("Missing project file: " + f);
 }
@@ -101,6 +104,17 @@ if (!seedScript.includes("const isPublished = current ? current.is_published ===
 for (const method of ["loadMyContributions", "loadPublishedContributions", "submitContribution", "reviewContribution", "contributionAttachmentUrl"]) {
   if (!db.includes(method)) throw new Error("Cloud client is missing contribution method: " + method);
 }
+for (const method of ["loadResearchWorkspace", "createResearchRecord", "deleteResearchRecord", "researchFileUrl", "createTimelineEvent", "deleteTimelineEvent", "createResearchTask", "updateResearchTask", "deleteResearchTask"]) {
+  if (!db.includes(method) || !researchWorkspace.includes(method)) throw new Error("Research workspace is missing client/controller method: " + method);
+}
+for (const id of ["family-research-center", "timelineEventForm", "researchRecordForm", "researchTaskForm", "timelineList", "researchRecordList", "researchTaskList"]) {
+  if (!ids.includes(id)) throw new Error("Research workspace HTML is missing required element: " + id);
+}
+for (const marker of ["family_research_records", "family_timeline_events", "family_research_tasks", "family-research-files", "enable row level security", "Only admins insert family research records", "Read visible family research records"]) {
+  if (!researchMigration.toLowerCase().includes(marker.toLowerCase())) throw new Error("Research workspace migration is missing security marker: " + marker);
+}
+if (!/values\s*\([\s\S]*?'family-research-files',[\s\S]*?'family-research-files',[\s\S]*?false/i.test(researchMigration)) throw new Error("Research upload bucket must remain private.");
+if (!script.includes('family-archive-ready')) throw new Error("Main archive script is missing the research workspace lifecycle event.");
 if (api.includes("SUPABASE_SECRET_KEY") || api.includes("SUPABASE_SERVICE_ROLE_KEY")) {
   throw new Error("A server-side Supabase secret must not be exposed by the config API.");
 }
@@ -114,4 +128,4 @@ for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track",
 if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
   throw new Error("V16 display typography or dialog accessibility markup is missing.");
 }
-console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
+console.log(`Checks passed: JS syntax, unique HTML IDs, V19.1 project references, contribution portal, research workspace forms and API, research migration / private storage / RLS markers, no secret in API config, no local env file, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);

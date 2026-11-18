@@ -2660,6 +2660,7 @@ async function bootFamilyArchive() {
     view: () => ({ zoom, panX, panY }), redraw: scheduleLines,
     cousins: (id) => kinshipSummary(id), cousinLabel,
   };
+  window.dispatchEvent(new Event("family-archive-ready"));
 }
 
 window.addEventListener("family-cloud-permission-change", async () => {
