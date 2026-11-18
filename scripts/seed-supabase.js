@@ -56,7 +56,9 @@ async function main() {
     throw new Error("Supabase seed failed (" + response.status + "): " + await response.text());
   }
   console.log("Base genealogy uploaded to Supabase.");
-  console.log("People:", Object.keys(baseData.people || {}).length);
+  const distinctPeople = Object.values(baseData.people || {}).filter((person) => !person.same).length;
+  console.log("People:", distinctPeople, "distinct profiles");
+  console.log("Person data entries (including merged aliases):", Object.keys(baseData.people || {}).length);
   console.log("Unions:", (baseData.unions || []).length);
   console.log("Family index groups:", (baseData.familyIndex || []).length);
   console.log("Existing shared tree edits preserved:", !!current?.payload?.treeEdits);

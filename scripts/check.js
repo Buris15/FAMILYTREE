@@ -31,12 +31,13 @@ for (const f of [
   if (!fs.existsSync(path.join(root, f))) throw new Error("Missing project file: " + f);
 }
 const peopleCount = Object.keys(seed.people || {}).length;
+const visiblePeopleCount = Object.values(seed.people || {}).filter((person) => !person.same).length;
 const unionCount = (seed.unions || []).length;
 const indexCount = (seed.familyIndex || []).length;
-if (peopleCount !== 196 || unionCount !== 55 || indexCount !== 20) {
-  throw new Error(`Unexpected seed data counts: ${peopleCount} people, ${unionCount} unions, ${indexCount} index groups`);
+if (peopleCount !== 200 || visiblePeopleCount !== 198 || unionCount !== 54 || indexCount !== 21) {
+  throw new Error(`Unexpected seed data counts: ${visiblePeopleCount} distinct profiles (${peopleCount} data entries), ${unionCount} unions, ${indexCount} index groups`);
 }
-for (const id of ["juanita-valdris", "lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "milagros-gandingan", "makoy-lacsamana", "josephine-lacsamana", "private-jerry-youngest", "ariane-agnes", "private-richard-eldest", "private-richard-youngest", "rufino-dacanay", "felicidad-natarte"]) {
+for (const id of ["juanita-valdris", "lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles", "paz", "paz-munar", "paz-child-4", "paz-child-5", "paz-child-6", "mario-lac", "pacita-lomiteng", "milagros-gandingan", "makoy-lacsamana", "josephine-lacsamana", "private-jerry-youngest", "ariane-agnes", "private-richard-eldest", "private-richard-youngest", "rufino-dacanay", "felicidad-natarte"]) {
   if (!seed.people[id]) throw new Error("Missing V17 person record: " + id);
 }
 const seedIds = new Set(Object.keys(seed.people || {}));
@@ -47,6 +48,11 @@ for (const union of seed.unions || []) {
 for (const group of seed.familyIndex || []) {
   for (const id of group.ids || []) if (!seedIds.has(id)) throw new Error("Family index group references a missing person: " + id);
 }
+if (seed.people["paz-munar"].same !== "paz") throw new Error("Paz duplicate profile is not merged to the canonical Paz ID.");
+if (!(seed.unions || []).some((u) => u.a === "leon" && u.b === "cayetana" && u.kids.includes("paz"))) throw new Error("Paz is missing from the Leon / Cayetana union.");
+if (!(seed.unions || []).some((u) => u.a === "jose" && u.b === "paz" && ["kining", "mela", "cichit", "paz-child-4", "paz-child-5", "paz-child-6"].every((id) => u.kids.includes(id)))) throw new Error("Paz's six-child union is incomplete.");
+if (!(seed.unions || []).some((u) => u.a === "alfredo-pidong" && u.b === "juanita-valdris" && ["lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles"].every((id) => u.kids.includes(id)))) throw new Error("The Alfredo / Juanita six-child union is incomplete.");
+if ((seed.unions || []).some((u) => u.kids.includes("mario-lac"))) throw new Error("Mario Agustin Lacsamana must remain separate from unsupported parent-child links.");
 for (const file of [
   "public/assets/research/alfredo-pidong-juanita-valdivia-register-p71.png",
   "public/assets/research/joaquin-lacsamana-concepcion-viloria-1955-marriage-contract.png",
@@ -56,7 +62,7 @@ for (const file of [
 ]) {
   if (!fs.existsSync(path.join(root, file))) throw new Error("Missing V17 source scan: " + file);
 }
-for (const marker of ["Juanita Valdivia", "Macario Lacsamana and Felicidad Santos marry", "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", "Educator · academic leader · Catholic community service"]) {
+for (const marker of ["Juanita Valdivia", "Macario Lacsamana and Felicidad Santos marry", "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", "Educator · academic leader · Catholic community service", "Paz Munar Lacsamana and Jose Alvaro", "Fr. Evaristo Guadalupe serves as parish priest of Bangar", "Msgr. Alfonso Ramon Lacsamana is assigned to Pagdalagan parish"]) {
   if (!script.includes(marker)) throw new Error("Missing V17 archive content marker: " + marker);
 }
 if (!schema.includes("enable row level security") || !schema.includes("is_family_admin")) {
@@ -87,4 +93,4 @@ for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track",
 if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
   throw new Error("V16 display typography or dialog accessibility markup is missing.");
 }
-console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and seed data (${peopleCount} people, ${unionCount} unions, ${indexCount} family-index groups).`);
+console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
