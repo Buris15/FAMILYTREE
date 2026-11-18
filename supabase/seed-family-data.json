@@ -3,25 +3,25 @@
     "antonio": {
       "id": "antonio",
       "name": "Antonio Ortega y Verzosa",
-      "role": "Joaquin’s father",
+      "role": "Father of Gov. Joaquín Vicente Eulogio Ortega y Joaquino · son of Joaquín Ortega y Molina and Maria Verzosa",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Worked at the Tabacalera in Carlatan, San Fernando (Wikipedia)."
+      "n": "Antonio Ortega y Verzosa is identified in the supplied master family summary as the father of Gov. Joaquín Vicente Eulogio Ortega y Joaquino and son of Joaquín Ortega y Molina and Maria Verzosa. The earlier archive note records his work at the Tabacalera in Carlatan, San Fernando; the original civil or parish records for the parentage are not attached here."
     },
     "juana": {
       "id": "juana",
-      "name": "Juana Joaquino",
-      "role": "Joaquin’s mother",
+      "name": "Juana (Ana) Joaquino",
+      "role": "Mother of Gov. Joaquín Vicente Eulogio Ortega y Joaquino",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Of Surigao. Wikipedia spells the surname “Juaquino”; Joaquin’s own name, “Ortega y Joaquino”, uses the other spelling."
+      "n": "The supplied master family summary gives her name as Juana (Ana) Joaquino. The earlier archive note also records the Joaquino / Juaquino spelling variation. No parental link above her generation is added because none was supplied."
     },
     "joaquin": {
       "id": "joaquin",
-      "name": "Gov. Joaquin Ortega y Joaquino",
-      "role": "1st Civil Governor of La Union",
+      "name": "Gov. Joaquín Vicente Eulogio Ortega y Joaquino",
+      "role": "First Civil Governor of La Union · Governor 1901–1904 · Husband of Doña Francisca",
       "k": "src",
       "nationality": "Filipino (described as a Filipino candidate and the first elected Filipino Civil Governor in the family-history program)",
       "religion": "Roman Catholic practice documented in family history",
@@ -31,13 +31,13 @@
       "religionNote": "The Ortega Reunion 2017 family-history account describes Joaquin and Francisca going to church to hear Holy Mass. This records religious practice; no baptism or parish membership record has been attached here.",
       "nationalitySource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
       "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
-      "n": "Joaquin Ortega y Joaquino was born in Cebu on 11 March 1866 to Antonio Ortega y Verzosa and Juana Joaquino, according to the Ortega Reunion 2017 family-history program. The program says he studied at the University of Santo Tomas and worked with the Compania General de Tabacos de Filipinas (Tabacalera) in Carlatan, San Fernando, in 1889. The Taft Commission appointed him Civil Governor of La Union on 15 August 1901; he became the province’s first elected governor in 1902 and served through 1904. The same family-history account records later public service as Lieutenant Governor in Abra, Bontoc and Mountain Province (1905–1914), assignments involving Lepanto and Benguet (1916–1920), and Special Agent of the Bureau of Non-Christian Tribes (1920–1926). The Provincial Government of La Union confirms his appointment and elected-governor distinction and records that he died on 31 May 1943 at age 77. With Doña Francisca Lacsamana of Bangar, he raised fourteen children. The family program also recalls that he helped move women and children to safety during the American landing at the Tabacalera port, and that he raised his nephew Jesus Ortega Floirendo as his own. These latter details are from the published family account and should be read as family-history testimony, not as independently verified operational or legal records. The family research update gives his marriage to Doña Francisca Lacsamana as 11 February 1894.",
+      "n": "Joaquin Ortega y Joaquino was born in Cebu on 11 March 1866 to Antonio Ortega y Verzosa and Juana Joaquino, according to the Ortega Reunion 2017 family-history program. The program says he studied at the University of Santo Tomas and worked with the Compania General de Tabacos de Filipinas (Tabacalera) in Carlatan, San Fernando, in 1889. The Taft Commission appointed him Civil Governor of La Union on 15 August 1901; he became the province’s first elected governor in 1902 and served through 1904. The same family-history account records later public service as Lieutenant Governor in Abra, Bontoc and Mountain Province (1905–1914), assignments involving Lepanto and Benguet (1916–1920), and Special Agent of the Bureau of Non-Christian Tribes (1920–1926). The Provincial Government of La Union confirms his appointment and elected-governor distinction and records that he died on 31 May 1943 at age 77. With Doña Francisca Lacsamana of Bangar, he raised fourteen children. The family program also recalls that he helped move women and children to safety during the American landing at the Tabacalera port, and that he raised his nephew Jesus Ortega Floirendo as his own. These latter details are from the published family account and should be read as family-history testimony, not as independently verified operational or legal records. The family research update gives his marriage to Doña Francisca Lacsamana as 11 February 1894. The master family research summary records his full name as Joaquín Vicente Eulogio Ortega y Joaquino and gives the marriage date to Doña Francisca as 11 February 1894. His parents are Antonio Ortega y Verzosa and Juana (Ana) Joaquino; the supplied summary further identifies his paternal grandparents as Joaquín Ortega y Molina and Maria Verzosa. The master findings identify his parents as Antonio Ortega y Verzosa and Juana (Ana) Joaquino, and his paternal grandparents as Joaquín Ortega y Molina and Maria Verzosa.",
       "biographyStatus": "Published family-history account and Provincial Government sources; original birth, education, and career records are still desirable."
     },
     "francisca": {
       "id": "francisca",
       "name": "Doña Francisca Lopez Lacsamana-Ortega",
-      "role": "Generation 3 · Daughter of Ramona and Evaristo · Sister of Don Leon",
+      "role": "Generation 3 · Daughter of Ramona Lopez Lacsamana and Fr. Evaristo Guadalupe y Villaverde · Wife of Gov. Joaquín Vicente Eulogio Ortega y Joaquino",
       "k": "src",
       "nationality": "Not separately documented (born in Bangar, La Union, Philippines)",
       "religion": "Roman Catholic practice documented in family history",
@@ -47,7 +47,7 @@
       "religionNote": "The Ortega Reunion 2017 account describes her attending Holy Mass with Joaquin. This is evidence of recorded religious practice, not a substitute for a baptism or parish record.",
       "nationalitySource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
       "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
-      "n": "Doña Francisca Lacsamana, known in the family as ‘Lola Paca’, was born in Bangar, La Union on 9 March 1877 and died on 3 April 1964 at age 87, according to the Ortega Reunion 2017 souvenir program. The Provincial Government of La Union identifies her as the wife of Don Joaquin J. Ortega and confirms that they raised fourteen children. The supplied FamilySearch tree screenshots show Ramona Lopez Lacsamana and Evaristo Guadalupe y Villaverde as her parents; the reunion program independently identifies her brother as Leon Lacsamana. The family program preserves stories of Joaquin travelling from San Fernando to Bangar to court her, and of their Sunday routine of attending Mass. It also describes her home, ‘Daya’, as a welcoming place where relatives arriving from Manila and other distant places could stay and spend vacations, and recalls that she encouraged family gatherings. The name Doña Francisca Lacsamana de Ortega was later given to a memorial municipal high school in Bangar; Batas Pambansa Blg. 458, approved 10 June 1983, converted it into a national high school. The courtship and household anecdotes are family recollections printed in the reunion program; dates and parentage still warrant original civil or parish record corroboration.",
+      "n": "Doña Francisca Lacsamana, known in the family as ‘Lola Paca’, was born in Bangar, La Union on 9 March 1877 and died on 3 April 1964 at age 87, according to the Ortega Reunion 2017 souvenir program. The Provincial Government of La Union identifies her as the wife of Don Joaquin J. Ortega and confirms that they raised fourteen children. The supplied FamilySearch tree screenshots show Ramona Lopez Lacsamana and Evaristo Guadalupe y Villaverde as her parents; the reunion program independently identifies her brother as Leon Lacsamana. The family program preserves stories of Joaquin travelling from San Fernando to Bangar to court her, and of their Sunday routine of attending Mass. It also describes her home, ‘Daya’, as a welcoming place where relatives arriving from Manila and other distant places could stay and spend vacations, and recalls that she encouraged family gatherings. The name Doña Francisca Lacsamana de Ortega was later given to a memorial municipal high school in Bangar; Batas Pambansa Blg. 458, approved 10 June 1983, converted it into a national high school. The courtship and household anecdotes are family recollections printed in the reunion program; dates and parentage still warrant original civil or parish record corroboration. The master family research summary reiterates Ramona Lopez Lacsamana as her mother and records the marriage to Gov. Joaquín Vicente Eulogio Ortega y Joaquino on 11 February 1894 in La Union. The master findings reiterate Ramona Lopez Lacsamana as her mother and record her marriage to Gov. Joaquín Vicente Eulogio Ortega y Joaquino on 11 February 1894.",
       "biographyStatus": "Dates and family-life account from Ortega Reunion 2017; marriage and fourteen-child family confirmed by Provincial Government; memorial-school name confirmed by Batas Pambansa 458."
     },
     "martin-lacsamana": {
@@ -73,7 +73,7 @@
     },
     "evaristo-guadalupe": {
       "id": "evaristo-guadalupe",
-      "name": "Evaristo Guadalupe y Villaverde, OSA",
+      "name": "Fr. Evaristo Guadalupe y Villaverde, OSA",
       "role": "Generation 2 · Great-great-grandfather · Father of Don Leon and Doña Francisca · Parish priest of Bangar (1866–1887)",
       "k": "src",
       "nationality": "Spanish-born; formal nationality not independently confirmed",
@@ -85,18 +85,18 @@
       "religionNote": "His recorded OSA designation identifies the Order of Saint Augustine. The Order describes its members as religious priests and brothers in the Catholic Church.",
       "nationalitySource": "https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf",
       "religionSource": "https://www.augustinianorder.org/who-we-are",
-      "n": "The supplied FamilySearch profile screenshot (ID G138-FPT) displays birth on 26 October 1830 in Ocaña, Toledo, Castilla-La Mancha, Spain, and death on 17 January 1887 in San Juan, La Union, Philippines. An Augustinian archival register also lists Evaristo Guadalupe, born in Ocaña in 1830, serving in Philippine parishes and dying in San Juan, La Union on 17 January 1887. The profile screenshot shows Quality Score: Medium and Sources (0); the dates still need corroboration from original records. The supplied family-tree screenshot identifies him with Ramona as the parents of Don Leon and Doña Francisca. The latest family research reports that municipal records from Bangar, La Union verify his tenure as parish priest of Bangar from 1866 to 1887. The tenure aligns with the reported period in which Doña Francisca and Don Leon were born to Ramona Lopez Lacsamana; the municipal record itself should be retained with the archive sources when available."
+      "n": "The supplied FamilySearch profile screenshot (ID G138-FPT) displays birth on 26 October 1830 in Ocaña, Toledo, Castilla-La Mancha, Spain, and death on 17 January 1887 in San Juan, La Union, Philippines. An Augustinian archival register also lists Evaristo Guadalupe, born in Ocaña in 1830, serving in Philippine parishes and dying in San Juan, La Union on 17 January 1887. The profile screenshot shows Quality Score: Medium and Sources (0); the dates still need corroboration from original records. The supplied family-tree screenshot identifies him with Ramona as the parents of Don Leon and Doña Francisca. The latest family research reports that municipal records from Bangar, La Union verify his tenure as parish priest of Bangar from 1866 to 1887. The tenure aligns with the reported period in which Doña Francisca and Don Leon were born to Ramona Lopez Lacsamana; the municipal record itself should be retained with the archive sources when available. The master family summary reports that Bangar municipal records verify his tenure as parish priest of Bangar from 1866 to 1887, overlapping the period associated with the births of Doña Francisca and Don Leon. The municipal record copy was not attached to this V19 package. The master findings report that Bangar municipal records verify his tenure as parish priest of Bangar, La Union, from 1866 to 1887."
     },
     "ramona-lopez": {
       "id": "ramona-lopez",
       "name": "Ramona Lopez Lacsamana",
-      "role": "Generation 2 · Great-great-grandmother · Mother of Don Leon and Doña Francisca",
+      "role": "Generation 2 · Mother of Don Leon Lacsamana and Doña Francisca Lacsamana-Ortega",
       "k": "todo",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "d": "1849–Deceased",
       "status": "family",
-      "n": "The supplied FamilySearch profile screenshot displays Ramona Lopez Lacsamana (ID GNHK-MZ3), born 1849; no death date is shown. The supplied FamilySearch tree screenshots show Martin Lacsamana and Narcisa Lopez as her parents, and pair Ramona with Evaristo Guadalupe y Villaverde as the parents of Don Leon and Doña Francisca. The screenshot does not show original sources attached to Ramona’s profile, so these details should be corroborated against original records."
+      "n": "The supplied FamilySearch profile identifies Ramona Lopez Lacsamana (profile ID GNHK-MZ3), born in 1849, as the mother of both Don Leon Lacsamana and Doña Francisca Lacsamana-Ortega. The family tree pairs Ramona with Fr. Evaristo Guadalupe y Villaverde. The profile view previously captured in this archive showed no attached original sources, so this is retained as a genealogy-profile finding pending parish or civil-record corroboration."
     },
     "leon": {
       "id": "leon",
@@ -136,13 +136,13 @@
     "juanita-valdris": {
       "id": "juanita-valdris",
       "name": "Dr. Juanita Valdivia Lacsamana, Ed.D. (“Tetang”)",
-      "role": "Educator · Principal · DepEd English Supervisor · Wife of Alfredo “Pidong” Lacsamana",
+      "role": "Educator · Principal · Graduate School Dean · DepEd English Supervisor · Wife of Alfredo “Pidong” Lacsamana",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "fam": "Valdivia",
       "status": "record",
-      "n": "The supplied research update identifies Juanita Valdivia Lacsamana, Ed.D., known as “Tetang”, as born 8 March 1917 in Alaminos, Pangasinan, to Andres Valdivia and Marcelina Bautista. Public school and civic records are cited in the update as supporting Valdivia as her formal maiden surname; “Valdris” is treated as a clerical transcription variant. The update records her as Principal of Gabaldon Elementary School, recipient of an Ed.D. from Saint Louis University in 1976, and retired in 1982 as a DepEd English Supervisor in La Union. The 1944 register scan remains part of the archive as supporting material; its age entry and the earlier “Valdris” transcription should be retained as historical record variants.",
+      "n": "The supplied research update identifies Juanita Valdivia Lacsamana, Ed.D., known as “Tetang”, as born 8 March 1917 in Alaminos, Pangasinan, to Andres Valdivia and Marcelina Bautista. Public school and civic records are cited in the update as supporting Valdivia as her formal maiden surname; “Valdris” is treated as a clerical transcription variant. The update records her as Principal of Gabaldon Elementary School, recipient of an Ed.D. from Saint Louis University in 1976, and retired in 1982 as a DepEd English Supervisor in La Union. The 1944 register scan remains part of the archive as supporting material; its age entry and the earlier “Valdris” transcription should be retained as historical record variants. The master findings also record her as Graduate School Dean and a recipient of the 2017 Ortega Clan Reunion Centenarian Longevity Award.",
       "d": "8 March 1917"
     },
     "andres-valdris": {
@@ -803,30 +803,34 @@
     },
     "jose": {
       "id": "jose",
-      "name": "Jose Alvaro Ortega y Lacsamana",
-      "role": "Son",
+      "name": "Jose Alvaro “Pepe” Ortega",
+      "role": "Son of Doña Francisca and Gov. Joaquín · WWII lieutenant · husband of Paz Munar Lacsamana",
       "k": "src",
       "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
+      "religion": "Not documented in available sources",
+      "d": "1900 – 11 May 1942",
+      "n": "The master family summary records Jose Alvaro “Pepe” Ortega as born in 1900 and as having died on 11 May 1942 in Capas, Tarlac, after the Bataan Death March. The earlier family-tree name “Jose Alvaro Ortega y Lacsamana” is retained as a historical name form. He married his first cousin Paz Munar Lacsamana on 8 September 1927 in San Fernando, La Union. The exact military service record and death certificate are not attached in this update. The master findings identify him as a wartime hero and report that he died in Capas, Tarlac, on 11 May 1942 after the Bataan Death March. The exact military file and death record are not attached here."
     },
     "paz": {
       "id": "paz",
       "name": "Paz Munar Lacsamana",
-      "role": "Daughter of Don Leon Lacsamana and Cayetana Munar · Wife of her first cousin Jose Alvaro “Pepe” Ortega",
+      "role": "Daughter of Don Leon Lacsamana and Cayetana Munar · wife of Jose Alvaro “Pepe” Ortega · mother of six indexed children",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "fam": "Munar / Lacsamana",
-      "n": "Confirmed family update: Paz Munar Lacsamana and the earlier profile “Paz” refer to the same person. She was the daughter of Don Leon Lacsamana and Cayetana Munar. She married her first cousin, Jose Alvaro “Pepe” Ortega, on 8 September 1927 in San Fernando, La Union. Six children are reported (four sons and two daughters); the supplied names include Kining, Mela, and Cichit. The names of the other three children have not been supplied in this update.",
+      "n": "Confirmed family update: Paz Munar Lacsamana and the earlier profile “Paz” refer to the same person. She was the daughter of Don Leon Lacsamana and Cayetana Munar. She married her first cousin, Jose Alvaro “Pepe” Ortega, on 8 September 1927 in San Fernando, La Union. Six children are reported (four sons and two daughters); the supplied names include Kining, Mela, and Cichit. The names of the other three children have not been supplied in this update. The master summary clarifies that FamilySearch indexes six children (four sons and two daughters), while the Ortega Reunion 2017 biography names three children who survived to be recorded with Paz at her death in 1944: Joaquin “Kining”, Manuela “Mela”, and Leon “Cichit”. It reports the other three indexed children (two boys and one girl) likely died in childhood before 1944. That early-death explanation remains an inference in the supplied research, so their identities stay private and unnamed; it is not presented as a proven cause or date of death.",
       "status": "family"
     },
     "kining": {
       "id": "kining",
       "name": "Joaquin “Kining” Ortega",
-      "role": "Son",
+      "role": "Son of Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana · WWII veteran · mayor · NTA administrator · presidential consultant",
       "k": "src",
       "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
+      "religion": "Not documented in available sources",
+      "d": "c. 1928 – date of death not supplied",
+      "n": "The master family summary estimates that Joaquin “Kining” Ortega was born around 1928; he was approximately 16 when his mother Paz died in 1944. It identifies him as the youngest USAFIP-NL WWII veteran and later as a mayor, National Tobacco Administration (NTA) Administrator, and Presidential Consultant. The approximate birth year and career distinctions are retained as family research pending individual military, civil-service, and appointment records. The master findings identify him as the youngest USAFIP-NL World War II veteran and record later service as a mayor, NTA Administrator, and Presidential Consultant. Exact office terms and military service dates were not supplied."
     },
     "cleofe": {
       "id": "cleofe",
@@ -840,10 +844,11 @@
     "mela": {
       "id": "mela",
       "name": "Manuela “Mela” Ortega",
-      "role": "Daughter",
+      "role": "Daughter of Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana",
       "k": "src",
       "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
+      "religion": "Not documented in available sources",
+      "n": "Manuela “Mela” Ortega is a daughter of Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana. Do not confuse her with her aunt Manuela “Miling” Ortega Orros (1906–1928), a different person in Doña Francisca’s generation. A reliable birth or death date for Mela has not been supplied."
     },
     "santos": {
       "id": "santos",
@@ -884,10 +889,12 @@
     "cichit": {
       "id": "cichit",
       "name": "Leon “Cichit” Ortega",
-      "role": "Son",
+      "role": "Son of Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana",
       "k": "src",
       "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
+      "religion": "Not documented in available sources",
+      "d": "c. 1932",
+      "n": "The master family summary estimates Leon “Cichit” Ortega was born around 1932; he was approximately 12 when his mother Paz died in 1944. The exact birth record is not attached."
     },
     "emily-alviar": {
       "id": "emily-alviar",
@@ -1086,21 +1093,23 @@
     "juanita": {
       "id": "juanita",
       "name": "Juanita L. Ortega",
-      "role": "Daughter",
+      "role": "Daughter of Doña Francisca and Gov. Joaquín · died at age 13",
       "k": "src",
       "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
+      "religion": "Not documented in available sources",
+      "d": "Died at age 13 · dates not established",
+      "n": "The master family summary records that Juanita L. Ortega died at age 13. A birth date, death date, and exact age-at-death record were not supplied, so no calendar dates are inferred."
     },
     "pacoy": {
       "id": "pacoy",
       "name": "Francisco Isabelo “Pacoy” Ortega y Lacsamana",
-      "role": "Son of Joaquin and Francisca · father of the eight Ortega brothers",
+      "role": "Francisco Isabelo “Pacoy” Ortega · Congressman for 24 years · COMELEC Commissioner",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "d": "1904–1967",
       "av": "⭐",
-      "n": "Represented La Union’s 2nd district for 24 years and died in 1967 while a Commission on Elections commissioner (Inquirer, 2013)."
+      "n": "Represented La Union’s 2nd district for 24 years and died in 1967 while a Commission on Elections commissioner (Inquirer, 2013). The master family summary emphasizes his 24 years in Congress and service as COMELEC Commissioner. The family archive records him as the father of the Ortega descendants with Corazon Campos; one Francisco Jr. identity conflict remains noted separately."
     },
     "corazon": {
       "id": "corazon",
@@ -1119,7 +1128,8 @@
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "gone": 1
+      "gone": 1,
+      "n": "An older archive entry records a “Francisco Jr.” who died at age 14. The master family summary separately names Francisco “Kiko” C. Ortega Jr. as a former San Fernando City Councilor and places him in the Pacoy Sr. / Corazon Campos descendant branch. These two same-name entries are not merged because the existing death-at-14 note conflicts with the later public-service biography; a primary record is needed to determine whether they are separate people or a mistaken duplicate."
     },
     "pacoy-corazon": {
       "id": "pacoy-corazon",
@@ -1131,12 +1141,12 @@
     },
     "victor": {
       "id": "victor",
-      "name": "Victor Francisco Campos Ortega",
-      "role": "Gov. 2001–07 · b. 1934",
+      "name": "Victor Francisco Ortega",
+      "role": "Governor of La Union (2001–2007)",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Eldest of Francisco’s sons, born June 4, 1934 in San Fernando. Governor of La Union 2001–2007 (Wikipedia)."
+      "n": "Eldest of Francisco’s sons, born June 4, 1934 in San Fernando. Governor of La Union 2001–2007 (Wikipedia). The master family summary includes him in the line of Ortega governors of La Union and gives his term as 2001–2007. Earlier archive notes use the fuller name Victor Francisco Campos Ortega."
     },
     "mary-jane": {
       "id": "mary-jane",
@@ -1184,12 +1194,12 @@
     },
     "robert-jr": {
       "id": "robert-jr",
-      "name": "Francisco Roberto “Pacoy” Ortega VI",
+      "name": "Francisco Roberto Ortega VI",
       "role": "Son of Roberto “Bobby” Ortega",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "The Inquirer’s November 14, 2018 report names Roberto/Bobby Ortega’s son as Francisco Roberto “Pacoy” Ortega VI. An earlier archive used the generic label “Robert Ortega Jr.”; this entry preserves that earlier name as a possible variant pending a primary record."
+      "n": "The master family summary confirms the name Francisco Roberto Ortega VI as a son of Roberto “Bobby” Ortega. The earlier archive included the nickname “Pacoy” and a note about a possible earlier generic “Robert Ortega Jr.” name variant."
     },
     "aleck": {
       "id": "aleck",
@@ -1237,28 +1247,29 @@
     "manuel": {
       "id": "manuel",
       "name": "Manuel C. “Manoling” Ortega",
-      "role": "Son of Francisco Ortega · husband of Geraldine “Denny” · father of seven recorded children",
+      "role": "Former Governor of La Union (2007–2016) · husband of Geraldine “Denny” · father of seven named children",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "d": "d. 2025",
-      "n": "Former San Fernando mayor, 2nd-district representative (1998–2007), and Governor of La Union (2007–2016). The Philippine Star (October 10, 2024) identifies him as the elder brother of Mario and Pablo and as the father of Pacoy, Mannix/Manuel, Joy and Alfred. A 2024 Interaksyon report identifies Jeff as Manoling’s son and Pacoy’s brother. The Inquirer (November 14, 2018) identifies him as one of the eight Ortega brothers. Poro Point Management Corporation published a condolence notice for him on December 5, 2025, naming his wife Geraldine “Denny” and son Manuel Victor “Mannix”. A Provincial Government of La Union article (August 2, 2018) describes Denny as his wife and mentions their seven children, but does not name all seven; two unidentified child placeholders are retained rather than inventing names."
+      "d": "7 August 1945 – 2 December 2025",
+      "n": "The supplied master family summary records Manoling as born 7 August 1945 in Bauang, La Union, and as having died 2 December 2025 in San Fernando, La Union, aged 80. He served as Governor of La Union from 2007 to 2016, after earlier local and congressional public service. His wife is identified in the family records as Geraldine “Denny” Ortega; the supplied summary gives her maiden-name form as Geraldine Tanaleon Ramos. Poro Point Management Corporation’s 5 December 2025 condolence notice identifies Denny as his wife and Manuel Victor “Mannix” R. Ortega as their son. The master family summary lists seven children by name; the Provincial Government article independently confirms that the couple had seven children but does not name each one. House Resolution No. 545 is identified in the House Journal as a condolence resolution for former Representative Manuel C. Ortega; the journal does not itself enumerate the seven children. The seven names above follow the supplied master family summary. The Provincial Government of La Union has also referred to the couple’s seven children without listing all names.",
+      "status": "family"
     },
     "geraldine-denny": {
       "id": "geraldine-denny",
       "name": "Geraldine “Denny” Ortega",
-      "role": "Wife of Manuel C. “Manoling” Ortega",
+      "role": "Wife of Manuel C. “Manoling” Ortega · maiden-name form supplied as Geraldine Tanaleon Ramos",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "fam": "Ortega",
       "status": "source",
-      "n": "Identified as Manoling’s wife by the Inquirer and the Provincial Government of La Union. Poro Point Management Corporation’s December 5, 2025 condolence notice names her as his wife."
+      "n": "Identified as Manoling’s wife by the Inquirer and the Provincial Government of La Union. Poro Point Management Corporation’s December 5, 2025 condolence notice names her as his wife. The master family research summary supplies the maiden-name form Geraldine Tanaleon Ramos. The archive retains her public-facing married name “Geraldine ‘Denny’ Ortega” and records the maiden-name form as a research detail rather than assuming a specific legal name order."
     },
     "pacoy3": {
       "id": "pacoy3",
       "name": "Francisco Emmanuel “Pacoy” R. Ortega III",
-      "role": "Son of Manoling and Denny · husband of Vini · father of Rafy and her siblings",
+      "role": "Former Governor of La Union (2016–2022) · son of Manoling and Denny · husband of Vini Nolasco-Ortega",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
@@ -1266,14 +1277,14 @@
     },
     "vini": {
       "id": "vini",
-      "name": "Vini Nola Alviar Ortega",
+      "name": "Vini Nolasco-Ortega",
       "role": "Wife of Francisco Emmanuel “Pacoy” Ortega III",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "fam": "Alviar",
       "status": "source",
-      "n": "Identified in Politiko North Luzon as the wife of former Governor Pacoy Ortega III."
+      "n": "The master family summary gives the spouse name as Vini Nolasco-Ortega. Earlier archive and public-source notes use “Vini Nola Alviar Ortega”. Both name forms are retained in this profile history; the preferred formal name order should be checked against a civil or marriage record."
     },
     "pacoy3-daughter-1": {
       "id": "pacoy3-daughter-1",
@@ -1298,11 +1309,11 @@
     "raphaelle": {
       "id": "raphaelle",
       "name": "Raphaelle Veronica Alviar “Rafy” Ortega-David",
-      "role": "Daughter of Pacoy III and Vini · wife of Kevin David · mother of Valentino",
+      "role": "Former Governor of La Union (2022–2025) · daughter of Francisco Emmanuel “Pacoy” Ortega III",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "The International Telecommunication Union’s 2023 profile identifies Rafy as the third daughter of Francisco Emmanuel “Pacoy” Ortega III and Vini Nola Alviar Ortega, and names her husband Kevin Louie C. David and their son Valentino Manuel O. David. The wording establishes at least two older sisters, but the profile does not give a total sibling count or name those sisters. They remain unnamed here."
+      "n": "The International Telecommunication Union’s 2023 profile identifies Rafy as the third daughter of Francisco Emmanuel “Pacoy” Ortega III and Vini Nola Alviar Ortega, and names her husband Kevin Louie C. David and their son Valentino Manuel O. David. The wording establishes at least two older sisters, but the profile does not give a total sibling count or name those sisters. They remain unnamed here. The master family summary gives her gubernatorial term as 2022–2025."
     },
     "kevin-david": {
       "id": "kevin-david",
@@ -1325,69 +1336,72 @@
     },
     "alfredo": {
       "id": "alfredo",
-      "name": "Alfred Pablo R. “Alfred” Ortega",
-      "role": "Son of Manoling and Denny · brother of Pacoy, Mannix, Joy and Jeff",
+      "name": "Alfredo Pablo R. Ortega",
+      "role": "Son of Manoling and Denny · known as “Alf”",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "The Rappler and Philippine Star reports identify Alfred/Alfred Pablo R. Ortega as a child of Manoling. An earlier version of this archive used the shorter name “Alfredo Ortega”; that earlier spelling is retained here as a name variant pending a primary record."
+      "n": "The master family summary gives the full name Alfredo Pablo R. Ortega and the nickname “Alf”. Earlier public-source summaries used “Alfred” or “Alfred Pablo R. Ortega”; the family-supplied form is retained as the current profile name."
     },
     "mannix": {
       "id": "mannix",
-      "name": "Manuel Victor “Mannix” R. Ortega",
-      "role": "Son of Manoling and Denny · brother of Pacoy, Joy, Alfred and Jeff",
+      "name": "Manuel Victor “Mannix” R. Ortega Jr.",
+      "role": "Son of Manoling and Denny · one of seven identified children",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Named by Poro Point Management Corporation as Manoling’s son in its December 5, 2025 condolence notice; also identified as a child of Manoling in Rappler’s 2025 family-election report and Politiko North Luzon."
+      "n": "The master family summary confirms the full name as Manuel Victor “Mannix” R. Ortega Jr. and identifies the earlier “Emmanuel Victor Ortega” entry as a duplicate of this person. Poro Point Management Corporation’s 5 December 2025 condolence notice also identifies Manuel Victor “Mannix” R. Ortega as Manoling’s son."
     },
     "joy": {
       "id": "joy",
-      "name": "Joy Ortega",
-      "role": "Daughter of Manoling and Geraldine · sister of Pacoy, Mannix, Alfred and Jeff",
+      "name": "Geraldine Joy R. Ortega",
+      "role": "Daughter of Manoling and Geraldine · known as Joy · public service",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "The Philippine Star (October 10, 2024) identifies Joy as a daughter of Manoling, sister of Pacoy, Mannix and Alfred, and aunt of Rafy Ortega-David. No spouse or children are named in the sources consulted for this update."
+      "n": "The master family summary identifies her full name as Geraldine Joy R. Ortega. Earlier archive coverage used the shorter name “Joy Ortega”. She is one of the seven children in the Manoling–Geraldine family. The exact original civil record is not attached in this update."
     },
     "jeff-ortega": {
       "id": "jeff-ortega",
-      "name": "Joseph Francisco “Jeff” Ortega",
-      "role": "Son of Manoling and Denny · brother of Pacoy III, Mannix, Joy and Alfred",
+      "name": "Joseph Francisco R. Ortega",
+      "role": "Son of Manoling and Denny · known in earlier records as “Jeff”",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "PhilSTAR Life (August 31, 2024) identifies Jeff as the son of former Governor Manuel “Manoling” Ortega and as the brother of Francisco Emmanuel “Pacoy” Ortega III. The article does not identify a spouse or children."
+      "n": "The master family summary identifies Joseph Francisco R. Ortega as the seventh child. Earlier archive material called him “Joseph Francisco ‘Jeff’ Ortega”; the nickname Jeff is retained as a name variant. No additional spouse or descendants are added in this update."
     },
     "manoling-child-6": {
       "id": "manoling-child-6",
-      "name": "Unidentified child of Manoling and Denny",
-      "role": "Additional child mentioned in a public family reference · name not identified",
+      "name": "Former placeholder · Eduardo Francisco R. Ortega",
+      "role": "Merged placeholder · see Eduardo Francisco R. Ortega",
       "k": "todo",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "status": "unknown",
-      "n": "The Provincial Government of La Union article dated August 2, 2018 says Geraldine “Denny” Ortega thanked her husband former Governor Manoling Ortega and her seven children. Five are identified by name in the public sources used for this archive; this entry preserves one of the two remaining unnamed children without guessing a name or gender."
+      "status": "merged",
+      "n": "The former unnamed sixth-child placeholder is replaced by the named profile Eduardo Francisco R. Ortega, as specified in the supplied master family summary.",
+      "same": "eduardo-francisco"
     },
     "manoling-child-7": {
       "id": "manoling-child-7",
-      "name": "Unidentified child of Manoling and Denny",
-      "role": "Additional child mentioned in a public family reference · name not identified",
+      "name": "Former placeholder · Joseph Francisco R. Ortega",
+      "role": "Merged placeholder · see Joseph Francisco R. Ortega",
       "k": "todo",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "status": "unknown",
-      "n": "The Provincial Government of La Union article dated August 2, 2018 says Geraldine “Denny” Ortega thanked her husband former Governor Manoling Ortega and her seven children. Five are identified by name in the public sources used for this archive; this entry preserves one of the two remaining unnamed children without guessing a name or gender."
+      "status": "merged",
+      "n": "The former unnamed seventh-child placeholder is replaced by the named profile Joseph Francisco R. Ortega. Earlier records called him Jeff; the canonical profile retains that nickname as a variant.",
+      "same": "jeff-ortega"
     },
     "emmanuel-victor": {
       "id": "emmanuel-victor",
-      "name": "Emmanuel Victor Ortega",
-      "role": "Earlier family-tree entry · relationship needs confirmation",
+      "name": "Emmanuel Victor Ortega · duplicate alias",
+      "role": "Merged duplicate entry · see Manuel Victor “Mannix” R. Ortega Jr.",
       "k": "rel",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "status": "unlinked",
-      "n": "This name appeared in the earlier archive as a son of Manoling. The public sources consulted for this update name Pacoy, Mannix, Joy, Alfred and Jeff, but do not clarify whether Emmanuel Victor is another person or a name variant of Manuel Victor “Mannix”. It is intentionally kept unlinked until the identity is confirmed."
+      "status": "merged",
+      "n": "The supplied master family summary confirms that this earlier record is a duplicate of Manuel Victor “Mannix” R. Ortega Jr. The canonical profile is “mannix”.",
+      "same": "mannix"
     },
     "kitchie": {
       "id": "kitchie",
@@ -1423,17 +1437,17 @@
     },
     "paolo": {
       "id": "paolo",
-      "name": "Francisco Paolo Padua Ortega V",
-      "role": "Son of Pablo · b. 1984",
+      "name": "Francisco Paolo P. Ortega V",
+      "role": "La Union 1st District Representative · House Deputy Speaker (since August 2025)",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Wikipedia: born April 14, 1984, “the son of Pablo C. Ortega”. Representative of La Union’s 1st district since 2022 and Deputy Speaker of the House since August 2025."
+      "n": "The master family summary identifies him as a First District Representative and House Deputy Speaker since August 2025. The official House of Representatives member profile lists him as Deputy Speaker and La Union 1st District representative, including a 2026 directory and 2026 House press coverage. The earlier archive used the full expanded name “Francisco Paolo Padua Ortega V”; “P.” is retained as the official House display form. The official House of Representatives member profile currently lists him as Deputy Speaker and La Union 1st District Representative."
     },
     "mariquita": {
       "id": "mariquita",
       "name": "Mariquita Padua Ortega",
-      "role": "Wife of Pablo C. Ortega",
+      "role": "Wife of Pablo C. Ortega · mother of Lucia Esperanza “Luzan” Ortega",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
@@ -1443,39 +1457,40 @@
     },
     "luzan": {
       "id": "luzan",
-      "name": "Lucia Esperanza “Luzan” Ortega-Valero",
-      "role": "Daughter of Pablo and Mariquita · sister of Francisco Paolo Ortega V",
+      "name": "Lucia Esperanza “Luzan” Ortega",
+      "role": "Daughter of Pablo C. Ortega and Mariquita Ortega",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "status": "source",
-      "n": "The Inquirer’s 2018 report names Luzan as one of Pablo and Mariquita’s children; the City of San Fernando identifies her as Pablo’s daughter."
+      "n": "The master family summary refers to her as Luzan Ortega, daughter of Pablo and Mariquita. Earlier archive material uses the fuller married / compound form “Lucia Esperanza ‘Luzan’ Ortega-Valero”; preserve Ortega-Valero as a name variant until the preferred display form is confirmed."
     },
     "jose-ma": {
       "id": "jose-ma",
-      "name": "Jose Ma. Ortega",
-      "role": "Son · board member",
+      "name": "Jose Maria “Pepe” C. Ortega",
+      "role": "Son of Francisco Isabelo “Pacoy” Ortega and Corazon Campos · former Bauang Barangay Chairman and Board Member",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Called “Pepe”; a provincial board member (Inquirer 2013)."
+      "n": "The master family summary identifies Jose Maria “Pepe” C. Ortega as part of the Pacoy Sr. and Corazon Campos descendant group and records past service as a Bauang Barangay Chairman and Board Member. Earlier archive material abbreviated his name as “Jose Ma. Ortega”; that form is retained as a name variant."
     },
     "ramon": {
       "id": "ramon",
-      "name": "Ramon “Monet” Ortega",
-      "role": "Son · councilor",
-      "k": "src",
-      "nationality": "Not documented in available sources",
-      "religion": "Not documented in available sources"
-    },
-    "mario": {
-      "id": "mario",
-      "name": "Mario Eduardo “Tot” Campos Ortega",
-      "role": "Gov. 2025– · b. 1956",
+      "name": "Ramon C. Ortega",
+      "role": "Son of Francisco Isabelo “Pacoy” Ortega and Corazon Campos · San Fernando City Hall Executive Assistant",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Born Feb 3, 1956. Vice Governor 2019–2025, Governor of La Union since June 30, 2025. Wikipedia lists Victor and Bobby Ortega as his brothers, which places him among Pacoy’s sons, and calls Raphaelle Ortega-David his grandniece."
+      "n": "The master family summary identifies Ramon C. Ortega as a descendant of Francisco Isabelo “Pacoy” Ortega and Corazon Campos and records his role as San Fernando City Hall Executive Assistant. Earlier archive material used the name “Ramon ‘Monet’ Ortega”; retain “Monet” as an earlier name variant."
+    },
+    "mario": {
+      "id": "mario",
+      "name": "Mario Eduardo C. “Tot” Ortega",
+      "role": "Governor of La Union (2025–present) · former Vice Governor (2019–2025)",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The master family summary lists Mario Eduardo “Tot” Ortega as Governor of La Union from 2025 onward. The Provincial Government of La Union identifies him as Governor in its official 2026 profile and September 2026 government updates; these current official records confirm that he remains Governor as of the latest project update. Earlier archive data used “Mario Eduardo ‘Tot’ Campos Ortega”; the official provincial display uses Mario Eduardo C. Ortega. The Provincial Government of La Union confirmed his first year in office on 6 July 2026 and continued to identify him as Governor in September 2026 updates."
     },
     "danielle-bianca": {
       "id": "danielle-bianca",
@@ -1484,17 +1499,18 @@
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "The City of San Fernando and recent La Union election coverage identify Danielle Bianca G. Ortega as Mario’s daughter. A spouse or children are not named in the sources used for this archive update."
+      "n": "The master family summary identifies Danielle Ortega as a daughter of Mario Eduardo “Tot” Ortega. The current archive name “Danielle Bianca G. Ortega” is retained as the fuller profile form."
     },
     "manuela": {
       "id": "manuela",
-      "name": "Manuela Ortega Orros",
-      "role": "Died at childbirth",
+      "name": "Manuela “Miling” Ortega Orros",
+      "role": "Daughter of Doña Francisca and Gov. Joaquín · wife of Justo “Titong” Orros Sr.",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "d": "1906",
-      "gone": 1
+      "d": "1906–1928",
+      "gone": 1,
+      "n": "The master family summary gives Manuela “Miling” Ortega Orros’s life dates as 1906–1928. The earlier reunion biography says she died at childbirth one year after her marriage and lists no surviving child. The exact day and month of birth and death have not been supplied."
     },
     "justo1": {
       "id": "justo1",
@@ -1509,11 +1525,11 @@
     "joaquina": {
       "id": "joaquina",
       "name": "Joaquina Ortega y Lacsamana Orros",
-      "role": "Daughter",
+      "role": "Daughter of Doña Francisca and Gov. Joaquín · wife of Justo “Titong” Orros Sr.",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "d": "1907–"
+      "d": "1907–2003"
     },
     "justo2": {
       "id": "justo2",
@@ -1529,42 +1545,43 @@
     "justo-jr": {
       "id": "justo-jr",
       "name": "Justo Ortega Orros Jr.",
-      "role": "Judge & governor",
+      "role": "Governor of La Union (1992–2001) · Philippine Ambassador to Mexico (2002–2006) · judge and local public servant",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Roman Catholic (described as devout and a member of the Knights of Columbus)",
       "religionNote": "The Ortega Reunion 2017 biography describes him as a devout Catholic and a member of the Knights of Columbus of St. William the Hermit Parish.",
       "religionSource": "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf",
-      "n": "A former Pangasinan judge, elected Governor of La Union in 1992 and in office 1992–2001 (Ortega Reunion 2017 and other published references). The Inquirer calls him “a cousin of the Ortegas” without naming his parents; he is placed under Joaquina and Justo Sr. as in your draft, so confirm that link."
+      "n": "The master family summary confirms his parents as Joaquina Ortega Orros (1907–2003) and Justo “Titong” Orros Sr. It names his siblings as Manuel “Lito” Orros, Agustin Orros, Joaquin Orros, and Rosario Orros. The Ortega Reunion 2017 biography records him as Governor of La Union (1992–2001), Philippine Ambassador Plenipotentiary to Mexico (2002–2006), Provincial Board Member (1988–1992), Municipal Mayor of San Fernando (1980–1987), and a judge. The family summary identifies his wife sequence as an earlier marriage to Ligaya Israel, followed by Jocelyn Abrogar, and names three sons: Jonathan Justo “Jay-Jay” A. Orros, Justo “Tito” / “Justito” Orros III, and Hon. John H. Orros. Parentage and family details are recorded from the supplied master summary; the original civil records are not attached."
     },
     "jay-jay": {
       "id": "jay-jay",
-      "name": "Jay-jay Orros",
-      "role": "Son · board member",
+      "name": "Jonathan Justo “Jay-Jay” A. Orros",
+      "role": "Son of Justo Ortega Orros Jr. and Jocelyn Abrogar · San Fernando City Councilor · 1st District Board Member",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "n": "Described as the son of former governor Justo Ortega Orros and a provincial board member (Philstar, 2007)."
+      "n": "The master family summary gives the full name Jonathan Justo “Jay-Jay” A. Orros and records service as San Fernando City Councilor and 1st District Board Member. The 2007 Philstar election article identifies Jay-jay Orros as the son of former Governor Justo Ortega Orros and a provincial board member candidate; the exact public-office terms are not listed here."
     },
     "titing": {
       "id": "titing",
-      "name": "Joaquin “Titing” L. Ortega Jr.",
-      "role": "Gov. 1988–92",
+      "name": "Joaquin “Titing” Ortega Jr.",
+      "role": "Governor of La Union (1988–1992) · public servant · husband of Felicula Ortega",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "d": "7 November 1916 – 20 September 1996",
       "av": "⭐",
-      "n": "The family update records Joaquin “Titing” Ortega Jr. as baptized on 5 January 1917 in San Fernando, La Union. He died on 20 September 1996 and was buried at Lingsat Public Cemetery, San Fernando, La Union. The earlier profile gives his birth date as 7 November 1916; baptism is not treated as the birth date."
+      "n": "The family update records Joaquin “Titing” Ortega Jr. as baptized on 5 January 1917 in San Fernando, La Union. He died on 20 September 1996 and was buried at Lingsat Public Cemetery, San Fernando, La Union. The earlier profile gives his birth date as 7 November 1916; baptism is not treated as the birth date. The master family summary lists Felicula Ortega as his wife; the earlier archive profile uses Felicula “Fely” Nuesa. The surname variation is preserved as unresolved pending a marriage or civil record. The master findings give his birth date as 7 November 1916, baptism as 5 January 1917 in San Fernando, La Union, death as 20 September 1996, and burial at Lingsat Public Cemetery. The earlier profile spells his wife’s name Felicula “Fely” Nuesa; the master summary uses Felicula Ortega. Both forms are retained pending a marriage record."
     },
     "fely": {
       "id": "fely",
       "name": "Felicula “Fely” Nuesa",
-      "role": "Wife",
+      "role": "Wife of Joaquin “Titing” L. Ortega Jr. · also recorded in the latest summary as Felicula Ortega",
       "k": "sp",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "fam": "Nuesa"
+      "fam": "Nuesa",
+      "n": "The earlier archive identifies her as Felicula “Fely” Nuesa; the master family summary calls Titing’s wife Felicula Ortega. Both forms are retained as a name-variant note pending a marriage record."
     },
     "cristina": {
       "id": "cristina",
@@ -1610,11 +1627,11 @@
     "concepcion": {
       "id": "concepcion",
       "name": "Concepcion Ortega y Lacsamana",
-      "role": "Daughter",
+      "role": "Daughter of Doña Francisca and Gov. Joaquín",
       "k": "src",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
-      "d": "1908–"
+      "d": "1908–1986"
     },
     "mary": {
       "id": "mary",
@@ -1876,7 +1893,7 @@
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "status": "family",
-      "n": "The family update reports six children in total (four sons and two daughters). This child is one of the three whose name was not included in the material supplied for this update; no gender is assigned here."
+      "n": "One of the three unnamed children indexed to Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana. The family summary describes the three unnamed children collectively as two boys and one girl, likely deceased in childhood before 1944; the individual child identity, sex assignment, and death date are not resolved. This profile remains private and unnamed."
     },
     "paz-child-5": {
       "id": "paz-child-5",
@@ -1886,7 +1903,7 @@
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "status": "family",
-      "n": "The family update reports six children in total (four sons and two daughters). This child is one of the three whose name was not included in the material supplied for this update; no gender is assigned here."
+      "n": "One of the three unnamed children indexed to Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana. The family summary describes the three unnamed children collectively as two boys and one girl, likely deceased in childhood before 1944; the individual child identity, sex assignment, and death date are not resolved. This profile remains private and unnamed."
     },
     "paz-child-6": {
       "id": "paz-child-6",
@@ -1896,7 +1913,7 @@
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "status": "family",
-      "n": "The family update reports six children in total (four sons and two daughters). This child is one of the three whose name was not included in the material supplied for this update; no gender is assigned here."
+      "n": "One of the three unnamed children indexed to Jose Alvaro “Pepe” Ortega and Paz Munar Lacsamana. The family summary describes the three unnamed children collectively as two boys and one girl, likely deceased in childhood before 1944; the individual child identity, sex assignment, and death date are not resolved. This profile remains private and unnamed."
     },
     "linda-fornoles": {
       "id": "linda-fornoles",
@@ -1907,6 +1924,196 @@
       "religion": "Not documented in available sources",
       "status": "family",
       "n": "Family-supplied update identifies Linda Lacsamana Fornoles as the sixth child of Alfredo “Pidong” Lacsamana and Dr. Juanita Valdivia Lacsamana, Ed.D., and sibling of Msgr. Alfonso Ramon, Lourdes, O’Neil, Alberto, and Alfredo Jr. The same update places her in Oxnard, California, alongside relatives Romeo and John Fornoles. The exact relationships to Romeo and John are not specified in the supplied note."
+    },
+    "joaquin-ortega-molina": {
+      "id": "joaquin-ortega-molina",
+      "name": "Joaquín Ortega y Molina",
+      "role": "Paternal grandfather of Gov. Joaquín Vicente Eulogio Ortega y Joaquino",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as the paternal grandfather of Gov. Joaquín Vicente Eulogio Ortega y Joaquino. His exact dates, places, and other descendants were not supplied."
+    },
+    "maria-verzosa": {
+      "id": "maria-verzosa",
+      "name": "Maria Verzosa",
+      "role": "Paternal grandmother of Gov. Joaquín Vicente Eulogio Ortega y Joaquino",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as the paternal grandmother of Gov. Joaquín Vicente Eulogio Ortega y Joaquino. Her exact dates, places, and other descendants were not supplied."
+    },
+    "jennifer-joan": {
+      "id": "jennifer-joan",
+      "name": "Jennifer Joan R. Ortega",
+      "role": "Daughter of Manoling and Geraldine",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as one of the seven children of Manuel “Manoling” Ortega and Geraldine Tanaleon Ramos. No further dates, biography, or descendants were supplied."
+    },
+    "eduardo-francisco": {
+      "id": "eduardo-francisco",
+      "name": "Eduardo Francisco R. Ortega",
+      "role": "Son of Manoling and Geraldine",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as one of the seven children of Manuel “Manoling” Ortega and Geraldine Tanaleon Ramos. No further dates, biography, or descendants were supplied."
+    },
+    "manuel-orros": {
+      "id": "manuel-orros",
+      "name": "Manuel “Lito” Orros",
+      "role": "Son of Justo Orros Sr. and Joaquina Ortega Orros · sibling of Justo Jr.",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as a sibling of Justo Ortega Orros Jr. No birth, death, spouse, or descendant details were supplied."
+    },
+    "agustin-orros": {
+      "id": "agustin-orros",
+      "name": "Agustin Orros",
+      "role": "Son of Justo Orros Sr. and Joaquina Ortega Orros · sibling of Justo Jr.",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as a sibling of Justo Ortega Orros Jr. No birth, death, spouse, or descendant details were supplied."
+    },
+    "joaquin-orros": {
+      "id": "joaquin-orros",
+      "name": "Joaquin Orros",
+      "role": "Son of Justo Orros Sr. and Joaquina Ortega Orros · sibling of Justo Jr.",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as a sibling of Justo Ortega Orros Jr. No birth, death, spouse, or descendant details were supplied."
+    },
+    "rosario-orros": {
+      "id": "rosario-orros",
+      "name": "Rosario Orros",
+      "role": "Daughter of Justo Orros Sr. and Joaquina Ortega Orros · sibling of Justo Jr.",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as a sibling of Justo Ortega Orros Jr. No birth, death, spouse, or descendant details were supplied."
+    },
+    "ligaya-israel": {
+      "id": "ligaya-israel",
+      "name": "Ligaya Israel",
+      "role": "Earlier wife of Justo Ortega Orros Jr.",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied master family summary identifies Ligaya Israel as an earlier wife of Justo Ortega Orros Jr., before his later marriage to Jocelyn Abrogar. No dates or children are supplied for this union."
+    },
+    "jocelyn-abrogar": {
+      "id": "jocelyn-abrogar",
+      "name": "Jocelyn Abrogar",
+      "role": "Wife of Justo Ortega Orros Jr. · mother of three sons",
+      "k": "sp",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The supplied master family summary identifies Jocelyn Abrogar as the wife of Justo Ortega Orros Jr. after an earlier marriage to Ligaya Israel, and names three sons in this family branch."
+    },
+    "justito-orros": {
+      "id": "justito-orros",
+      "name": "Justo “Tito” / “Justito” Orros III",
+      "role": "Son of Justo Ortega Orros Jr. and Jocelyn Abrogar · Executive Assistant IV, Provincial Government of La Union",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The master family summary identifies him as Justo Orros Jr.’s son and records him as Executive Assistant IV in the Provincial Government of La Union. It also notes that he was a 2007 vice-gubernatorial candidate. The 2007 Philstar article names Justito Orros as a candidate for vice governor; the exact current employment record is not attached."
+    },
+    "john-h-orros": {
+      "id": "john-h-orros",
+      "name": "Hon. John H. Orros",
+      "role": "Son of Justo Ortega Orros Jr. and Jocelyn Abrogar · multi-term San Fernando City Councilor",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The master family summary identifies him as a son of Justo Ortega Orros Jr. and records multiple terms as San Fernando City Councilor. The 2007 Philstar article refers to John Orros seeking a third councilor term at that time."
+    },
+    "kiko-c-ortega": {
+      "id": "kiko-c-ortega",
+      "name": "Francisco “Kiko” C. Ortega Jr.",
+      "role": "Extended Pacoy Sr. / Corazon Campos descendant · former San Fernando City Councilor",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "The master family summary names Francisco “Kiko” C. Ortega Jr. among the Pacoy Sr. and Corazon Campos descendants and records him as a former San Fernando City Councilor. The existing archive separately contains “Francisco Jr.” (pacoy-francisco), recorded as having died at age 14. The identities are not merged and no parent-child union is drawn until that discrepancy is resolved with a primary record."
+    },
+    "tj-ortega": {
+      "id": "tj-ortega",
+      "name": "TJ Ortega",
+      "role": "Extended Ortega cousin · former San Fernando City Councilor",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended notable cousin. The exact common ancestor and branch connection are not specified in the materials supplied for this update."
+    },
+    "coleen-ortega-garcia": {
+      "id": "coleen-ortega-garcia",
+      "name": "Danielle Claudine “Coleen” Ortega Garcia-Crawford",
+      "role": "Extended Ortega cousin · actress",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended Ortega cousin and actress. The Senate’s P.S. Resolution No. 344 identifies Danielle Claudine “Coleen” Ortega Garcia-Crawford as an actress and commends her 2022 award. The exact connection to the Lacsamana–Ortega branches in this archive is not yet mapped. Senate P.S. Resolution No. 344 identifies her as an actress and commends her 2022 award; the exact genealogical connection to the branches mapped here is not yet established."
+    },
+    "ysabel-ortega": {
+      "id": "ysabel-ortega",
+      "name": "Ysabel Ortega",
+      "role": "Extended Ortega cousin · actress",
+      "k": "src",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended Ortega cousin and actress. The Manila Bulletin has profiled her work as an actress and her family’s La Union farm. The exact common ancestor and branch connection are not specified in the supplied materials. Manila Bulletin and GMA feature coverage identify her as an actress and report on her family’s farm in La Union; the exact genealogical connection to the branches mapped here is not yet established."
+    },
+    "derrick-wilquin-orros-atijera": {
+      "id": "derrick-wilquin-orros-atijera",
+      "name": "Derrick Wilquin Orros Atijera",
+      "role": "Extended Orros cousin",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended notable cousin. No exact parentage, dates, or branch connection are supplied; no parent-child link is drawn."
+    },
+    "maricar-icay-atijera": {
+      "id": "maricar-icay-atijera",
+      "name": "Maricar Icay Atijera",
+      "role": "Extended Orros cousin",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended notable cousin. No exact parentage, dates, or branch connection are supplied; no parent-child link is drawn."
+    },
+    "cedric-sonny-panis": {
+      "id": "cedric-sonny-panis",
+      "name": "Cedric Sonny Panis",
+      "role": "Extended family cousin",
+      "k": "rel",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "status": "family",
+      "n": "Named in the supplied master family summary as an extended notable cousin. No exact parentage, dates, or branch connection are supplied; no parent-child link is drawn."
     }
   },
   "unions": [
@@ -2165,7 +2372,10 @@
         "paz-child-5",
         "paz-child-6"
       ],
-      "line": "blood"
+      "line": "blood",
+      "date": "8 September 1927",
+      "place": "San Fernando, La Union, Philippines",
+      "note": "Six indexed children: four sons and two daughters. Three children are named; three remain private and unnamed, with likely childhood deaths described as an inference in the supplied summary."
     },
     {
       "a": "luis",
@@ -2209,7 +2419,9 @@
         "penny",
         "litong"
       ],
-      "line": "blood"
+      "line": "blood",
+      "date": "7 December 1922",
+      "place": "Not specified"
     },
     {
       "a": "victor",
@@ -2250,14 +2462,16 @@
       "b": "geraldine-denny",
       "kids": [
         "pacoy3",
-        "mannix",
+        "jennifer-joan",
         "joy",
+        "mannix",
         "alfredo",
-        "jeff-ortega",
-        "manoling-child-6",
-        "manoling-child-7"
+        "eduardo-francisco",
+        "jeff-ortega"
       ],
-      "line": "blood"
+      "line": "blood",
+      "date": "Marriage date not supplied",
+      "note": "Exactly seven named children, in the order given by the master family summary: Francisco Emmanuel “Pacoy” R. Ortega III; Jennifer Joan R. Ortega; Geraldine Joy R. Ortega; Manuel Victor “Mannix” R. Ortega Jr.; Alfredo Pablo “Alf” R. Ortega; Eduardo Francisco R. Ortega; and Joseph Francisco R. Ortega. Legacy IDs are retained only as aliases: emmanuel-victor → mannix; manoling-child-6 → eduardo-francisco; manoling-child-7 → jeff-ortega."
     },
     {
       "a": "pablo",
@@ -2295,11 +2509,13 @@
         "kit",
         "yolanda",
         "pablo",
+        "kiko-c-ortega",
         "jose-ma",
         "ramon",
         "mario"
       ],
-      "line": "blood"
+      "line": "blood",
+      "note": "The master family summary places Francisco “Kiko” C. Ortega Jr., Jose Maria “Pepe” C. Ortega, and Ramon C. Ortega in this sibling / descendant branch. An earlier separate profile “Francisco Jr.” (pacoy-francisco) is recorded as having died at age 14. These same-name records are deliberately not merged; Kiko is retained as a separate named child pending review of the older record."
     },
     {
       "a": "manuela",
@@ -2309,19 +2525,27 @@
     },
     {
       "a": "justo-jr",
-      "b": null,
+      "b": "jocelyn-abrogar",
       "kids": [
-        "jay-jay"
+        "jay-jay",
+        "justito-orros",
+        "john-h-orros"
       ],
-      "line": "blood"
+      "line": "blood",
+      "note": "The master family summary names three sons with later wife Jocelyn Abrogar. An earlier marriage to Ligaya Israel is recorded separately; the child allocation to that earlier union is not specified."
     },
     {
       "a": "joaquina",
       "b": "justo2",
       "kids": [
-        "justo-jr"
+        "justo-jr",
+        "manuel-orros",
+        "agustin-orros",
+        "joaquin-orros",
+        "rosario-orros"
       ],
-      "line": "blood"
+      "line": "blood",
+      "note": "Children and sibling names are from the supplied master family summary; no individual birth records are attached."
     },
     {
       "a": "titing",
@@ -2377,7 +2601,9 @@
         "mary",
         "evaristo"
       ],
-      "line": "blood"
+      "line": "blood",
+      "date": "11 February 1894",
+      "place": "La Union, Philippines"
     },
     {
       "a": "rufino-dacanay",
@@ -2413,6 +2639,22 @@
         "felicidad-santos"
       ],
       "line": "blood"
+    },
+    {
+      "a": "joaquin-ortega-molina",
+      "b": "maria-verzosa",
+      "kids": [
+        "antonio"
+      ],
+      "line": "pending",
+      "note": "Paternal parentage of Antonio Ortega y Verzosa as stated in the supplied master family summary."
+    },
+    {
+      "a": "justo-jr",
+      "b": "ligaya-israel",
+      "kids": [],
+      "line": "pending",
+      "note": "Earlier marriage; dates and children not supplied."
     }
   ],
   "chip": {
@@ -2426,26 +2668,33 @@
     "antonia": "The reunion biography says they had no children.",
     "vicenta": "Carmen later married Jose Protacio Jacinto Jr.; their four sons were Rafael, Jose III, Emiliano and Francisco.",
     "joaquin-jr": "The family tree records his death in infancy; no descendants. A later son, Joaquin “Titing” (branch 11), is also styled “Jr.”",
-    "jose": "Paz Munar Lacsamana is confirmed as the same person as the earlier “Paz” profile. She married her first cousin Jose Alvaro “Pepe” Ortega on 8 September 1927 in San Fernando, La Union. Six children are reported (four sons and two daughters). Kining, Mela and Cichit are named in the supplied update; three other children are retained as unnamed placeholders until their names are supplied. Kining and Cleofe had 11 children; Mela and Santos Dacanay had Elena “Ollie”, Pazz “Patchie” and Jose “Third”; Cichit and Emily Alviar had Michelle Ann, Katrina Lyn and Leon Jose “LJ”.",
+    "jose": "The master summary records Jose Alvaro “Pepe” Ortega as born in 1900 and died on 11 May 1942 in Capas, Tarlac, following the Bataan Death March. His marriage to Paz was on 8 September 1927 in San Fernando. Six children are indexed; the three unnamed children likely died in childhood before 1944, but that explanation remains an inference, and their names stay private.",
     "luis": "The first five are children of Luis and Lourdes. The reunion biography also identifies Manuel “Padaw” as Luis’s son, raised by Lola Paca.",
     "ramona": "Ramona “Nena” Ortega and Col. Eduardo Montilla married on 7 December 1922. Their children’s roles are recorded as Francisca Sophia “Paquita” (Barangay Kagawad), Eduardo Jose “Edward” (Ambassador), Lourdes “Penny” (Entrepreneur), and Manuel “Litong” (Attorney & Conchologist). Existing descendants remain in the individual branches.",
     "juanita": "The reunion family-tree diagram names Juanita; the accessible program does not provide a spouse or children.",
-    "pacoy": "The 2017 reunion biography lists 18 children, including three who died young; the Inquirer (2013) counts 15 — eight sons and seven daughters. Victor, Manuel, Pablo, Mario and other sons are tied to Pacoy by the Inquirer, Wikipedia and Philstar; the governors’ terms come from Wikipedia’s list of La Union governors.",
+    "pacoy": "The master family summary adds public-service detail for Francisco Isabelo “Pacoy” Ortega: 24 years in Congress and service as COMELEC Commissioner. Francisco “Kiko” C. Ortega Jr. is kept separate from the older “Francisco Jr.” (pacoy-francisco) entry, which the prior archive described as having died at age 14; the two identities need primary-record reconciliation before merging.",
     "manuela": "The reunion biography says Manuela died at childbirth one year after the marriage; no surviving child is listed. Justo Orros Sr. then married her sister Joaquina (branch 10) — the same person.",
     "joaquina": "The reunion program identifies Joaquina as Justo Orros Sr.’s second wife after her sister Manuela. Your draft cites FamilySearch for Justo Jr. being their son; that could not be re-checked, and the Inquirer (2013) only calls him “a cousin of the Ortegas”.",
-    "titing": "The family update records baptism on 5 January 1917 in San Fernando, La Union; death on 20 September 1996; and burial at Lingsat Public Cemetery, San Fernando, La Union.",
+    "titing": "The master summary gives Titing’s birth date as 7 November 1916, baptism as 5 January 1917, death as 20 September 1996, and burial at Lingsat Public Cemetery. His spouse is named as Felicula Ortega in the latest summary and Felicula “Fely” Nuesa in the earlier profile; retain this as an unresolved name variant.",
     "concepcion": "The reunion biography says she never married and had no children; she cared for her mother and nieces and nephews.",
     "mary": "The reunion biography names three daughters.",
-    "evaristo": "The reunion biography and the Ortega Twins biography name all six children.",
+    "evaristo": "The master family summary says Bangar municipal records verify Fr. Evaristo Guadalupe y Villaverde, OSA, as parish priest in Bangar from 1866 to 1887. The record copy is not attached to this project.",
     "alfredo-pidong": "The 1944 register-page scan supports the marriage entry and records Alfredo’s parents as Leon Lacsamana and Cayetana Munar. The five children listed under Alfredo and Juanita come from the family-supplied update; no individual birth records are attached yet. The latest family update identifies Linda Lacsamana Fornoles as the sixth child of Alfredo and Dr. Juanita Valdivia Lacsamana; the five already listed children are Msgr. Alfonso Ramon, Lourdes, O’Neil, Alberto and Alfredo Jr. The update places Linda in Oxnard, California, alongside relatives Romeo and John Fornoles; their exact relationships to Linda are not specified.",
     "jerry": "Milagros Gandingan is identified as Jerry’s wife in family-supplied notes. Their children are listed from the same update; the youngest daughter remains unnamed as Private.",
     "richard-lee": "Ariane Agnes is identified as Richard Lee’s wife in family-supplied notes. Their two daughters are intentionally displayed as Private.",
-    "mario-lac": "Mario Agustin Lacsamana is recorded as a member of a parallel Lacsamana branch. Do not attach him as a biological child of Joaquin, Francisco, Alfredo “Pidong”, or Eduardo Lacsamana without evidence."
+    "mario-lac": "Mario Agustin Lacsamana is recorded as a member of a parallel Lacsamana branch. Do not attach him as a biological child of Joaquin, Francisco, Alfredo “Pidong”, or Eduardo Lacsamana without evidence.",
+    "antonio": "The master family summary identifies Antonio Ortega y Verzosa as the son of Joaquín Ortega y Molina and Maria Verzosa, and as the father of Gov. Joaquín Vicente Eulogio Ortega y Joaquino. No earlier maternal ancestry for Juana (Ana) Joaquino is supplied.",
+    "manuel": "The master family summary identifies all seven children of Manoling and Geraldine: Pacoy III, Jennifer Joan, Geraldine Joy, Manuel Victor “Mannix” Jr., Alfredo Pablo “Alf”, Eduardo Francisco, and Joseph Francisco. Three former entries are aliases: emmanuel-victor → mannix; manoling-child-6 → eduardo-francisco; manoling-child-7 → jeff-ortega (Joseph Francisco, earlier called Jeff).",
+    "paz": "FamilySearch index: six children (four sons, two daughters). The 2017 Ortega Reunion biography names the three surviving children recorded with Paz at her 1944 death: Kining, Mela and Cichit. The other three are likely childhood deaths according to the supplied summary, but no death dates or identities are known; all remain private.",
+    "justo-jr": "Parents are recorded as Joaquina Ortega Orros and Justo “Titong” Orros Sr. Siblings named by the master summary: Manuel “Lito”, Agustin, Joaquin and Rosario Orros. Spouses are listed in order as earlier wife Ligaya Israel and later wife Jocelyn Abrogar. Three sons are attached to the later wife as supplied: Jonathan Justo “Jay-Jay” A. Orros, Justo “Tito” / “Justito” Orros III, and John H. Orros.",
+    "extended-notable-cousins": "TJ Ortega, Coleen Ortega-Garcia, Ysabel Ortega, Derrick Wilquin Orros Atijera, Maricar Icay Atijera and Cedric Sonny Panis are listed as extended notable cousins based on the master family summary. Exact common ancestors and branch-specific parentage have not been supplied; no biological parent-child links are inferred.",
+    "kining": "Kining is described in the master family summary as the youngest USAFIP-NL WWII veteran and later a mayor, NTA Administrator and Presidential Consultant. His birth year is approximate (c. 1928), derived from the family summary’s age-at-1944 statement; original military and civil-service records are not attached.",
+    "kiko-c-ortega": "This profile is listed as a Pacoy Sr / Corazon Campos descendant in the master summary. It is not merged with the previous “Francisco Jr.” record (pacoy-francisco), which has a conflicting note that the person died at age 14. Do not connect or merge until a primary source resolves the discrepancy."
   },
   "familyIndex": [
     {
       "name": "Don Leon Lacsamana · La Union",
-      "how": "Leon is reported as Francisca’s brother. The updated records connect Paz Munar Lacsamana as a daughter of Leon and Cayetana Munar. His reported children / descendants include Alfredo “Pidong”, Paz, Joaquin, Francisco and Eduardo. Linda Lacsamana Fornoles is the sixth child of Alfredo and Dr. Juanita Valdivia Lacsamana. Some relationships remain family-supplied; keep the evidence notes visible.",
+      "how": "Leon is reported as Francisca’s brother. The updated records connect Paz Munar Lacsamana as a daughter of Leon and Cayetana Munar. His reported children / descendants include Alfredo “Pidong”, Paz, Joaquin, Francisco and Eduardo. Linda Lacsamana Fornoles is the sixth child of Alfredo and Dr. Juanita Valdivia Lacsamana. Some relationships remain family-supplied; keep the evidence notes visible. The master family summary further identifies Ramona Lopez Lacsamana as the mother of both Leon and Doña Francisca.",
       "ids": [
         "ramona-lopez",
         "leon",
@@ -2486,7 +2735,7 @@
     },
     {
       "name": "Munar · Garcia",
-      "how": "Cayetana Munar and Emilia / Emiliana Garcia are listed as Leon’s first and second wives in the supplied family research. The earlier Catalina Munar spelling remains unresolved.",
+      "how": "Cayetana Munar and Emilia / Emiliana Garcia are listed as Leon’s first and second wives in the supplied family research. The earlier Catalina Munar spelling remains unresolved. Paz’s six indexed children are now explained separately from the three children named in the 2017 reunion biography; the other three remain private and their early deaths are only a reported inference.",
       "ids": [
         "leon",
         "cayetana",
@@ -2720,6 +2969,90 @@
       "how": "Mario Agustin Lacsamana is identified in the supplied update as part of a parallel Lacsamana branch and as a four-term San Fernando City Councilor between 2001 and 2022. He is not a biological son of Joaquin, Francisco, Alfredo “Pidong”, or Eduardo Lacsamana. No unsupported parent-child edge is drawn.",
       "ids": [
         "mario-lac"
+      ]
+    },
+    {
+      "name": "Ortega paternal roots · Joaquino / Verzosa",
+      "how": "The master family summary identifies Gov. Joaquín Vicente Eulogio Ortega y Joaquino as the son of Antonio Ortega y Verzosa and Juana (Ana) Joaquino, and identifies Joaquín Ortega y Molina and Maria Verzosa as paternal grandparents. Only the paternal grandparent union is drawn; no maternal ancestor for Juana is inferred.",
+      "ids": [
+        "joaquin-ortega-molina",
+        "maria-verzosa",
+        "antonio",
+        "juana",
+        "joaquin"
+      ]
+    },
+    {
+      "name": "Manoling · Geraldine · seven children",
+      "how": "The seven children are Francisco Emmanuel “Pacoy” R. Ortega III, Jennifer Joan R. Ortega, Geraldine Joy R. Ortega, Manuel Victor “Mannix” R. Ortega Jr., Alfredo Pablo “Alf” R. Ortega, Eduardo Francisco R. Ortega, and Joseph Francisco R. Ortega. Legacy duplicate and placeholder IDs remain aliases only and are not counted as extra children.",
+      "ids": [
+        "manuel",
+        "geraldine-denny",
+        "pacoy3",
+        "jennifer-joan",
+        "joy",
+        "mannix",
+        "alfredo",
+        "eduardo-francisco",
+        "jeff-ortega"
+      ]
+    },
+    {
+      "name": "Justo Orros Jr. · Orros family branch",
+      "how": "The master family summary identifies Joaquina Ortega Orros and Justo “Titong” Orros Sr. as the parents of Justo Jr. and siblings Manuel “Lito”, Agustin, Joaquin and Rosario. It records an earlier marriage to Ligaya Israel, a later marriage to Jocelyn Abrogar, and three sons in the latter branch.",
+      "ids": [
+        "joaquina",
+        "justo1",
+        "justo2",
+        "justo-jr",
+        "manuel-orros",
+        "agustin-orros",
+        "joaquin-orros",
+        "rosario-orros",
+        "ligaya-israel",
+        "jocelyn-abrogar",
+        "jay-jay",
+        "justito-orros",
+        "john-h-orros"
+      ]
+    },
+    {
+      "name": "Pacoy Sr. · Corazon Campos · added descendants",
+      "how": "Updated names / roles include Jose Maria “Pepe” C. Ortega and Ramon C. Ortega. Francisco “Kiko” C. Ortega Jr. is listed separately because an older Francisco Jr. entry in the archive carries a conflicting death-at-14 note; the identities are not merged pending a primary record.",
+      "ids": [
+        "pacoy",
+        "corazon",
+        "jose-ma",
+        "ramon",
+        "kiko-c-ortega",
+        "pacoy-francisco"
+      ]
+    },
+    {
+      "name": "Extended notable Ortega / Orros cousins",
+      "how": "Names are retained from the master family summary. No exact common ancestor or specific branch is mapped yet, so the profiles are presented as extended family references without invented parent-child links.",
+      "ids": [
+        "tj-ortega",
+        "coleen-ortega-garcia",
+        "ysabel-ortega",
+        "derrick-wilquin-orros-atijera",
+        "maricar-icay-atijera",
+        "cedric-sonny-panis"
+      ]
+    },
+    {
+      "name": "La Union governors · Ortega legacy",
+      "how": "The master family summary lists eight members of the wider Ortega family who served as La Union governor: Gov. Joaquín Ortega (1901–1904), Joaquín “Titing” Ortega Jr. (1988–1992), Justo Ortega Orros Jr. (1992–2001), Victor Francisco Ortega (2001–2007), Manuel “Manoling” Ortega (2007–2016), Francisco Emmanuel “Pacoy” Ortega III (2016–2022), Raphaelle Veronica “Rafy” Ortega-David (2022–2025), and Mario Eduardo “Tot” Ortega (2025–present). Current Mario and Paolo House roles are separately supported by 2026 official government pages.",
+      "ids": [
+        "joaquin",
+        "titing",
+        "justo-jr",
+        "victor",
+        "manuel",
+        "pacoy3",
+        "raphaelle",
+        "mario",
+        "paolo"
       ]
     }
   ]

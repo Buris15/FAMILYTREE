@@ -34,11 +34,14 @@ const peopleCount = Object.keys(seed.people || {}).length;
 const visiblePeopleCount = Object.values(seed.people || {}).filter((person) => !person.same).length;
 const unionCount = (seed.unions || []).length;
 const indexCount = (seed.familyIndex || []).length;
-if (peopleCount !== 200 || visiblePeopleCount !== 198 || unionCount !== 54 || indexCount !== 21) {
+if (peopleCount !== 219 || visiblePeopleCount !== 214 || unionCount !== 56 || indexCount !== 27) {
   throw new Error(`Unexpected seed data counts: ${visiblePeopleCount} distinct profiles (${peopleCount} data entries), ${unionCount} unions, ${indexCount} index groups`);
 }
-for (const id of ["juanita-valdris", "lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles", "paz", "paz-munar", "paz-child-4", "paz-child-5", "paz-child-6", "mario-lac", "pacita-lomiteng", "milagros-gandingan", "makoy-lacsamana", "josephine-lacsamana", "private-jerry-youngest", "ariane-agnes", "private-richard-eldest", "private-richard-youngest", "rufino-dacanay", "felicidad-natarte"]) {
-  if (!seed.people[id]) throw new Error("Missing V17 person record: " + id);
+for (const id of [
+  "juanita-valdris", "lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles", "paz", "paz-munar", "paz-child-4", "paz-child-5", "paz-child-6", "mario-lac", "pacita-lomiteng", "milagros-gandingan", "makoy-lacsamana", "josephine-lacsamana", "private-jerry-youngest", "ariane-agnes", "private-richard-eldest", "private-richard-youngest", "rufino-dacanay", "felicidad-natarte",
+  "joaquin-ortega-molina", "maria-verzosa", "jennifer-joan", "eduardo-francisco", "manuel-orros", "agustin-orros", "joaquin-orros", "rosario-orros", "ligaya-israel", "jocelyn-abrogar", "justito-orros", "john-h-orros", "kiko-c-ortega", "tj-ortega", "coleen-ortega-garcia", "ysabel-ortega", "derrick-wilquin-orros-atijera", "maricar-icay-atijera", "cedric-sonny-panis"
+]) {
+  if (!seed.people[id]) throw new Error("Missing V19 person record: " + id);
 }
 const seedIds = new Set(Object.keys(seed.people || {}));
 for (const union of seed.unions || []) {
@@ -51,6 +54,21 @@ for (const group of seed.familyIndex || []) {
 if (seed.people["paz-munar"].same !== "paz") throw new Error("Paz duplicate profile is not merged to the canonical Paz ID.");
 if (!(seed.unions || []).some((u) => u.a === "leon" && u.b === "cayetana" && u.kids.includes("paz"))) throw new Error("Paz is missing from the Leon / Cayetana union.");
 if (!(seed.unions || []).some((u) => u.a === "jose" && u.b === "paz" && ["kining", "mela", "cichit", "paz-child-4", "paz-child-5", "paz-child-6"].every((id) => u.kids.includes(id)))) throw new Error("Paz's six-child union is incomplete.");
+if (!(seed.unions || []).some((u) => u.a === "joaquin-ortega-molina" && u.b === "maria-verzosa" && u.kids.includes("antonio"))) throw new Error("Joaquin Ortega y Molina / Maria Verzosa are not connected as Antonio's parents.");
+if (!(seed.unions || []).some((u) => u.a === "antonio" && u.b === "juana" && u.kids.includes("joaquin"))) throw new Error("Antonio Ortega y Verzosa / Juana Joaquino are not connected as Joaquin's parents.");
+const manolingUnion = (seed.unions || []).find((u) => u.a === "manuel" && u.b === "geraldine-denny");
+const manolingChildren = ["pacoy3", "jennifer-joan", "joy", "mannix", "alfredo", "eduardo-francisco", "jeff-ortega"];
+if (!manolingUnion || manolingUnion.kids.length !== 7 || !manolingChildren.every((id) => manolingUnion.kids.includes(id))) throw new Error("Manoling / Geraldine must have exactly the seven named canonical children.");
+if (["emmanuel-victor", "manoling-child-6", "manoling-child-7"].some((id) => manolingUnion.kids.includes(id))) throw new Error("Manoling duplicate / placeholder IDs must remain aliases, not extra children.");
+if (seed.people["emmanuel-victor"].same !== "mannix" || seed.people["manoling-child-6"].same !== "eduardo-francisco" || seed.people["manoling-child-7"].same !== "jeff-ortega") throw new Error("Manoling legacy IDs are not mapped to the intended canonical children.");
+if (seed.people.manuela.d !== "1906–1928" || seed.people.mela.d) throw new Error("Miling and Mela dates must remain distinct; only Miling has supplied life years.");
+const orrosParents = (seed.unions || []).find((u) => u.a === "joaquina" && u.b === "justo2");
+if (!orrosParents || !["justo-jr", "manuel-orros", "agustin-orros", "joaquin-orros", "rosario-orros"].every((id) => orrosParents.kids.includes(id))) throw new Error("The Justo Orros Jr. sibling branch is incomplete.");
+const orrosSons = (seed.unions || []).find((u) => u.a === "justo-jr" && u.b === "jocelyn-abrogar");
+if (!orrosSons || !["jay-jay", "justito-orros", "john-h-orros"].every((id) => orrosSons.kids.includes(id))) throw new Error("Justo Jr. / Jocelyn's three sons are incomplete.");
+if (!(seed.unions || []).some((u) => u.a === "justo-jr" && u.b === "ligaya-israel")) throw new Error("Justo Jr.'s earlier marriage to Ligaya Israel is missing.");
+if (!(seed.unions || []).some((u) => u.a === "pacoy" && u.b === "corazon" && u.kids.includes("kiko-c-ortega"))) throw new Error("Kiko C. Ortega is missing from the Pacoy / Corazon family branch.");
+if (seed.people["pacoy-francisco"].same || seed.people["kiko-c-ortega"].same) throw new Error("The unresolved Francisco Jr. / Kiko identity must not be merged.");
 if (!(seed.unions || []).some((u) => u.a === "alfredo-pidong" && u.b === "juanita-valdris" && ["lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles"].every((id) => u.kids.includes(id)))) throw new Error("The Alfredo / Juanita six-child union is incomplete.");
 if ((seed.unions || []).some((u) => u.kids.includes("mario-lac"))) throw new Error("Mario Agustin Lacsamana must remain separate from unsupported parent-child links.");
 for (const file of [
@@ -62,8 +80,11 @@ for (const file of [
 ]) {
   if (!fs.existsSync(path.join(root, file))) throw new Error("Missing V17 source scan: " + file);
 }
-for (const marker of ["Juanita Valdivia", "Macario Lacsamana and Felicidad Santos marry", "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", "Educator · academic leader · Catholic community service", "Paz Munar Lacsamana and Jose Alvaro", "Fr. Evaristo Guadalupe serves as parish priest of Bangar", "Msgr. Alfonso Ramon Lacsamana is assigned to Pagdalagan parish"]) {
+for (const marker of ["Juanita Valdivia", "Macario Lacsamana and Felicidad Santos marry", "assets/research/alfredo-pidong-juanita-valdivia-register-p71.png", "Educator · academic leader · Catholic community service", "Paz Munar Lacsamana and Jose Alvaro", "Fr. Evaristo Guadalupe serves as parish priest of Bangar", "Msgr. Alfonso Ramon Lacsamana is assigned to Pagdalagan parish", "Eight members of the wider Ortega family have served as La Union Governor", "House Resolution No. 545", "Joaquin “Kining” Ortega’s wartime and public service", "Manuel “Manoling” Ortega dies in San Fernando", "Dr. Juanita Valdivia Lacsamana completes her Ed.D.", "Dr. Juanita “Tetang” Lacsamana receives a Centenarian Longevity Award"]) {
   if (!script.includes(marker)) throw new Error("Missing V17 archive content marker: " + marker);
+}
+for (const marker of ["appendHistoricalProfile(\"kining\"", "appendHistoricalProfile(\"justo-jr\"", "appendHistoricalProfile(\"manuel\"", "appendHistoricalProfile(\"coleen-ortega-garcia\"", "House of Representatives member profile", "it does not list the seven children", "appendHistoricalProfile(\"victor\"", "appendHistoricalProfile(\"pacoy3\"", "appendHistoricalProfile(\"raphaelle\"", "appendHistoricalProfile(\"kiko-c-ortega\""]) {
+  if (!script.includes(marker)) throw new Error("Missing V19 biography / source content marker: " + marker);
 }
 if (!schema.includes("enable row level security") || !schema.includes("is_family_admin")) {
   throw new Error("Supabase schema is missing expected RLS controls.");
@@ -93,4 +114,4 @@ for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track",
 if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
   throw new Error("V16 display typography or dialog accessibility markup is missing.");
 }
-console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
+console.log(`Checks passed: JS syntax, unique HTML IDs, project references, contribution portal and migration schema markers, RLS markers, no secret in API config, no local env file, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
