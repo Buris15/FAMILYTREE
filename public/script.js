@@ -134,7 +134,7 @@ const nameOf = (p) => ov(p.id).name || p.name;
 const roleOf = (p) => ov(p.id).role || p.role;
 const unionsOf = (id) => UNIONS.filter((u) => u.a === id);
 const relatedUnionsOf = (id) => UNIONS.filter((u) => u.a === id || u.b === id);
-const spousesOf = (id) => relatedUnionsOf(id).map((u) => ({ id: u.a === id ? u.b : u.a, line: u.line })).filter((x) => x.id && PEOPLE[x.id]);
+const spousesOf = (id) => relatedUnionsOf(id).filter((u) => u.kind !== "parentage").map((u) => ({ id: u.a === id ? u.b : u.a, line: u.line })).filter((x) => x.id && PEOPLE[x.id]);
 const kidsOf = (id) =>
   relatedUnionsOf(id).flatMap((u) =>
     u.kids.map((k) => ({ id: k, line: PEOPLE[k] && PEOPLE[k].added ? "pending" : u.line }))
@@ -406,7 +406,11 @@ function coupleEl(pid, o) {
   } else {
     row.appendChild(cardEl(pid, { big: o.big }));
     if (partner && PEOPLE[partner]) {
-      row.appendChild(el("span", "pl " + (union.line === "pending" ? "pending" : "")));
+      if (union.kind === "parentage") {
+        row.appendChild(el("span", "parentage-label", union.label || "PARENTAGE ONLY · MARITAL STATUS NOT ESTABLISHED"));
+      } else {
+        row.appendChild(el("span", "pl " + (union.line === "pending" ? "pending" : "")));
+      }
       row.appendChild(cardEl(partner, { big: o.big }));
     }
   }
@@ -462,12 +466,17 @@ function renderAll() {
   const main = el("section", "main-tree");
   main.id = "mainLineage";
   main.appendChild(el("div", "tree-overline", "LACSAMANA × ORTEGA · CONNECTED FAMILY TREE"));
-  main.appendChild(el("div", "tree-caption", "Martin Lacsamana and Narcisa Lopez → Ramona and Evaristo → siblings Don Leon and Doña Francisca → all recorded descendants"));
+  main.appendChild(el("div", "tree-caption", "Martin Lacsamana and Narcisa Lopez → Ramona and eight recorded siblings · Ramona and Fr. Evaristo are linked to Leon and Francisca by reported parentage only; they did not marry."));
   main.appendChild(el("p", "heritage-flag-legend", '<span>🇵🇭 🇪🇸</span> marks Philippine family roots and Spanish-born ancestry through Evaristo Guadalupe y Villaverde. The flags identify heritage, not citizenship or an exact percentage.'));
   const root = el("div", "tree-root");
   root.id = "ancPanel";
   root.appendChild(nodeEl("martin-lacsamana"));
   main.appendChild(root);
+  const evaristoOrigins = el("section", "ancestral-context-panel");
+  evaristoOrigins.appendChild(el("div", "tree-overline", "FR. EVARISTO’S FAMILY OF ORIGIN"));
+  evaristoOrigins.appendChild(el("p", "ancestral-context-note", "The supplied relatives update names Bernardino Guadalupe and Nicolasa Villaverde as Fr. Evaristo’s parents. This is a parentage record; their marital status is not established in the supplied note."));
+  evaristoOrigins.appendChild(nodeEl("bernardino-guadalupe"));
+  main.appendChild(evaristoOrigins);
   stage.appendChild(main);
 
   const records = el("section", "archive-extras");
@@ -587,6 +596,7 @@ let activePersonId = "adrian";
 function allPartners(pid) {
   const out = new Set();
   UNIONS.forEach((u) => {
+    if (u.kind === "parentage") return;
     if (u.a === pid && u.b) out.add(u.b);
     if (u.b === pid && u.a) out.add(u.a);
   });
@@ -1263,9 +1273,10 @@ function archiveButton(label, id, cls) {
   return '<button type="button" class="' + (cls || 'archive-person-link') + '" data-archive-person="' + esc(id) + '">' + esc(label) + '</button>';
 }
 const SURNAME_REGISTER = [
-  ["Lacsamana", "Core family surname", "Appears in the supplied direct La Union lineage and the Ortega-Lacsamana branch."],
+  ["Lacsamana", "Core family surname", "Appears in the supplied direct La Union lineage, the Ortega-Lacsamana branch, and Maria de la Expectacion Lopez Lacsamana; spelling clarified by the family."],
   ["Laksamana", "Related linguistic form", "Malay word discussed in the surname-origin note; not established as a spelling used by this particular family branch."],
-  ["Lopez", "Family surname", "Appears in Narcisa Lopez and Ramona Lopez Lacsamana."],
+  ["Lopez", "Family surname", "Appears in Narcisa Lopez, Ramona Lopez Lacsamana, and eight newly listed siblings in the family-supplied update."],
+  ["Guadalupe · Villaverde", "Evaristo’s reported parental surnames", "The supplied relatives update names Bernardino Guadalupe and Nicolasa Villaverde as the parents of Fr. Evaristo Guadalupe y Villaverde, OSA."]
   ["Ortega", "Family surname", "Appears in the descendants of Doña Francisca and Don Joaquin."],
   ["Guadalupe", "Ancestral surname", "Appears in Evaristo Guadalupe y Villaverde."],
   ["Villaverde", "Ancestral surname", "Appears in Evaristo Guadalupe y Villaverde."],
@@ -1298,6 +1309,7 @@ const SURNAME_REGISTER = [
 ];
 const ARCHIVE_EVENTS = [
   { date: "Date not established", sort: "0000-00-00", title: "Birth of Don Leon Lacsamana · date awaiting documentation", detail: "Don Leon’s birth is now explicitly included as a missing historical milestone. The Ortega Reunion 2017 souvenir program identifies Leon as Doña Francisca’s brother and describes him living in Carlatan and visiting family in Daya, but it does not state his birth date or birthplace. No year has been inferred from his sister’s 1877 birth. Add the date only when a reliable civil, church, or other historical record is located.", status: "Research gap · birth date and birthplace not yet established", people: ["leon"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf", urlLabel: "Family context source ↗" },
+  { date: "1808–1814", sort: "1808-01-01", title: "French invasion and occupation of Spain", detail: "The supplied relatives update notes that French forces led by Napoleon conquered Spain in 1808 and that Spanish control was regained in 1814. This is retained as broad historical context; no personal involvement by Evaristo or his parents is established.", status: "Historical context from family-supplied note · independent citation not attached", people: [] },
   { date: "26 October 1830", sort: "1830-10-26", title: "Evaristo Guadalupe y Villaverde is born", detail: "The supplied FamilySearch screenshot lists Ocaña, Toledo, Spain as his birthplace.", status: "FamilySearch profile screenshot · Sources (0)", people: ["evaristo-guadalupe"], url: "https://www.familysearch.org/tree/person/details/G138-FPT" },
   { date: "1849 (year shown)", sort: "1849-01-01", title: "Ramona Lopez Lacsamana's recorded birth year", detail: "The supplied FamilySearch screenshot displays 1849; day and month are not shown.", status: "FamilySearch profile screenshot · original record not attached", people: ["ramona-lopez"], url: "https://www.familysearch.org/tree/person/details/GNHK-MZ3" },
   { date: "11 March 1866", sort: "1866-03-11", title: "Joaquin Ortega y Joaquino is born in Cebu", detail: "The Ortega Reunion 2017 souvenir program records this date and birthplace and identifies his parents as Antonio Ortega y Verzosa and Juana Joaquino. This is a published family-history source; an original baptismal or civil birth record remains desirable.", status: "Published family-history program · original birth record not attached", people: ["joaquin"], url: "https://www.ocds-ortegatwins.com/storage/2025/03/27/ortega-reunion-2017-landscape.pdf" },
@@ -1448,6 +1460,9 @@ const KNOWN_ARCHIVE_SOURCES = [
   { title: "Provincial Government of La Union · Don Joaquin Ortega", type: "Government historical article", url: "https://launion.gov.ph/pglu-honors-legacy-of-don-joaquin-j-ortega-commemorates-his-122nd-appointment-as-provinces-first-civil-governor/", note: "Joaquin's public legacy and appointment as the province's first Civil Governor." },
   { title: "Senate Legislative Reference Bureau · Batas Pambansa Blg. 458", type: "Legislative record", url: "https://ldr.senate.gov.ph/legislative-issuance/batas-pambansa-458", note: "Law approved 10 June 1983 converting Doña Francisca Lacsamana de Ortega Memorial Municipal High School in Bangar into a national high school under her memorial name." },
   { title: "Archivo Agustiniano · 2019 register", type: "Religious archive / historical register", url: "https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf", note: "Evaristo Guadalupe entry, birthplace, assignments and death information as described in the current profile note." },
+  { title: "Fr. Evaristo Guadalupe y Villaverde · handwritten register pages", type: "Family-supplied archival scan · undated / not transcribed", url: "assets/research/evaristo-guadalupe-archival-register-pages.png", note: "A photograph of a multi-entry handwritten register spread supplied for Evaristo’s research file. The specific entry has not yet been isolated or transcribed; do not treat the image as verified proof of a relationship until the entry is identified." },
+  { title: "Fr. Evaristo Guadalupe y Villaverde · signature artwork", type: "Family-supplied SVG artwork · attribution not independently authenticated", url: "assets/research/evaristo-guadalupe-signature.svg", note: "SVG signature artwork supplied with the relatives update. Its attribution is preserved as supplied and has not been independently authenticated." },
+  { title: "Family-supplied relatives update · Evaristo and Ramona", type: "Research note", url: "assets/research/evaristo-relatives-update.txt", note: "Names Evaristo’s parents, gives his alternate name, clarifies that Ramona and Evaristo did not marry, and lists eight siblings of Ramona." },
   { title: "FamilySearch · Ramona Lopez Lacsamana", type: "Genealogy profile", url: "https://www.familysearch.org/tree/person/details/GNHK-MZ3", note: "Supplied screenshot identifies her profile ID and birth year; screenshot showed no attached sources." },
   { title: "FamilySearch · Evaristo Guadalupe y Villaverde", type: "Genealogy profile", url: "https://www.familysearch.org/tree/person/details/G138-FPT", note: "Supplied screenshot identifies profile details; screenshot showed Sources (0) and Medium quality score." },
   { title: "Provincial Government of La Union · Denny Ortega and seven children", type: "Government article", url: "https://launion.gov.ph/bm-ortega-takes-oath-as-the-new-ex-officio-member-of-lu-sp/", note: "The article mentions seven children but does not identify all seven by name." },
@@ -1464,7 +1479,7 @@ const KNOWN_ARCHIVE_SOURCES = [
   { title: "Senate P.S. Resolution No. 344 · Coleen Ortega Garcia-Crawford", type: "Senate legislative record", url: "https://issuances-library.senate.gov.ph/sites/default/files/2023-01/4009336510%21.pdf", note: "Identifies Danielle Claudine “Coleen” Ortega Garcia-Crawford as an actress and commends her 2022 El Grito award." },
   { title: "Manila Bulletin · Ysabel Ortega’s family farm", type: "News feature · 8 January 2022", url: "https://mb.com.ph/2022/1/8/corn-and-other-fruit-bearing-trees-abound-in-actress-ysabel-ortegas-family-farm", note: "Identifies Ysabel Ortega as an actress and describes the family farm in Barangay Ortega, Bacnotan, La Union." },
 ];
-const BIOGRAPHY_IDS = ["leon", "francisca", "joaquin", "evaristo-guadalupe", "juanita-valdris", "alfonso-ramon-mons-lacsamana", "pacita-lomiteng", "linda-fornoles", "paz", "mario-lac", "ramona", "titing", "pio", "victor", "roberto", "manuel", "pacoy3", "justo-jr", "mario", "carlos", "jose", "kining", "manuela", "joaquina", "concepcion", "juanita", "pacoy", "raphaelle", "paolo", "coleen-ortega-garcia", "ysabel-ortega", "kiko-c-ortega"];
+const BIOGRAPHY_IDS = ["leon", "francisca", "joaquin", "evaristo-guadalupe", "ramona-lopez", "juanita-valdris", "alfonso-ramon-mons-lacsamana", "pacita-lomiteng", "linda-fornoles", "paz", "mario-lac", "ramona", "titing", "pio", "victor", "roberto", "manuel", "pacoy3", "justo-jr", "mario", "carlos", "jose", "kining", "manuela", "joaquina", "concepcion", "juanita", "pacoy", "raphaelle", "paolo", "coleen-ortega-garcia", "ysabel-ortega", "kiko-c-ortega"];
 const HISTORICAL_PROFILE_DETAILS = {
   leon: {
     heading: "Family history and the Lacsamana line",
@@ -1527,10 +1542,19 @@ const HISTORICAL_PROFILE_DETAILS = {
       { title: "Children", body: "Six children are reported: four sons and two daughters. The supplied names include Kining, Mela, and Cichit. The other three children are represented as unnamed placeholders until names are provided; no gender is assigned to an unnamed profile.", evidence: "Family research update · names of three children not supplied", source: "" }
     ]
   },
+  "ramona-lopez": {
+    heading: "Lacsamana family roots · mother of Leon and Francisca",
+    sections: [
+      { title: "Parents and siblings", body: "The supplied relatives update identifies Martin Lacsamana and Narcisa Lopez as Ramona’s parents and lists eight siblings: Maria de la Expectacion Lopez Lacsamana, Bernardo, Rosa, Ynes, Ysabelo, Timotea, Maximo, and Proceso Lopez Lacsamana. The user clarified that Maria’s surname is Lacsamana; the earlier typed relatives note used “Lasamana,” treated as a spelling typo. Dates and original civil / church records for these sibling links have not been supplied.", evidence: "Family-supplied relatives update · original records not attached", source: "assets/research/evaristo-relatives-update.txt" },
+      { title: "Parentage and marital clarification", body: "The family update explicitly states that Ramona and Fr. Evaristo Guadalupe y Villaverde, OSA did not marry. Their connection to Don Leon and Doña Francisca is represented as reported parentage only; neither person is listed as the other’s spouse in this archive.", evidence: "Family-supplied relatives update · parentage source records not attached", source: "assets/research/evaristo-relatives-update.txt" }
+    ]
+  },
   "evaristo-guadalupe": {
     heading: "Augustinian priest · parish service in Bangar",
     sections: [
-      { title: "Parish service", body: "The latest family update reports that municipal records from Bangar, La Union verify Fr. Evaristo Guadalupe y Villaverde, OSA, as parish priest of Bangar from 1866 to 1887. This tenure overlaps the period associated with the births of Doña Francisca and Don Leon. The municipal record copy has not yet been attached to the digital archive.", evidence: "Municipal records cited in family research update · record copy not attached", source: "" }
+      { title: "Parents, name forms, and parentage", body: "The supplied relatives update names Bernardino Guadalupe and Nicolasa Villaverde as Evaristo’s parents and gives the alternate form “Muy Reverendo Padre Fray Evaristo Villaverde Guadalupe OSA.” It also explicitly states that Ramona Lopez Lacsamana and Fr. Evaristo did not marry. Their link to Don Leon and Doña Francisca is shown in this archive as reported parentage only, not as a marriage or spouse relationship.", evidence: "Family-supplied relatives update · original civil / church records not attached", source: "assets/research/evaristo-relatives-update.txt" },
+      { title: "Parish service", body: "The family research reports that municipal records from Bangar, La Union verify Fr. Evaristo Guadalupe y Villaverde, OSA, as parish priest of Bangar from 1866 to 1887. This tenure overlaps the period associated with the births of Doña Francisca and Don Leon. The municipal record copy has not yet been attached to the digital archive.", evidence: "Municipal records cited in family research update · record copy not attached", source: "" },
+      { title: "Archival register and signature materials", body: "A multi-entry handwritten register-page image and an SVG signature artwork attributed to Evaristo by the supplied filenames have been added to the research archive. The specific handwritten entry has not yet been isolated or transcribed, and the signature attribution has not been independently authenticated. Treat both as research materials, not as conclusive proof of parentage or identity.", evidence: "User-supplied register-page scan and signature artwork · transcription / authentication pending", source: "assets/research/evaristo-guadalupe-archival-register-pages.png" }
     ]
   },
   "ramona": {

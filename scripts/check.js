@@ -37,12 +37,12 @@ const peopleCount = Object.keys(seed.people || {}).length;
 const visiblePeopleCount = Object.values(seed.people || {}).filter((person) => !person.same).length;
 const unionCount = (seed.unions || []).length;
 const indexCount = (seed.familyIndex || []).length;
-if (peopleCount !== 219 || visiblePeopleCount !== 214 || unionCount !== 56 || indexCount !== 27) {
+if (peopleCount !== 229 || visiblePeopleCount !== 224 || unionCount !== 57 || indexCount !== 29) {
   throw new Error(`Unexpected seed data counts: ${visiblePeopleCount} distinct profiles (${peopleCount} data entries), ${unionCount} unions, ${indexCount} index groups`);
 }
 for (const id of [
   "juanita-valdris", "lourdes-lacsamana", "oneil-lacsamana", "alberto-lacsamana", "alfredo-jr-lacsamana", "alfonso-ramon-mons-lacsamana", "linda-fornoles", "paz", "paz-munar", "paz-child-4", "paz-child-5", "paz-child-6", "mario-lac", "pacita-lomiteng", "milagros-gandingan", "makoy-lacsamana", "josephine-lacsamana", "private-jerry-youngest", "ariane-agnes", "private-richard-eldest", "private-richard-youngest", "rufino-dacanay", "felicidad-natarte",
-  "joaquin-ortega-molina", "maria-verzosa", "jennifer-joan", "eduardo-francisco", "manuel-orros", "agustin-orros", "joaquin-orros", "rosario-orros", "ligaya-israel", "jocelyn-abrogar", "justito-orros", "john-h-orros", "kiko-c-ortega", "tj-ortega", "coleen-ortega-garcia", "ysabel-ortega", "derrick-wilquin-orros-atijera", "maricar-icay-atijera", "cedric-sonny-panis"
+  "joaquin-ortega-molina", "maria-verzosa", "bernardino-guadalupe", "nicolasa-villaverde", "maria-expectacion-lopez-lasamana", "bernardo-lopez-lacsamana", "rosa-lopez-lacsamana", "ynes-lopez-lacsamana", "ysabelo-lopez-lacsamana", "timotea-lopez-lacsamana", "maximo-lopez-lacsamana", "proceso-lopez-lacsamana", "jennifer-joan", "eduardo-francisco", "manuel-orros", "agustin-orros", "joaquin-orros", "rosario-orros", "ligaya-israel", "jocelyn-abrogar", "justito-orros", "john-h-orros", "kiko-c-ortega", "tj-ortega", "coleen-ortega-garcia", "ysabel-ortega", "derrick-wilquin-orros-atijera", "maricar-icay-atijera", "cedric-sonny-panis"
 ]) {
   if (!seed.people[id]) throw new Error("Missing V19 person record: " + id);
 }
@@ -59,6 +59,18 @@ if (!(seed.unions || []).some((u) => u.a === "leon" && u.b === "cayetana" && u.k
 if (!(seed.unions || []).some((u) => u.a === "jose" && u.b === "paz" && ["kining", "mela", "cichit", "paz-child-4", "paz-child-5", "paz-child-6"].every((id) => u.kids.includes(id)))) throw new Error("Paz's six-child union is incomplete.");
 if (!(seed.unions || []).some((u) => u.a === "joaquin-ortega-molina" && u.b === "maria-verzosa" && u.kids.includes("antonio"))) throw new Error("Joaquin Ortega y Molina / Maria Verzosa are not connected as Antonio's parents.");
 if (!(seed.unions || []).some((u) => u.a === "antonio" && u.b === "juana" && u.kids.includes("joaquin"))) throw new Error("Antonio Ortega y Verzosa / Juana Joaquino are not connected as Joaquin's parents.");
+if (!(seed.unions || []).some((u) => u.a === "bernardino-guadalupe" && u.b === "nicolasa-villaverde" && u.kids.includes("evaristo-guadalupe") && u.kind === "parentage")) throw new Error("Evaristo’s reported parents are missing or not marked as parentage.");
+const ramonaEvaristo = (seed.unions || []).find((u) => u.a === "ramona-lopez" && u.b === "evaristo-guadalupe");
+if (!ramonaEvaristo || ramonaEvaristo.kind !== "parentage" || !/NOT MARRIED/i.test(ramonaEvaristo.label || "") || !["leon", "francisca"].every((id) => ramonaEvaristo.kids.includes(id))) throw new Error("Ramona / Evaristo must be retained as parentage only and explicitly not married.");
+const ramonaSiblings = ["maria-expectacion-lopez-lasamana", "bernardo-lopez-lacsamana", "rosa-lopez-lacsamana", "ynes-lopez-lacsamana", "ysabelo-lopez-lacsamana", "timotea-lopez-lacsamana", "maximo-lopez-lacsamana", "proceso-lopez-lacsamana"];
+const martinNarcisa = (seed.unions || []).find((u) => u.a === "martin-lacsamana" && u.b === "narcisa-lopez");
+if (!martinNarcisa || !ramonaSiblings.every((id) => martinNarcisa.kids.includes(id))) throw new Error("Ramona’s eight newly reported siblings are incomplete.");
+if (seed.people["evaristo-guadalupe"].alsoKnownAs !== "Muy Reverendo Padre Fray Evaristo Villaverde Guadalupe OSA") throw new Error("Evaristo’s alternate name is missing.");
+if (seed.people["maria-expectacion-lopez-lasamana"].name !== "Maria de la Expectacion Lopez Lacsamana") throw new Error("Maria de la Expectacion’s family surname must display as Lacsamana.");
+if (seed.people["ramona-lopez"].n.includes("Maria de la Expectacion Lopez Lasamana")) throw new Error("Ramona’s profile must use the clarified Lacsamana spelling.");
+if (seed.people["ramona-lopez"].n.includes("Maria’s surname is preserved as \"Lasamana\"")) throw new Error("Ramona’s profile must not retain the superseded Maria surname spelling.");
+if (!seed.familyIndex.some((group) => group.ids.includes("maria-expectacion-lopez-lasamana") && group.how.includes("Maria de la Expectacion Lopez Lacsamana"))) throw new Error("Family index must use the clarified Lacsamana spelling.");
+if (script.includes('["Lasamana", "Source spelling to verify"')) throw new Error("The superseded Lasamana spelling must not appear as a surname-register entry.");
 const manolingUnion = (seed.unions || []).find((u) => u.a === "manuel" && u.b === "geraldine-denny");
 const manolingChildren = ["pacoy3", "jennifer-joan", "joy", "mannix", "alfredo", "eduardo-francisco", "jeff-ortega"];
 if (!manolingUnion || manolingUnion.kids.length !== 7 || !manolingChildren.every((id) => manolingUnion.kids.includes(id))) throw new Error("Manoling / Geraldine must have exactly the seven named canonical children.");
@@ -79,7 +91,10 @@ for (const file of [
   "public/assets/research/joaquin-lacsamana-concepcion-viloria-1955-marriage-contract.png",
   "public/assets/research/francisco-lacsamana-pacita-lomiteng-1958-marriage-contract.png",
   "public/assets/research/eduardo-lacsamana-purita-argueza-1959-marriage-contract.png",
-  "public/assets/research/macario-lacsamana-felicidad-santos-1962-marriage-contract.png"
+  "public/assets/research/macario-lacsamana-felicidad-santos-1962-marriage-contract.png",
+  "public/assets/research/evaristo-guadalupe-archival-register-pages.png",
+  "public/assets/research/evaristo-guadalupe-signature.svg",
+  "public/assets/research/evaristo-relatives-update.txt"
 ]) {
   if (!fs.existsSync(path.join(root, file))) throw new Error("Missing V17 source scan: " + file);
 }
@@ -115,6 +130,8 @@ for (const marker of ["family_research_records", "family_timeline_events", "fami
 }
 if (!/values\s*\([\s\S]*?'family-research-files',[\s\S]*?'family-research-files',[\s\S]*?false/i.test(researchMigration)) throw new Error("Research upload bucket must remain private.");
 if (!script.includes('family-archive-ready')) throw new Error("Main archive script is missing the research workspace lifecycle event.");
+if (!script.includes('u.kind !== "parentage"') || !script.includes("parentage-label") || !script.includes("1808–1814")) throw new Error("V19.2 parentage labels, spouse filtering, or historical context are missing.");
+if (!html.includes("evaristo-guadalupe-archival-register-pages.png") || !html.includes("evaristo-guadalupe-signature.svg")) throw new Error("V19.2 Evaristo archival exhibits are missing from the documents gallery.");
 if (api.includes("SUPABASE_SECRET_KEY") || api.includes("SUPABASE_SERVICE_ROLE_KEY")) {
   throw new Error("A server-side Supabase secret must not be exposed by the config API.");
 }

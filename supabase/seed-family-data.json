@@ -74,7 +74,7 @@
     "evaristo-guadalupe": {
       "id": "evaristo-guadalupe",
       "name": "Fr. Evaristo Guadalupe y Villaverde, OSA",
-      "role": "Generation 2 · Great-great-grandfather · Father of Don Leon and Doña Francisca · Parish priest of Bangar (1866–1887)",
+      "role": "Augustinian priest · reported father of Don Leon and Doña Francisca · son of Bernardino Guadalupe and Nicolasa Villaverde · parish priest of Bangar (1866–1887)",
       "k": "src",
       "nationality": "Spanish-born; formal nationality not independently confirmed",
       "religion": "Roman Catholic — Order of Saint Augustine (OSA)",
@@ -85,18 +85,19 @@
       "religionNote": "His recorded OSA designation identifies the Order of Saint Augustine. The Order describes its members as religious priests and brothers in the Catholic Church.",
       "nationalitySource": "https://www.agustinosvalladolid.es/estudio/investigacion/archivoagustiniano/archivofondos/archivo2019/archivo_2019.pdf",
       "religionSource": "https://www.augustinianorder.org/who-we-are",
-      "n": "The supplied FamilySearch profile screenshot (ID G138-FPT) displays birth on 26 October 1830 in Ocaña, Toledo, Castilla-La Mancha, Spain, and death on 17 January 1887 in San Juan, La Union, Philippines. An Augustinian archival register also lists Evaristo Guadalupe, born in Ocaña in 1830, serving in Philippine parishes and dying in San Juan, La Union on 17 January 1887. The profile screenshot shows Quality Score: Medium and Sources (0); the dates still need corroboration from original records. The supplied family-tree screenshot identifies him with Ramona as the parents of Don Leon and Doña Francisca. The latest family research reports that municipal records from Bangar, La Union verify his tenure as parish priest of Bangar from 1866 to 1887. The tenure aligns with the reported period in which Doña Francisca and Don Leon were born to Ramona Lopez Lacsamana; the municipal record itself should be retained with the archive sources when available. The master family summary reports that Bangar municipal records verify his tenure as parish priest of Bangar from 1866 to 1887, overlapping the period associated with the births of Doña Francisca and Don Leon. The municipal record copy was not attached to this V19 package. The master findings report that Bangar municipal records verify his tenure as parish priest of Bangar, La Union, from 1866 to 1887."
+      "n": "The supplied FamilySearch profile screenshot (ID G138-FPT) displays birth on 26 October 1830 in Ocaña, Toledo, Spain, and death on 17 January 1887 in San Juan, La Union, Philippines. An Augustinian archival register also lists Evaristo Guadalupe, born in Ocaña in 1830, serving in Philippine parishes and dying in San Juan, La Union on 17 January 1887. The supplied relatives update names Bernardino Guadalupe as his father and Nicolasa Villaverde as his mother, and gives the also-known-as form “Muy Reverendo Padre Fray Evaristo Villaverde Guadalupe OSA.” The same update explicitly clarifies that Ramona Lopez Lacsamana and Fr. Evaristo did not marry. Their connection to Don Leon and Doña Francisca is retained as reported parentage only, not as a spousal or marriage relationship. A handwritten archival-register page and a signature artwork attributed by the supplied filenames to Evaristo have been added to the research archive. The register entries have not yet been transcribed, dated, or independently authenticated, and the signature attribution has not been independently authenticated. The latest family research reports that municipal records from Bangar, La Union verify his tenure as parish priest from 1866 to 1887; the municipal record copy was not supplied here.",
+      "alsoKnownAs": "Muy Reverendo Padre Fray Evaristo Villaverde Guadalupe OSA"
     },
     "ramona-lopez": {
       "id": "ramona-lopez",
       "name": "Ramona Lopez Lacsamana",
-      "role": "Generation 2 · Mother of Don Leon Lacsamana and Doña Francisca Lacsamana-Ortega",
+      "role": "Daughter of Martin Lacsamana and Narcisa Lopez · mother of Don Leon and Doña Francisca · sibling of eight newly recorded relatives",
       "k": "todo",
       "nationality": "Not documented in available sources",
       "religion": "Not documented in available sources",
       "d": "1849–Deceased",
       "status": "family",
-      "n": "The supplied FamilySearch profile identifies Ramona Lopez Lacsamana (profile ID GNHK-MZ3), born in 1849, as the mother of both Don Leon Lacsamana and Doña Francisca Lacsamana-Ortega. The family tree pairs Ramona with Fr. Evaristo Guadalupe y Villaverde. The profile view previously captured in this archive showed no attached original sources, so this is retained as a genealogy-profile finding pending parish or civil-record corroboration."
+      "n": "The supplied FamilySearch profile identifies Ramona Lopez Lacsamana (profile ID GNHK-MZ3), born in 1849, as the mother of Don Leon Lacsamana and Doña Francisca Lacsamana-Ortega. The new family-supplied relatives update clarifies that Ramona and Fr. Evaristo Guadalupe y Villaverde, OSA did not marry. The tree therefore retains their reported parentage connection only; it does not identify them as spouses or imply a marriage. The same update names Martin Lacsamana and Narcisa Lopez as Ramona’s parents and lists eight siblings: Maria de la Expectacion Lopez Lacsamana, Bernardo, Rosa, Ynes, Ysabelo, Timotea, Maximo, and Proceso Lopez Lacsamana. The family clarification corrects Maria’s surname to Lacsamana; the earlier typed note used “Lasamana,” treated as a spelling typo. Original civil or church records for these relationships were not attached."
     },
     "leon": {
       "id": "leon",
@@ -2114,6 +2115,107 @@
       "religion": "Not documented in available sources",
       "status": "family",
       "n": "Named in the supplied master family summary as an extended notable cousin. No exact parentage, dates, or branch connection are supplied; no parent-child link is drawn."
+    },
+    "bernardino-guadalupe": {
+      "id": "bernardino-guadalupe",
+      "name": "Bernardino Guadalupe",
+      "role": "Father of Fr. Evaristo Guadalupe y Villaverde",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update names Bernardino Guadalupe as the father of Fr. Evaristo Guadalupe y Villaverde, OSA. No dates, birthplace, or original civil / church record were supplied."
+    },
+    "nicolasa-villaverde": {
+      "id": "nicolasa-villaverde",
+      "name": "Nicolasa Villaverde",
+      "role": "Mother of Fr. Evaristo Guadalupe y Villaverde",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "fam": "Villaverde",
+      "n": "The family-supplied relatives update names Nicolasa Villaverde as the mother of Fr. Evaristo Guadalupe y Villaverde, OSA. No dates, birthplace, or original civil / church record were supplied."
+    },
+    "maria-expectacion-lopez-lasamana": {
+      "id": "maria-expectacion-lopez-lasamana",
+      "name": "Maria de la Expectacion Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. The surname is recorded here as Lacsamana following the family clarification; the earlier typed relatives note used “Lasamana,” treated as a spelling typo. No dates or original civil / church record were supplied."
+    },
+    "bernardo-lopez-lacsamana": {
+      "id": "bernardo-lopez-lacsamana",
+      "name": "Bernardo Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "rosa-lopez-lacsamana": {
+      "id": "rosa-lopez-lacsamana",
+      "name": "Rosa Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "ynes-lopez-lacsamana": {
+      "id": "ynes-lopez-lacsamana",
+      "name": "Ynes Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "ysabelo-lopez-lacsamana": {
+      "id": "ysabelo-lopez-lacsamana",
+      "name": "Ysabelo Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "timotea-lopez-lacsamana": {
+      "id": "timotea-lopez-lacsamana",
+      "name": "Timotea Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "maximo-lopez-lacsamana": {
+      "id": "maximo-lopez-lacsamana",
+      "name": "Maximo Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
+    },
+    "proceso-lopez-lacsamana": {
+      "id": "proceso-lopez-lacsamana",
+      "name": "Proceso Lopez Lacsamana",
+      "role": "Child of Martin Lacsamana and Narcisa Lopez · sibling of Ramona Lopez Lacsamana",
+      "k": "todo",
+      "status": "family",
+      "nationality": "Not documented in available sources",
+      "religion": "Not documented in available sources",
+      "n": "The family-supplied relatives update lists this person as a child of Martin Lacsamana and Narcisa Lopez and as a sibling of Ramona Lopez Lacsamana. No dates or original civil / church record were supplied."
     }
   },
   "unions": [
@@ -2137,9 +2239,19 @@
       "a": "martin-lacsamana",
       "b": "narcisa-lopez",
       "kids": [
-        "ramona-lopez"
+        "ramona-lopez",
+        "maria-expectacion-lopez-lasamana",
+        "bernardo-lopez-lacsamana",
+        "rosa-lopez-lacsamana",
+        "ynes-lopez-lacsamana",
+        "ysabelo-lopez-lacsamana",
+        "timotea-lopez-lacsamana",
+        "maximo-lopez-lacsamana",
+        "proceso-lopez-lacsamana"
       ],
-      "line": "pending"
+      "line": "pending",
+      "kind": "parentage",
+      "label": "PARENTAGE ONLY · MARITAL STATUS NOT ESTABLISHED"
     },
     {
       "a": "ramona-lopez",
@@ -2148,7 +2260,9 @@
         "leon",
         "francisca"
       ],
-      "line": "pending"
+      "line": "pending",
+      "kind": "parentage",
+      "label": "REPORTED PARENTAGE · NOT MARRIED"
     },
     {
       "a": "leon",
@@ -2655,6 +2769,16 @@
       "kids": [],
       "line": "pending",
       "note": "Earlier marriage; dates and children not supplied."
+    },
+    {
+      "a": "bernardino-guadalupe",
+      "b": "nicolasa-villaverde",
+      "kids": [
+        "evaristo-guadalupe"
+      ],
+      "line": "pending",
+      "kind": "parentage",
+      "label": "PARENTAGE ONLY · MARITAL STATUS NOT ESTABLISHED"
     }
   ],
   "chip": {
@@ -3053,6 +3177,35 @@
         "raphaelle",
         "mario",
         "paolo"
+      ]
+    },
+    {
+      "name": "Martin Lacsamana · Narcisa Lopez · Ramona’s siblings",
+      "how": "The family-supplied relatives update names Martin Lacsamana and Narcisa Lopez as the parents of Ramona Lopez Lacsamana and lists eight siblings: Maria de la Expectacion Lopez Lacsamana, Bernardo, Rosa, Ynes, Ysabelo, Timotea, Maximo, and Proceso Lopez Lacsamana. Maria’s surname is shown as Lacsamana following the family clarification; the earlier typed note said “Lasamana.” Dates and original civil / church records have not been attached.",
+      "ids": [
+        "martin-lacsamana",
+        "narcisa-lopez",
+        "ramona-lopez",
+        "maria-expectacion-lopez-lasamana",
+        "bernardo-lopez-lacsamana",
+        "rosa-lopez-lacsamana",
+        "ynes-lopez-lacsamana",
+        "ysabelo-lopez-lacsamana",
+        "timotea-lopez-lacsamana",
+        "maximo-lopez-lacsamana",
+        "proceso-lopez-lacsamana"
+      ]
+    },
+    {
+      "name": "Guadalupe · Villaverde · Fr. Evaristo’s family of origin",
+      "how": "The family-supplied relatives update names Bernardino Guadalupe and Nicolasa Villaverde as the parents of Fr. Evaristo Guadalupe y Villaverde, OSA. It also gives the alternate name “Muy Reverendo Padre Fray Evaristo Villaverde Guadalupe OSA.” A register-page scan and signature artwork attributed to Evaristo are preserved in the research assets; the scan has not been transcribed and the signature attribution has not been independently authenticated. The family update clarifies that Ramona Lopez Lacsamana and Evaristo did not marry; their tree link is parentage only.",
+      "ids": [
+        "bernardino-guadalupe",
+        "nicolasa-villaverde",
+        "evaristo-guadalupe",
+        "ramona-lopez",
+        "leon",
+        "francisca"
       ]
     }
   ]
