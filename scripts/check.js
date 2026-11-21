@@ -132,6 +132,31 @@ if (!/values\s*\([\s\S]*?'family-research-files',[\s\S]*?'family-research-files'
 if (!script.includes('family-archive-ready')) throw new Error("Main archive script is missing the research workspace lifecycle event.");
 if (!script.includes('u.kind !== "parentage"') || !script.includes("parentage-label") || !script.includes("1808–1814")) throw new Error("V19.2 parentage labels, spouse filtering, or historical context are missing.");
 if (!html.includes("evaristo-guadalupe-archival-register-pages.png") || !html.includes("evaristo-guadalupe-signature.svg")) throw new Error("V19.2 Evaristo archival exhibits are missing from the documents gallery.");
+for (const marker of [
+  'el("div", "tree-line-key")',
+  "Recorded branch",
+  "Reported / pending",
+  "Spouse / partner",
+  "Parentage only",
+  "Co-parent link · not a marriage",
+  'function drawLines()',
+  'const unionCards = (couple) =>' ,
+  'const primaryCard = (node) =>' ,
+  'family-connector " + line + (kind === "parentage" ? " parentage"',
+  'unit.dataset.kind = u.kind || "union"'
+]) {
+  if (!script.includes(marker)) throw new Error("Family-tree line indicator is missing: " + marker);
+}
+for (const marker of [
+  ".tree-line-key {",
+  ".tree-line-swatch.solid::before",
+  ".tree-line-swatch.dashed::before",
+  ".tree-lines path.family-connector.parentage",
+  ".tree-lines circle.family-junction",
+  ".couple .pl {"
+]) {
+  if (!read("public/styles.css").includes(marker)) throw new Error("Family-tree line indicator styling is missing: " + marker);
+}
 if (api.includes("SUPABASE_SECRET_KEY") || api.includes("SUPABASE_SERVICE_ROLE_KEY")) {
   throw new Error("A server-side Supabase secret must not be exposed by the config API.");
 }
@@ -145,4 +170,4 @@ for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track",
 if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
   throw new Error("V16 display typography or dialog accessibility markup is missing.");
 }
-console.log(`Checks passed: JS syntax, unique HTML IDs, V19.1 project references, contribution portal, research workspace forms and API, research migration / private storage / RLS markers, no secret in API config, no local env file, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
+console.log(`Checks passed: JS syntax, unique HTML IDs, V19.1 project references, contribution portal, research workspace forms and API, research migration / private storage / RLS markers, no secret in API config, no local env file, V19.2.2 family-tree connector legend / geometry, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);

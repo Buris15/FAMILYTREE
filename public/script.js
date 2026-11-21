@@ -8,7 +8,7 @@ await (window.FamilyCloud && window.FamilyCloud.ready ? window.FamilyCloud.ready
    P(id, name, role, {options})   a blood relative of the branch
    S(id, name, role, {options})   someone who married in
    U(personId, partnerId|null, [childIds], lineStyle)   a couple + children
-        lineStyle: "blood" (solid blue) · "pending" (amber dashed) · "you" (green)
+        lineStyle: "blood" (solid brass) · "pending" (dashed amber) · "you" (sage)
    options: d = dates, av = emoji, k = colour (src|sp|you|todo|rel),
             n = note shown on hover, fam = family name, ed = 1 for an
             editable placeholder, gone = 1 if died young, same = id of the
@@ -424,6 +424,7 @@ function nodeEl(pid) {
     unions.forEach((u, index) => {
       const unit = el("div", "union-unit");
       unit.dataset.line = u.line || "blood";
+      unit.dataset.kind = u.kind || "union";
       unit.appendChild(coupleEl(pid, { union: u, unionIndex: index }));
       if (u.kids && u.kids.length) {
         const ul = el("ul", "kids");
@@ -467,6 +468,15 @@ function renderAll() {
   main.id = "mainLineage";
   main.appendChild(el("div", "tree-overline", "LACSAMANA × ORTEGA · CONNECTED FAMILY TREE"));
   main.appendChild(el("div", "tree-caption", "Martin Lacsamana and Narcisa Lopez → Ramona and eight recorded siblings · Ramona and Fr. Evaristo are linked to Leon and Francisca by reported parentage only; they did not marry."));
+  const lineKey = el("div", "tree-line-key");
+  lineKey.setAttribute("role", "note");
+  lineKey.setAttribute("aria-label", "Family tree relationship line key");
+  lineKey.innerHTML =
+    '<span class="tree-line-key-item"><i class="tree-line-swatch solid" aria-hidden="true"></i><span><strong>Recorded branch</strong><small>Parent–child connector</small></span></span>' +
+    '<span class="tree-line-key-item"><i class="tree-line-swatch dashed" aria-hidden="true"></i><span><strong>Reported / pending</strong><small>Needs original-record confirmation</small></span></span>' +
+    '<span class="tree-line-key-item"><i class="tree-line-swatch partner" aria-hidden="true"></i><span><strong>Spouse / partner</strong><small>Short line between profile cards</small></span></span>' +
+    '<span class="tree-line-key-item"><i class="tree-line-swatch parentage" aria-hidden="true"></i><span><strong>Parentage only</strong><small>Co-parent link · not a marriage</small></span></span>';
+  main.appendChild(lineKey);
   main.appendChild(el("p", "heritage-flag-legend", '<span>🇵🇭 🇪🇸</span> marks Philippine family roots and Spanish-born ancestry through Evaristo Guadalupe y Villaverde. The flags identify heritage, not citizenship or an exact percentage.'));
   const root = el("div", "tree-root");
   root.id = "ancPanel";
@@ -504,10 +514,10 @@ function renderAll() {
   populateCousinSelect();
 }
 
-/* ---------- connector lines between the big sections ----------
-   Everything inside a branch (couple → children) is drawn with CSS, so
-   it can never come loose. Only the long links are drawn here, measured
-   from the real card positions, and they sit ABOVE the panels. */
+/* ---------- measured family-tree connectors ----------
+   Each parent/couple → child branch is measured from the real profile
+   cards. The connector SVG sits above the canvas and below the cards, so
+   the stems, sibling bus, and child drops remain aligned while zooming. */
 function rel(e) {
   let x = 0, y = 0;
   while (e && e !== treeMap) {
@@ -538,46 +548,106 @@ function txt(x, y, s, cls) {
 
 function layoutTop() { /* Structural connectors are rendered with the family tree elements. */ }
 function drawLines() {
+  if (!svg || !treeMap) return;
   svg.textContent = "";
-  const W = Math.max(treeMap.offsetWidth, 1), H = Math.max(treeMap.offsetHeight, 1);
+  const W = Math.max(treeMap.offsetWidth, 1);
+  const H = Math.max(treeMap.offsetHeight, 1);
   svg.setAttribute("width", W);
   svg.setAttribute("height", H);
   svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  svg.setAttribute("preserveAspectRatio", "none");
+
   const treeRect = treeMap.getBoundingClientRect();
-  const scale = zoom || 1;
+  const scale = Math.max(Number(zoom) || 1, 0.01);
   const measure = (node) => {
     const r = node.getBoundingClientRect();
     return {
+      left: (r.left - treeRect.left) / scale,
+      top: (r.top - treeRect.top) / scale,
+      right: (r.right - treeRect.left) / scale,
+      bottom: (r.bottom - treeRect.top) / scale,
       x: (r.left - treeRect.left) / scale,
       y: (r.top - treeRect.top) / scale,
       w: r.width / scale,
       h: r.height / scale,
     };
   };
+
+  // Only use the two people represented by the union row. In the special
+  // Francisca/Joaquín layout, Joaquín's own parents sit inside his wrapper;
+  // they must not pull the branch connector down to their row.
+  const unionCards = (couple) => {
+    if (!couple) return [];
+    return Array.from(couple.children).flatMap((child) => {
+      if (child.matches(".card")) return [child];
+      if (child.matches(".spouse-with-parents")) {
+        const personCard = child.querySelector(":scope > .card");
+        return personCard ? [personCard] : [];
+      }
+      return [];
+    });
+  };
+  const primaryCard = (node) => {
+    if (!node) return null;
+    const firstUnit = node.querySelector(":scope > .union-unit");
+    const couple = firstUnit
+      ? firstUnit.querySelector(":scope > .couple")
+      : node.querySelector(":scope > .couple");
+    return unionCards(couple)[0] || null;
+  };
+  const appendCircle = (x, y, cls) => {
+    const dot = document.createElementNS(NS, "circle");
+    dot.setAttribute("cx", x);
+    dot.setAttribute("cy", y);
+    dot.setAttribute("r", "2.1");
+    dot.setAttribute("class", cls || "family-junction");
+    svg.appendChild(dot);
+  };
+
   $$(".union-unit").forEach((unit) => {
     const couple = unit.querySelector(":scope > .couple");
     const kids = unit.querySelector(":scope > .kids");
     if (!couple || !kids || !kids.children.length) return;
-    const p = measure(couple);
-    const parentX = p.x + p.w / 2;
-    const parentY = p.y + p.h - 2;
-    const childCards = Array.from(kids.children).map((li) => li.querySelector(":scope > .node .card")).filter(Boolean);
+
+    const parentCards = unionCards(couple);
+    if (!parentCards.length) return;
+    const parents = parentCards.map(measure);
+    const parentX = (Math.min(...parents.map((r) => r.left + r.w / 2)) +
+      Math.max(...parents.map((r) => r.left + r.w / 2))) / 2;
+    const parentY = Math.max(...parents.map((r) => r.bottom)) - 1;
+
+    const childCards = Array.from(kids.children).map((li) => {
+      const childNode = li.querySelector(":scope > .node");
+      return primaryCard(childNode);
+    }).filter(Boolean);
     if (!childCards.length) return;
-    const children = childCards.map(measure).map((r) => ({ x: r.x + r.w / 2, y: r.y + 2 }));
+
+    const children = childCards.map(measure).map((r) => ({
+      x: r.left + r.w / 2,
+      y: r.top + 1,
+    }));
     const topY = Math.min(...children.map((c) => c.y));
-    const gap = Math.max(14, Math.min(26, (topY - parentY) * 0.45));
-    const busY = Math.min(topY - 4, parentY + gap);
+    const verticalGap = Math.max(18, topY - parentY);
+    const busY = parentY + Math.max(10, Math.min(30, verticalGap * 0.46));
+
     const line = unit.dataset.line || "blood";
-    const path = document.createElementNS(NS, "path");
-    let d = "M " + parentX + " " + parentY + " V " + busY;
+    const kind = unit.dataset.kind || "union";
+    const classes = "family-connector " + line + (kind === "parentage" ? " parentage" : "");
+
+    // Draw each segment independently. This makes the main stem, sibling
+    // bus, and individual child drops easy to style and inspect.
+    seg("M " + parentX + " " + parentY + " V " + busY, classes + " parent-stem");
     if (children.length > 1) {
       const xs = children.map((c) => c.x);
-      d += " M " + Math.min(...xs) + " " + busY + " H " + Math.max(...xs);
+      const minX = Math.min(...xs);
+      const maxX = Math.max(...xs);
+      seg("M " + minX + " " + busY + " H " + maxX, classes + " sibling-bus");
+      children.forEach((c) => seg("M " + c.x + " " + busY + " V " + c.y, classes + " child-drop"));
+      children.forEach((c) => appendCircle(c.x, busY, "family-junction"));
+    } else {
+      seg("M " + children[0].x + " " + busY + " V " + children[0].y, classes + " child-drop");
     }
-    children.forEach((c) => { d += " M " + c.x + " " + busY + " V " + c.y; });
-    path.setAttribute("d", d);
-    path.setAttribute("class", "family-connector " + line);
-    svg.appendChild(path);
+    appendCircle(parentX, parentY, "family-junction parent-junction");
   });
 }
 function $$(s, r) { return Array.from((r || treeMap).querySelectorAll(s)); }
