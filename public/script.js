@@ -548,107 +548,122 @@ function txt(x, y, s, cls) {
 
 function layoutTop() { /* Structural connectors are rendered with the family tree elements. */ }
 function drawLines() {
-  if (!svg || !treeMap) return;
-  svg.textContent = "";
-  const W = Math.max(treeMap.offsetWidth, 1);
-  const H = Math.max(treeMap.offsetHeight, 1);
-  svg.setAttribute("width", W);
-  svg.setAttribute("height", H);
-  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
-  svg.setAttribute("preserveAspectRatio", "none");
+  if (svg) svg.textContent = "";
 
-  const treeRect = treeMap.getBoundingClientRect();
-  const scale = Math.max(Number(zoom) || 1, 0.01);
-  const measure = (node) => {
-    const r = node.getBoundingClientRect();
-    return {
-      left: (r.left - treeRect.left) / scale,
-      top: (r.top - treeRect.top) / scale,
-      right: (r.right - treeRect.left) / scale,
-      bottom: (r.bottom - treeRect.top) / scale,
-      x: (r.left - treeRect.left) / scale,
-      y: (r.top - treeRect.top) / scale,
-      w: r.width / scale,
-      h: r.height / scale,
-    };
-  };
-
-  // Only use the two people represented by the union row. In the special
-  // Francisca/Joaquín layout, Joaquín's own parents sit inside his wrapper;
-  // they must not pull the branch connector down to their row.
-  const unionCards = (couple) => {
-    if (!couple) return [];
-    return Array.from(couple.children).flatMap((child) => {
-      if (child.matches(".card")) return [child];
-      if (child.matches(".spouse-with-parents")) {
-        const personCard = child.querySelector(":scope > .card");
-        return personCard ? [personCard] : [];
-      }
-      return [];
-    });
-  };
-  const primaryCard = (node) => {
-    if (!node) return null;
-    const firstUnit = node.querySelector(":scope > .union-unit");
-    const couple = firstUnit
-      ? firstUnit.querySelector(":scope > .couple")
-      : node.querySelector(":scope > .couple");
-    return unionCards(couple)[0] || null;
-  };
-  const appendCircle = (x, y, cls) => {
-    const dot = document.createElementNS(NS, "circle");
-    dot.setAttribute("cx", x);
-    dot.setAttribute("cy", y);
-    dot.setAttribute("r", "2.1");
-    dot.setAttribute("class", cls || "family-junction");
-    svg.appendChild(dot);
-  };
-
+  // Draw every family connector inside its own union unit. A local SVG means
+  // each couple and its children share one coordinate system; wide branches,
+  // zooming, panning, and nested descendants cannot offset the connector.
   $$(".union-unit").forEach((unit) => {
     const couple = unit.querySelector(":scope > .couple");
     const kids = unit.querySelector(":scope > .kids");
-    if (!couple || !kids || !kids.children.length) return;
+    if (!couple || !kids || !kids.children.length) {
+      unit.querySelector(":scope > .union-connectors")?.remove();
+      return;
+    }
 
-    const parentCards = unionCards(couple);
-    if (!parentCards.length) return;
-    const parents = parentCards.map(measure);
-    const parentX = (Math.min(...parents.map((r) => r.left + r.w / 2)) +
-      Math.max(...parents.map((r) => r.left + r.w / 2))) / 2;
-    const parentY = Math.max(...parents.map((r) => r.bottom)) - 1;
-
+    const parentCards = unionCardsForLines(couple);
     const childCards = Array.from(kids.children).map((li) => {
       const childNode = li.querySelector(":scope > .node");
-      return primaryCard(childNode);
+      return primaryCardForLines(childNode);
     }).filter(Boolean);
-    if (!childCards.length) return;
+    if (!parentCards.length || !childCards.length) return;
 
-    const children = childCards.map(measure).map((r) => ({
-      x: r.left + r.w / 2,
-      y: r.top + 1,
+    let localSvg = unit.querySelector(":scope > .union-connectors");
+    if (!localSvg) {
+      localSvg = document.createElementNS(NS, "svg");
+      localSvg.setAttribute("class", "union-connectors");
+      localSvg.setAttribute("aria-hidden", "true");
+      unit.insertBefore(localSvg, unit.firstChild);
+    }
+    localSvg.textContent = "";
+
+    const width = Math.max(unit.offsetWidth, 1);
+    const height = Math.max(unit.offsetHeight, 1);
+    localSvg.setAttribute("width", width);
+    localSvg.setAttribute("height", height);
+    localSvg.setAttribute("viewBox", "0 0 " + width + " " + height);
+    localSvg.setAttribute("preserveAspectRatio", "none");
+
+    const unitRect = unit.getBoundingClientRect();
+    const scaleX = unitRect.width / width || 1;
+    const scaleY = unitRect.height / height || 1;
+    const measureLocal = (element) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        left: (rect.left - unitRect.left) / scaleX,
+        top: (rect.top - unitRect.top) / scaleY,
+        right: (rect.right - unitRect.left) / scaleX,
+        bottom: (rect.bottom - unitRect.top) / scaleY,
+        centerX: (rect.left + rect.width / 2 - unitRect.left) / scaleX,
+      };
+    };
+
+    const parents = parentCards.map(measureLocal);
+    const parentX = (Math.min(...parents.map((box) => box.centerX)) +
+      Math.max(...parents.map((box) => box.centerX))) / 2;
+    const parentRow = measureLocal(couple);
+    const parentY = parentRow.bottom;
+    const children = childCards.map(measureLocal).map((box) => ({
+      x: box.centerX,
+      y: box.top,
     }));
-    const topY = Math.min(...children.map((c) => c.y));
-    const verticalGap = Math.max(18, topY - parentY);
-    const busY = parentY + Math.max(10, Math.min(30, verticalGap * 0.46));
+    const firstChildY = Math.min(...children.map((child) => child.y));
+    const gap = Math.max(0, firstChildY - parentY);
+    if (gap < 3) return;
+    const busY = parentY + Math.max(2, Math.min(22, gap * 0.48));
 
     const line = unit.dataset.line || "blood";
     const kind = unit.dataset.kind || "union";
     const classes = "family-connector " + line + (kind === "parentage" ? " parentage" : "");
+    const makePath = (d, extra) => {
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", classes + (extra ? " " + extra : ""));
+      localSvg.appendChild(path);
+    };
+    const makeJunction = (x, y) => {
+      const circle = document.createElementNS(NS, "circle");
+      circle.setAttribute("cx", x);
+      circle.setAttribute("cy", y);
+      circle.setAttribute("r", "2.5");
+      circle.setAttribute("class", "family-junction");
+      localSvg.appendChild(circle);
+    };
 
-    // Draw each segment independently. This makes the main stem, sibling
-    // bus, and individual child drops easy to style and inspect.
-    seg("M " + parentX + " " + parentY + " V " + busY, classes + " parent-stem");
+    // Parent/couple stem → shared sibling bus → a separate drop to each child.
+    makePath("M " + parentX + " " + parentY + " V " + busY, "parent-stem");
     if (children.length > 1) {
-      const xs = children.map((c) => c.x);
+      const xs = children.map((child) => child.x);
       const minX = Math.min(...xs);
       const maxX = Math.max(...xs);
-      seg("M " + minX + " " + busY + " H " + maxX, classes + " sibling-bus");
-      children.forEach((c) => seg("M " + c.x + " " + busY + " V " + c.y, classes + " child-drop"));
-      children.forEach((c) => appendCircle(c.x, busY, "family-junction"));
+      makePath("M " + minX + " " + busY + " H " + maxX, "sibling-bus");
+      children.forEach((child) => {
+        makePath("M " + child.x + " " + busY + " V " + child.y, "child-drop");
+        makeJunction(child.x, busY);
+      });
     } else {
-      seg("M " + children[0].x + " " + busY + " V " + children[0].y, classes + " child-drop");
+      makePath("M " + children[0].x + " " + busY + " V " + children[0].y, "child-drop");
     }
-    appendCircle(parentX, parentY, "family-junction parent-junction");
+    makeJunction(parentX, busY);
   });
+}
+
+function unionCardsForLines(couple) {
+  if (!couple) return [];
+  return Array.from(couple.children).flatMap((child) => {
+    if (child.matches(".card")) return [child];
+    if (child.matches(".spouse-with-parents")) {
+      const personCard = child.querySelector(":scope > .card");
+      return personCard ? [personCard] : [];
+    }
+    return [];
+  });
+}
+function primaryCardForLines(node) {
+  if (!node) return null;
+  const firstUnit = node.querySelector(":scope > .union-unit");
+  const couple = firstUnit ? firstUnit.querySelector(":scope > .couple") : node.querySelector(":scope > .couple");
+  return unionCardsForLines(couple)[0] || null;
 }
 function $$(s, r) { return Array.from((r || treeMap).querySelectorAll(s)); }
 

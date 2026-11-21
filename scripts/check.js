@@ -140,10 +140,11 @@ for (const marker of [
   "Parentage only",
   "Co-parent link · not a marriage",
   'function drawLines()',
-  'const unionCards = (couple) =>' ,
-  'const primaryCard = (node) =>' ,
+  'function unionCardsForLines(couple)',
+  'function primaryCardForLines(node)',
+  'unit.querySelector(":scope > .union-connectors")',
   'family-connector " + line + (kind === "parentage" ? " parentage"',
-  'unit.dataset.kind = u.kind || "union"'
+  'Parent/couple stem → shared sibling bus → a separate drop to each child.'
 ]) {
   if (!script.includes(marker)) throw new Error("Family-tree line indicator is missing: " + marker);
 }
@@ -151,8 +152,9 @@ for (const marker of [
   ".tree-line-key {",
   ".tree-line-swatch.solid::before",
   ".tree-line-swatch.dashed::before",
-  ".tree-lines path.family-connector.parentage",
-  ".tree-lines circle.family-junction",
+  ".union-connectors path.family-connector.parentage",
+  ".union-connectors circle.family-junction",
+  ".union-unit > .union-connectors",
   ".couple .pl {"
 ]) {
   if (!read("public/styles.css").includes(marker)) throw new Error("Family-tree line indicator styling is missing: " + marker);
@@ -170,4 +172,4 @@ for (const marker of ["REGAL OBSIDIAN DESIGN SYSTEM", ".reading-progress-track",
 if (!html.includes("Cormorant+Garamond") || !html.includes('role="dialog"')) {
   throw new Error("V16 display typography or dialog accessibility markup is missing.");
 }
-console.log(`Checks passed: JS syntax, unique HTML IDs, V19.1 project references, contribution portal, research workspace forms and API, research migration / private storage / RLS markers, no secret in API config, no local env file, V19.2.2 family-tree connector legend / geometry, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);
+console.log(`Checks passed: JS syntax, unique HTML IDs, V19.1 project references, contribution portal, research workspace forms and API, research migration / private storage / RLS markers, no secret in API config, no local env file, V19.2.3 local attached family-tree connector routing, and V19 master findings seed data (${visiblePeopleCount} distinct profiles / ${peopleCount} entries, ${unionCount} unions, ${indexCount} family-index groups).`);

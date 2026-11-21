@@ -4388,3 +4388,57 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   .tree-line-swatch.partner::before { width: 16px; }
   .parentage-label { max-width: 130px; min-height: 28px; }
 }
+
+
+/* V19.2.3 — local, attached parent-to-children connector routing */
+#treeLines { display: none !important; }
+.union-unit {
+  position: relative;
+  isolation: isolate;
+}
+.union-unit > .union-connectors {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.union-unit > .couple,
+.union-unit > .kids {
+  position: relative;
+  z-index: 1;
+}
+.union-connectors path.family-connector {
+  fill: none;
+  stroke: rgba(215, 197, 157, .96);
+  stroke-width: 2.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  opacity: 1;
+}
+.union-connectors path.family-connector.pending {
+  stroke: #d6b477;
+  stroke-dasharray: 6 5;
+}
+.union-connectors path.family-connector.parentage {
+  stroke: #d6b477;
+  stroke-dasharray: 2.5 4.5;
+  stroke-width: 2.2;
+}
+.union-connectors path.family-connector.you { stroke: #b5c49e; }
+.union-connectors circle.family-junction {
+  fill: #e4d1a4;
+  stroke: #0a130d;
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+.union-unit > .kids { margin-top: 26px; }
+.union-unit > .kids > li { min-width: 108px; }
+@media (max-width: 700px) {
+  .union-unit > .kids { margin-top: 23px; }
+  .union-connectors path.family-connector { stroke-width: 2; }
+}
